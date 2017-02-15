@@ -49,3 +49,4 @@ build.xml
 ant.properties
 project.properties
 gradle.properties
+local.properties
