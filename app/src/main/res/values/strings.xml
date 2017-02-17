@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Easy Meal</string>
+    <string name="search">Search</string>
+    <string name="favorites">Favorites</string>
+    <string name="help">Help</string>
+
 </resources>
