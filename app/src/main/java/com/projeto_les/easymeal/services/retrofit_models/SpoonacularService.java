@@ -23,7 +23,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class SpoonacularService {
-    // TODO: handle special cases when Key is empty.
     private String MASHAPE_KEY = "";
 
     // Trailing slash is needed
@@ -56,6 +55,7 @@ public class SpoonacularService {
     }
 
     public SpoonacularService(final String mashapeKey) {
+        // TODO: handle special cases when Key is empty or invalid.
         MASHAPE_KEY = mashapeKey;
         createRetrofit();
     }

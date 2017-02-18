@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         // Here we have an example of a request to the get recipes endpoint
         // Initialize an instance of the service with our API Key, which is setted inside the file
         // gradle.properties .
+
         SpoonacularService spoonacularService = new SpoonacularService(getString(R.string.SPOONACULATOR_API_KEY));
 
         // Parameters of the request, we're using an object to encapsulate them.
