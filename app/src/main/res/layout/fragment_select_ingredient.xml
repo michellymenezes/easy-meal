@@ -1,79 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_margin="5dp">
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:id="@+id/ingredient_layout">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/text_ingredient"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_margin="5dp">
+            android:layout_height="wrap_content"
+            android:text="@string/ingredients"
+            style="@style/Base.TextAppearance.AppCompat.Title" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_ingredient"
+            android:id="@+id/auto_complete_ingredient_container">
+
+            <AutoCompleteTextView
+                android:id="@+id/auto_complete_ingredient"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:id="@+id/ingredient_layout">
+                android:layout_alignParentLeft="true"
+                android:ems="15"
+                android:text=""/>
 
-                <TextView
-                    android:id="@+id/text_ingredient"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ingredients"
-                    style="@style/Base.TextAppearance.AppCompat.Title" />
+            <Button
+                android:id="@+id/clear_btn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_clear"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/auto_complete_ingredient"
+                android:layout_alignEnd="@+id/auto_complete_ingredient" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/text_ingredient"
-                    android:id="@+id/auto_complete_ingredient_container">
+        </RelativeLayout>
 
-                    <AutoCompleteTextView
-                        android:id="@+id/auto_complete_ingredient"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:ems="15"
-                        android:text=""/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/add"
+            android:text="@string/add"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/auto_complete_ingredient_container"/>
 
-                    <Button
-                        android:id="@+id/clear_btn"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/ic_clear"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignRight="@+id/auto_complete_ingredient"
-                        android:layout_alignEnd="@+id/auto_complete_ingredient" />
+    </RelativeLayout>
 
-                </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="312dp"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp">
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/add"
-                    android:text="@string/add"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_below="@+id/auto_complete_ingredient_container"/>
-
-            </RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/selected_ingredients"
+            style="@style/TextAppearance.AppCompat.Title"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="5dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/selected_ingredients"
-                    style="@style/TextAppearance.AppCompat.Title"/>
-
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
                 <ListView
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
@@ -81,19 +78,18 @@
                     android:focusable="true"
                     />
             </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/next"
-                    android:background="@drawable/ic_next"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"/>
-            </RelativeLayout>
-        </LinearLayout>
-    </ScrollView>
+        </ScrollView>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/next"
+            android:background="@drawable/ic_next"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
 </LinearLayout>
