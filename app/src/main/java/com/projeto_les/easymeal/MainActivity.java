@@ -86,8 +86,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void changeFragment(Fragment frag, String tag, boolean saveInBackstack) {
-
+    /**
+     * Change the current displayed fragment by a new one.
+     * - if the fragment is in backstack, it will pop it
+     * - if the fragment is already displayed (trying to change the fragment with the same), it will not do anything
+     *
+     * @param frag            the new fragment to display
+     * @param saveInBackstack if we want the fragment to be in backstack
+     */
+    public void changeFragment(Fragment frag, String tag, boolean saveInBackstack) {
 
         try {
             FragmentManager manager = getSupportFragmentManager();
@@ -122,9 +129,4 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-
-    public void onSelectIngredientsButtonPressed(View view){
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_layout,
-                selectIngredientsFragment, SelectIngredientsFragment.TAG).addToBackStack(SelectIngredientsFragment.TAG).commit();
-    }
 }

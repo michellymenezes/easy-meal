@@ -6,7 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
+
+import com.projeto_les.easymeal.MainActivity;
 import com.projeto_les.easymeal.R;
 
 
@@ -54,6 +57,31 @@ public class InitialFragment extends Fragment{
         Button selectIngredients = (Button) view.findViewById(R.id.select_ingredients_btn);
         Button favorite = (Button) view.findViewById(R.id.favorites_btn);
         Button help = (Button) view.findViewById(R.id.help_btn);
+
+        selectIngredients.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) getActivity()).changeFragment(SelectIngredientsFragment.getInstance(),SelectIngredientsFragment.TAG,true );
+            }
+        });
+
+        favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Sorry, not ready yet :'(", Toast.LENGTH_LONG).show();
+                //((MainActivity)getActivity()).changeFragment();
+            }
+        });
+
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Sorry, not ready yet =(", Toast.LENGTH_LONG).show();
+                //((MainActivity)getActivity()).changeFragment();
+            }
+        });
         return view;
+
     }
+
 }
