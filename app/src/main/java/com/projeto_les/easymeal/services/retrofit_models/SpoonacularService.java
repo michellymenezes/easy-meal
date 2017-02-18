@@ -110,29 +110,4 @@ public class SpoonacularService {
 
         call.enqueue(callback);
     }
-
-//    public static void main(String[] args) {
-//        SpoonacularService spoonacularService = new SpoonacularService();
-//
-//        IngredientsMapper ingredientsMapper = new IngredientsMapper();
-//        ingredientsMapper.setFillIngredients(false);
-//        // preenche o resto dos atributos
-//
-//
-//        // passa um mapper e um callback para chamadas assincronas
-//        spoonacularService.findRecipesByIngredients(ingredientsMapper, new Callback<List<Recipe>>() {
-//
-//            @Override
-//            public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
-//                // trata resposta aqui
-//                List<Recipe> recipes = response.body();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<Recipe>> call, Throwable t) {
-//                // trata falhas aqui
-//            }
-//        });
-//    }
-
 }
