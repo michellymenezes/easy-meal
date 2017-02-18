@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 List<Recipe> recipes = response.body();
 
                 for (Recipe r : recipes) {
+
                     Log.d("spoonacularService.findRecipesByIngredients", r.toString());
                 }
             }
@@ -81,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
                 // If fail, what should we do? Handle errors and re-requests here.
                 t.printStackTrace();
             }
-
         });
 
     }
@@ -126,6 +126,5 @@ public class MainActivity extends AppCompatActivity {
     public void onSelectIngredientsButtonPressed(View view){
         getSupportFragmentManager().beginTransaction().replace(R.id.content_layout,
                 selectIngredientsFragment, SelectIngredientsFragment.TAG).addToBackStack(SelectIngredientsFragment.TAG).commit();
-
     }
 }
