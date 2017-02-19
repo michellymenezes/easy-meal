@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_margin="5dp">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="430dp"
+        android:layout_weight="0.95">
         <LinearLayout
             android:id="@+id/filter_layout"
             android:layout_width="match_parent"
@@ -21,31 +23,32 @@
 
             <ListView
                 android:layout_width="match_parent"
-                android:layout_height="174dp"
+                android:layout_height="384dp"
                 android:id="@+id/filter_list"
                 />
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/back"
-                    android:background="@drawable/ic_back"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="false"
-                    android:layout_alignParentEnd="false"/>
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/search_recipes"
-                    android:background="@drawable/ic_search_btn"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"/>
-            </RelativeLayout>
 
         </LinearLayout>
     </ScrollView>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:gravity="bottom">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/back"
+            android:background="@drawable/ic_back"
+            android:layout_alignParentRight="false"
+            android:onClick="onBackPressed"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/search_recipes"
+            android:background="@drawable/ic_search_btn"
+            android:layout_alignParentRight="true"
+            android:onClick="onSearchPressed"/>
+    </RelativeLayout>
+
 </LinearLayout>

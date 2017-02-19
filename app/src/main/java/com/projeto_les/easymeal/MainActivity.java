@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.projeto_les.easymeal.fragments.SelectFiltersFragment;
 import com.projeto_les.easymeal.services.retrofit_models.IngredientsMapper;
 import com.projeto_les.easymeal.services.retrofit_models.Recipe;
 import com.projeto_les.easymeal.services.retrofit_models.SpoonacularService;
