@@ -56,11 +56,18 @@ public class SelectIngredientsFragment extends Fragment {
         final Button addBtn = (Button) view.findViewById(R.id.add);
         addBtn.setEnabled(false);
         final ListView selectIngListView = (ListView) view.findViewById(R.id.selected_ingredients_list);
+        final ImageButton backMenuBtn = (ImageButton) view.findViewById(R.id.back_menu_btn);
         final ImageButton nextBtn = (ImageButton) view.findViewById(R.id.next);
         final AutoCompleteTextView actv= (AutoCompleteTextView)view.findViewById(R.id.auto_complete_ingredient);
 
         Button clearBtn = (Button)view.findViewById(R.id.clear_btn);
 
+        backMenuBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) getActivity()).changeFragment(InitialFragment.getInstance(),InitialFragment.TAG,true );
+            }
+        });
 
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
