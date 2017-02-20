@@ -1,4 +1,4 @@
-package com.projetoLes.easymeal;
+package com.projeto_les.easymeal;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.projetoLes.easymeal", appContext.getPackageName());
+        assertEquals("com.projeto_les.easymeal", appContext.getPackageName());
     }
 }
