@@ -70,7 +70,7 @@ public class SelectFiltersFragment extends Fragment {
         srcBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Sorry, not ready yet :'(", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), R.string.not_ready, Toast.LENGTH_LONG).show();
                 //((MainActivity) getActivity()).changeFragment();
             }
         });

@@ -9,5 +9,6 @@
     <string name="filters">Filters</string>
     <string name="selected_ingredients">Selected ingredients</string>
     <string name="select_ingredients">Select ingredients</string>
+    <string name="not_ready">Sorry, not ready yet :\'(</string>
 
 </resources>

@@ -68,7 +68,7 @@ public class InitialFragment extends Fragment{
         favorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Sorry, not ready yet :'(", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), getString(R.string.not_ready), Toast.LENGTH_LONG).show();
                 //((MainActivity)getActivity()).changeFragment();
             }
         });
@@ -76,7 +76,7 @@ public class InitialFragment extends Fragment{
         help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Sorry, not ready yet =(", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), getString(R.string.not_ready), Toast.LENGTH_LONG).show();
                 //((MainActivity)getActivity()).changeFragment();
             }
         });
