@@ -2,6 +2,7 @@ package com.projeto_les.easymeal.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,14 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.projeto_les.easymeal.FilterListAdapter;
 import com.projeto_les.easymeal.MainActivity;
 import com.projeto_les.easymeal.R;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -23,6 +30,8 @@ public class SelectFiltersFragment extends Fragment {
 
     private static SelectFiltersFragment fragment;
     public static final String TAG = "SELECT_FILTERS_FRAGMENT";
+    private List<String> filterList;
+    private List<String> selectedFilterList;
 
     public SelectFiltersFragment() {
         // Required empty public constructor
@@ -55,10 +64,19 @@ public class SelectFiltersFragment extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_select_filters, container, false);
 
+        filterList = new ArrayList<>(Arrays.asList( "main course", "side dish", "dessert", "appetizer",
+                "salad", "bread", "breakfast", "soup", "beverage", "sauce", "drink"));
+        selectedFilterList = new ArrayList<>();
+
+        final FilterListAdapter mAdapter= new FilterListAdapter(getActivity(),filterList, selectedFilterList);
+
         final ListView checkboxListView = (ListView) view.findViewById(R.id.filter_list);
+        checkboxListView.setAdapter(mAdapter);
 
         final ImageButton backBtn = (ImageButton) view.findViewById(R.id.back);
         final ImageButton srcBtn = (ImageButton) view.findViewById(R.id.search_recipes);
+
+
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +88,10 @@ public class SelectFiltersFragment extends Fragment {
         srcBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), R.string.not_ready, Toast.LENGTH_LONG).show();
+               // Toast.makeText(getActivity(), R.string.not_ready, Toast.LENGTH_LONG).show();
+                selectedFilterList = mAdapter.getSelectedItems();
+
+                Toast.makeText(getActivity(), getStrigsFromList(selectedFilterList), Toast.LENGTH_LONG).show();
                 //((MainActivity) getActivity()).changeFragment();
             }
         });
@@ -80,5 +101,14 @@ public class SelectFiltersFragment extends Fragment {
 
 
 
+    }
+
+    private String getStrigsFromList(List<String> selectedFilterList) {
+        String str = "You have selected: ";
+        for (String filter: selectedFilterList) {
+            Log.d(TAG,filter);
+            str = str + filter + " ";
+        }
+        return str;
     }
 }
