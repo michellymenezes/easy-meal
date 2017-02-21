@@ -74,12 +74,8 @@ public class SelectIngredientsFragment extends Fragment {
         mRecentlyAddedIngts = new ArrayList<String>();
         mIngredients = new ArrayList<String>();
         mListAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, mIngredients);
-/*
-        mListAdapter = new IngredientListAdapter(
-                getContext(), // O contexto atual
-                R.layout.selected_list_item, // O arquivo de layout de cada item
-                (ArrayList<String>) mIngredients// O ID do campo a ser preenchido
-        ); */
+
+        mListAdapter = new IngredientListAdapter(getActivity(), mIngredients);
 
         final ImageButton backMenuBtn = (ImageButton) view.findViewById(R.id.back_menu_btn);
         final ImageButton nextBtn = (ImageButton) view.findViewById(R.id.next);
@@ -108,7 +104,11 @@ public class SelectIngredientsFragment extends Fragment {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity) getActivity()).changeFragment(SelectFiltersFragment.getInstance(),SelectFiltersFragment.TAG,true );
+                if (mIngredients.size() > 0){
+                    ((MainActivity) getActivity()).changeFragment(SelectFiltersFragment.getInstance(),SelectFiltersFragment.TAG,true );
+                } else {
+                    Toast.makeText(getContext(), R.string.add_one, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -126,16 +126,15 @@ public class SelectIngredientsFragment extends Fragment {
     }
 
     private void addIngredient() {
-        //(Arrays.asList("sugar", "flour", "apples"));
         mAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String ingredient = mIngredientEditText.getText().toString().toUpperCase();
+                String ingredient = mIngredientEditText.getText().toString().toUpperCase().trim();
 
                 if(!mIngredients.contains(ingredient)){
                     mIngredients.add(ingredient);
                 } else{
-                    Toast.makeText(getContext(), "Already in the list :)", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), R.string.already_exist, Toast.LENGTH_SHORT).show();
                 }
                 mSelectIngListView.setAdapter(mListAdapter);
                 hideKeyboard(getActivity());

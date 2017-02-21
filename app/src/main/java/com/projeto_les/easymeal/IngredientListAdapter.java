@@ -1,53 +1,73 @@
 package com.projeto_les.easymeal;
 
-
-import android.content.Context;
-import android.graphics.Color;
+import android.app.Activity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
+
+
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
+import java.util.List;
 
-import okhttp3.Route;
+public class IngredientListAdapter extends  ArrayAdapter<String>  {
 
-public class IngredientListAdapter extends ArrayAdapter<String> {
+    private List<String> items;
+    private Activity activity;
 
+    public IngredientListAdapter(Activity activity, List<String> items) {
+        super(activity, android.R.layout.simple_list_item_1,items );
 
-    private final ArrayList<String> ingredients;
-
-    public IngredientListAdapter(Context context, int selected_list_item, ArrayList<String> ingredients) {
-        super(context, selected_list_item);
-        this.ingredients = ingredients;
+        this.items = items;
+        this.activity = activity;
     }
 
+    @Override
+    public String getItem(int position) {
+        return items.get(position);
+    }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View v = super.getView(position, convertView, parent);
+    public int getCount(){
+        return items.size();
 
-        String ingredient = getItem(position);
+    }
 
-        TextView titulo = (TextView) v.findViewById(R.id.selected_element);
-        titulo.setText(ingredient);
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 
-        Button remove = (Button) v.findViewById(R.id.remove_ingredient);
-        remove.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public View getView(final int position, View convertView, ViewGroup parent) {
+
+        String currItem = items.get(position);
+        LayoutInflater inflater = activity.getLayoutInflater();
+
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.selected_list_item, null);
+        }
+
+        TextView listItem = (TextView) convertView.findViewById(R.id.selected_element);
+        listItem.setText(currItem);
+
+        Button removeIngredientButton = (Button) convertView.findViewById(R.id.remove_ingredient);
+
+        removeIngredientButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "OPS :X", Toast.LENGTH_LONG).show();
+                removeIngredient(position);
             }
         });
 
-        return v;
+        return convertView;
     }
 
-
+    private void removeIngredient(int position){
+        items.remove(position);
+        notifyDataSetChanged();
+    }
 
 }
-
-

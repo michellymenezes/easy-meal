@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         // Initialize an instance of the service with our API Key, which is setted inside the file
         // gradle.properties .
 
-        SpoonacularService spoonacularService = new SpoonacularService(getString(R.string.SPOONACULATOR_API_KEY));
+/*        SpoonacularService spoonacularService = new SpoonacularService(getString(R.string.SPOONACULATOR_API_KEY));
 
         // Parameters of the request, we're using an object to encapsulate them.
         IngredientsMapper ingredientsMapper = new IngredientsMapper();
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 // If fail, what should we do? Handle errors and re-requests here.
                 t.printStackTrace();
             }
-        });
+        });*/
 
     }
 
