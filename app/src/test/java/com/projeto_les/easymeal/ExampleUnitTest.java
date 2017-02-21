@@ -1,4 +1,4 @@
-package com.projetoLes.easymeal;
+package com.projeto_les.easymeal;
 
 import org.junit.Test;
 
