@@ -1,8 +1,10 @@
 package com.projeto_les.easymeal.fragments;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,8 +90,6 @@ public class SelectIngredientsFragment extends Fragment {
         mAddBtn = (Button) view.findViewById(R.id.add);
         mAddBtn.setEnabled(true);
 
-
-
         clear();
 
         addIngredient();
@@ -129,12 +129,15 @@ public class SelectIngredientsFragment extends Fragment {
         mAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String ingredient = mIngredientEditText.getText().toString().toUpperCase().trim();
 
-                if(!mIngredients.contains(ingredient)){
-                    mIngredients.add(ingredient);
-                } else{
-                    Toast.makeText(getContext(), R.string.already_exist, Toast.LENGTH_SHORT).show();
+                if(ingredientsRestrictions(ingredient)){
+                    if (!mIngredients.contains(ingredient)) {
+                        mIngredients.add(ingredient);
+                    } else {
+                        Toast.makeText(getContext(), R.string.already_exist, Toast.LENGTH_SHORT).show();
+                    }
                 }
                 mSelectIngListView.setAdapter(mListAdapter);
                 hideKeyboard(getActivity());
@@ -154,13 +157,19 @@ public class SelectIngredientsFragment extends Fragment {
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-   /* private String ingredientsRestrictions(String ingredient){
-        String ingred = "";
-        ArrayList<String> words = new ArrayList<>();
+   private boolean ingredientsRestrictions(String ingredient){
+       ingredient = ingredient.trim();
 
-        if (!mIngredients.contains(ingredient) ){
-        }
-
-        return  ingredient;
-    }*/
+       if (ingredient==null || ingredient.equals("")){
+           Toast.makeText(getContext(), R.string.empty_ingredient, Toast.LENGTH_SHORT).show();
+           return false;
+       } if (ingredient.matches(".*\\d.*")){
+           Toast.makeText(getContext(), R.string.contain_number, Toast.LENGTH_SHORT).show();
+           return false;
+       } if (ingredient.matches(".*\\W.*") ){
+           Toast.makeText(getContext(), R.string.contain_metacharacter, Toast.LENGTH_SHORT).show();
+            return false;
+       }
+        return  true;
+   }
 }

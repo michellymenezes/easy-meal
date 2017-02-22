@@ -12,5 +12,8 @@
     <string name="not_ready">Sorry, not ready yet :\'(</string>
     <string name="already_exist">Already in the list :)</string>
     <string name="add_one">You must add at least one item</string>
+    <string name="empty_ingredient">Can not add an empty ingredient :(</string>
+    <string name="contain_number">The ingredient can not contain numbers</string>
+    <string name="contain_metacharacter">The ingredient can not contain metacharacter</string>
 
 </resources>
