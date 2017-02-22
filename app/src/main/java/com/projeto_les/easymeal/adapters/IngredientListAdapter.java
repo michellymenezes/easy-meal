@@ -1,4 +1,4 @@
-package com.projeto_les.easymeal;
+package com.projeto_les.easymeal.adapters;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.Button;
 
 
 import android.widget.TextView;
+
+import com.projeto_les.easymeal.R;
 
 import java.util.List;
 

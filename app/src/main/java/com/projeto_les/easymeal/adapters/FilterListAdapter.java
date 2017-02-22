@@ -1,4 +1,4 @@
-package com.projeto_les.easymeal;
+package com.projeto_les.easymeal.adapters;
 
 
 import android.app.Activity;
@@ -11,6 +11,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.projeto_les.easymeal.R;
 
 import java.util.List;
 
@@ -58,27 +60,23 @@ public class FilterListAdapter extends ArrayAdapter<String> {
         final CheckBox checkboxItem = (CheckBox) v.findViewById(R.id.checkbox);
         final TextView checkboxName = (TextView) v.findViewById(R.id.checkbox_name);
         checkboxName.setText(currFilter);
+
         checkboxItem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                //TO DO ajustar essa parte
+                //TODO ajustar essa parte
                 if(!checkboxItem.isChecked() && selectedItems.contains(checkboxName.getText().toString())){
                     selectedItems.remove(checkboxName.getText().toString());
                 }
                 else if(checkboxItem.isChecked() && !selectedItems.contains(checkboxName.getText().toString())) {
                     selectedItems.add(checkboxName.getText().toString());
                 }
-
-
             }
         });
 
-
-
         return v;
     }
-
 
      public List<String> getSelectedItems(){
          return selectedItems;

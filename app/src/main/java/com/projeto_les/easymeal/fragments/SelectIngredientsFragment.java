@@ -1,10 +1,8 @@
 package com.projeto_les.easymeal.fragments;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +14,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.projeto_les.easymeal.IngredientListAdapter;
+import com.projeto_les.easymeal.adapters.IngredientListAdapter;
 import com.projeto_les.easymeal.MainActivity;
 import com.projeto_les.easymeal.R;
 

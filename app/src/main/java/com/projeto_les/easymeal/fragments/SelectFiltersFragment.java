@@ -6,17 +6,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.projeto_les.easymeal.FilterListAdapter;
+import com.projeto_les.easymeal.adapters.FilterListAdapter;
 import com.projeto_les.easymeal.MainActivity;
 import com.projeto_les.easymeal.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -66,6 +63,7 @@ public class SelectFiltersFragment extends Fragment {
 
         filterList = new ArrayList<>(Arrays.asList( "main course", "side dish", "dessert", "appetizer",
                 "salad", "bread", "breakfast", "soup", "beverage", "sauce", "drink"));
+
         selectedFilterList = new ArrayList<>();
 
         final FilterListAdapter mAdapter= new FilterListAdapter(getActivity(),filterList, selectedFilterList);
@@ -96,10 +94,7 @@ public class SelectFiltersFragment extends Fragment {
             }
         });
 
-
         return view;
-
-
 
     }
 
@@ -107,7 +102,7 @@ public class SelectFiltersFragment extends Fragment {
         String str = "You have selected: ";
         for (String filter: selectedFilterList) {
             Log.d(TAG,filter);
-            str = str + filter + " ";
+            str = str + filter + ", ";
         }
         return str;
     }
