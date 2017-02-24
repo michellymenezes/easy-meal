@@ -6,6 +6,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -180,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         int id = item.getItemId();
         switch (id) {
             case R.id.nav_ingredient:
-                Toast.makeText(this, "Take it easy u.u", Toast.LENGTH_LONG).show();
+                changeFragment(SelectIngredientsFragment.getInstance(),SelectIngredientsFragment.TAG,true );
                 break;
 
             case R.id.nav_favorites:
@@ -194,6 +195,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 break;
 
         }
+        mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 }
