@@ -15,5 +15,7 @@
     <string name="empty_ingredient">Can not add an empty ingredient :(</string>
     <string name="contain_number">The ingredient can not contain numbers</string>
     <string name="contain_metacharacter">The ingredient can not contain metacharacter</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 
 </resources>

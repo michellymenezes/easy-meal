@@ -65,7 +65,6 @@ public class FilterListAdapter extends ArrayAdapter<String> {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                //TODO ajustar essa parte
                 if(!checkboxItem.isChecked() && selectedItems.contains(checkboxName.getText().toString())){
                     selectedItems.remove(checkboxName.getText().toString());
                 }

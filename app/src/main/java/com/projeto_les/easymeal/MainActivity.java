@@ -4,9 +4,12 @@ import android.annotation.SuppressLint;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.projeto_les.easymeal.fragments.SelectFiltersFragment;
@@ -30,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
     private InitialFragment initialFragment;
     private SelectIngredientsFragment selectIngredientsFragment;
 
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mToggle;
+
     public static final String TAG = "MAIN_ACTIVITY";
 
     @Override
@@ -43,6 +49,14 @@ public class MainActivity extends AppCompatActivity {
 
         changeFragment(initialFragment, InitialFragment.TAG, true);
 
+        // Para iniciar o menu
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Quando precisar iniciar a conexão a Key deve ser utilizada da seguinte maneira: getString(R.string.SPOONACULATOR_API_KEY)
 
@@ -130,4 +144,15 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
+
+    //Menu
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //Açao para o botao de menu e voltar do menu
+        if (mToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
 }
