@@ -180,6 +180,10 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
         int id = item.getItemId();
         switch (id) {
+            case R.id.nav_home_screen:
+                changeFragment(InitialFragment.getInstance(),InitialFragment.TAG,true );
+                break;
+
             case R.id.nav_ingredient:
                 changeFragment(SelectIngredientsFragment.getInstance(),SelectIngredientsFragment.TAG,true );
                 break;
