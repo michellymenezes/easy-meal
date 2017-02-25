@@ -42,9 +42,221 @@ public class RecipeInformation {
     @SerializedName("lowFodmap")
     private boolean lowFodmap = false;
 
+    @SerializedName("ketogenic")
+    private boolean ketogenic = false;
+
+    @SerializedName("whole30")
+    private boolean whole30 = false;
+
+    @SerializedName("servings")
+    private int servings;
+
+    @SerializedName("sourceUrl")
+    private String sourceUrl;
+
+    @SerializedName("spoonacularSourceUrl")
+    private String spoonacularSourceUrl;
+
+    @SerializedName("aggregateLikes")
+    private int aggregateLikes;
+
+    @SerializedName("creditText")
+    private String creditText;
+
+    @SerializedName("sourceName")
+    private String sourceName;
+
     @SerializedName("extendedIngredients")
     private List<ExtendedIngredient> extendedIngredients;
-//
+
+    @SerializedName("id")
+    private Integer id;
+
+    @SerializedName("title")
+    private String title;
+
+    @SerializedName("readyInMinutes")
+    private Integer readyInMinutes;
+
+    @SerializedName("image")
+    private String image;
+
+    @SerializedName("imageType")
+    private String imageType;
+
+    public RecipeInformation() {}
+
+    public RecipeInformation(boolean vegetarian, boolean vegan, boolean glutenFree, boolean dairyFree, boolean veryHealthy, boolean cheap, boolean veryPopular, boolean sustainable, int weightWatcherSmartPoints, String gaps, boolean lowFodmap, boolean ketogenic, boolean whole30, int servings, String sourceUrl, String spoonacularSourceUrl, int aggregateLikes, String creditText, String sourceName, List<ExtendedIngredient> extendedIngredients, Integer id, String title, Integer readyInMinutes, String image, String imageType, String instructions) {
+        this.vegetarian = vegetarian;
+        this.vegan = vegan;
+        this.glutenFree = glutenFree;
+        this.dairyFree = dairyFree;
+        this.veryHealthy = veryHealthy;
+        this.cheap = cheap;
+        this.veryPopular = veryPopular;
+        this.sustainable = sustainable;
+        this.weightWatcherSmartPoints = weightWatcherSmartPoints;
+        this.gaps = gaps;
+        this.lowFodmap = lowFodmap;
+        this.ketogenic = ketogenic;
+        this.whole30 = whole30;
+        this.servings = servings;
+        this.sourceUrl = sourceUrl;
+        this.spoonacularSourceUrl = spoonacularSourceUrl;
+        this.aggregateLikes = aggregateLikes;
+        this.creditText = creditText;
+        this.sourceName = sourceName;
+        this.extendedIngredients = extendedIngredients;
+        this.id = id;
+        this.title = title;
+        this.readyInMinutes = readyInMinutes;
+        this.image = image;
+        this.imageType = imageType;
+        this.instructions = instructions;
+    }
+
+    public boolean isVegetarian() {
+        return vegetarian;
+    }
+
+    public boolean isVegan() {
+        return vegan;
+    }
+
+    public boolean isGlutenFree() {
+        return glutenFree;
+    }
+
+    public boolean isDairyFree() {
+        return dairyFree;
+    }
+
+    public boolean isVeryHealthy() {
+        return veryHealthy;
+    }
+
+    public boolean isCheap() {
+        return cheap;
+    }
+
+    public boolean isVeryPopular() {
+        return veryPopular;
+    }
+
+    public boolean isSustainable() {
+        return sustainable;
+    }
+
+    public int getWeightWatcherSmartPoints() {
+        return weightWatcherSmartPoints;
+    }
+
+    public String getGaps() {
+        return gaps;
+    }
+
+    public boolean isLowFodmap() {
+        return lowFodmap;
+    }
+
+    public boolean isKetogenic() {
+        return ketogenic;
+    }
+
+    public boolean isWhole30() {
+        return whole30;
+    }
+
+    public int getServings() {
+        return servings;
+    }
+
+    public String getSourceUrl() {
+        return sourceUrl;
+    }
+
+    public String getSpoonacularSourceUrl() {
+        return spoonacularSourceUrl;
+    }
+
+    public int getAggregateLikes() {
+        return aggregateLikes;
+    }
+
+    public String getCreditText() {
+        return creditText;
+    }
+
+    public String getSourceName() {
+        return sourceName;
+    }
+
+    public List<ExtendedIngredient> getExtendedIngredients() {
+        return extendedIngredients;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public Integer getReadyInMinutes() {
+        return readyInMinutes;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public String getImageType() {
+        return imageType;
+    }
+
+    public String getInstructions() {
+        return instructions;
+    }
+
+    @SerializedName("instructions")
+    private String instructions;
+
+
+
+    @Override
+    public String toString() {
+        return "RecipeInformation{" +
+                "vegetarian=" + vegetarian +
+                ", vegan=" + vegan +
+                ", glutenFree=" + glutenFree +
+                ", dairyFree=" + dairyFree +
+                ", veryHealthy=" + veryHealthy +
+                ", cheap=" + cheap +
+                ", veryPopular=" + veryPopular +
+                ", sustainable=" + sustainable +
+                ", weightWatcherSmartPoints=" + weightWatcherSmartPoints +
+                ", gaps='" + gaps + '\'' +
+                ", lowFodmap=" + lowFodmap +
+                ", ketogenic=" + ketogenic +
+                ", whole30=" + whole30 +
+                ", servings=" + servings +
+                ", sourceUrl='" + sourceUrl + '\'' +
+                ", spoonacularSourceUrl='" + spoonacularSourceUrl + '\'' +
+                ", aggregateLikes=" + aggregateLikes +
+                ", creditText='" + creditText + '\'' +
+                ", sourceName='" + sourceName + '\'' +
+                ", extendedIngredients=" + extendedIngredients +
+                ", id=" + id +
+                ", title='" + title + '\'' +
+                ", readyInMinutes=" + readyInMinutes +
+                ", image='" + image + '\'' +
+                ", imageType='" + imageType + '\'' +
+                ", instructions='" + instructions + '\'' +
+                '}';
+    }
+
+    //
 //
 //            "gaps": "no",
 //            "lowFodmap": false,

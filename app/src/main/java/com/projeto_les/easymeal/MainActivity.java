@@ -7,11 +7,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
-import com.projeto_les.easymeal.fragments.SelectFiltersFragment;
 import com.projeto_les.easymeal.services.retrofit_models.IngredientsMapper;
 import com.projeto_les.easymeal.services.retrofit_models.Recipe;
+import com.projeto_les.easymeal.services.retrofit_models.RecipeInformation;
+import com.projeto_les.easymeal.services.retrofit_models.RecipeInformationMapper;
 import com.projeto_les.easymeal.services.retrofit_models.SpoonacularService;
 
 import com.projeto_les.easymeal.fragments.InitialFragment;
@@ -52,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
         // Initialize an instance of the service with our API Key, which is setted inside the file
         // gradle.properties .
 
-/*        SpoonacularService spoonacularService = new SpoonacularService(getString(R.string.SPOONACULATOR_API_KEY));
+        final SpoonacularService spoonacularService = new SpoonacularService(getString(R.string.SPOONACULATOR_API_KEY));
 
-        // Parameters of the request, we're using an object to encapsulate them.
+    /*    // Parameters of the request, we're using an object to encapsulate them.
         IngredientsMapper ingredientsMapper = new IngredientsMapper();
         ingredientsMapper.setFillIngredients(false);
         ingredientsMapper.setLimitLicense(false);
@@ -75,6 +75,23 @@ public class MainActivity extends AppCompatActivity {
                 for (Recipe r : recipes) {
 
                     Log.d("spoonacularService.findRecipesByIngredients", r.toString());
+
+                    // Now it's getting the main recipe information
+                    RecipeInformationMapper recipeInformationMapper = new RecipeInformationMapper(r.getId(), false);
+                    spoonacularService.getRecipeInformation(recipeInformationMapper, new Callback<RecipeInformation>() {
+                        @Override
+                        public void onResponse(Call<RecipeInformation> call, Response<RecipeInformation> response) {
+                            RecipeInformation recipeInformation = response.body();
+                            // If everything goes right, you should see information on log
+                            Log.d("spoonacularService.getRecipeInformation", recipeInformation.toString());
+
+
+                        }
+                        @Override
+                        public void onFailure(Call<RecipeInformation> call, Throwable t) {
+
+                        }
+                    });
                 }
             }
 
@@ -83,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 // If fail, what should we do? Handle errors and re-requests here.
                 t.printStackTrace();
             }
-        });*/
+        }); */
 
     }
 
