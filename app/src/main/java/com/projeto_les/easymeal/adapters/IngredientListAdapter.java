@@ -1,76 +1,61 @@
 package com.projeto_les.easymeal.adapters;
 
-import android.app.Activity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.Button;
+    import android.support.v7.widget.RecyclerView;
+    import android.view.View;
+    import android.view.ViewGroup;
+    import android.widget.ImageButton;
+
+    import com.projeto_les.easymeal.R;
+
+    import java.util.ArrayList;
+    import java.util.List;
 
 
-import android.widget.ImageButton;
-import android.widget.TextView;
+public class IngredientListAdapter extends RecyclerView.Adapter {
 
-import com.projeto_les.easymeal.R;
+        private List<String> items;
 
-import java.util.List;
-
-public class IngredientListAdapter extends BaseAdapter {
-
-    private List<String> items;
-    private Activity activity;
-
-    public IngredientListAdapter(Activity activity, List<String> items) {
-
-        this.items = items;
-        this.activity = activity;
-    }
-
-    @Override
-    public String getItem(int position) {
-        return items.get(position);
-    }
-
-    @Override
-    public int getCount(){
-        return items.size();
-
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-
-        String currItem = items.get(position);
-        LayoutInflater inflater = activity.getLayoutInflater();
-
-        if (convertView == null) {
-            convertView = inflater.inflate(R.layout.chip_view, null);
+        public IngredientListAdapter(List<String> items) {
+            this.items = items;
         }
 
-        TextView listItem = (TextView) convertView.findViewById(R.id.chipTextView);
-        listItem.setText(currItem);
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new ChipViewHolder(new ChipView(parent.getContext()));
+        }
 
-        ImageButton removeIngredientButton = (ImageButton) convertView.findViewById(R.id.view_chip_close_button);
+        @Override
+        public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+            View mView =  ((ChipView)holder.itemView);
+            ((ChipView)holder.itemView).displayItem(items.get(position));
+            ImageButton removeIngredientButton = (ImageButton) mView.findViewById(R.id.view_chip_close_button);
 
-        removeIngredientButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                removeIngredient(position);
-            }
-        });
+            removeIngredientButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    removeIngredient(position);
+                }
+            });
 
-        return convertView;
-    }
+
+        }
 
     private void removeIngredient(int position){
         items.remove(position);
         notifyDataSetChanged();
     }
 
-}
+        @Override
+        public int getItemCount() {
+            return items.size();
+        }
+
+        private class ChipViewHolder extends RecyclerView.ViewHolder {
+
+            public ChipViewHolder(View itemView) {
+                super(itemView);
+            }
+        }
+    }
+
+

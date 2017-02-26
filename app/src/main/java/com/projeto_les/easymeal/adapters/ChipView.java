@@ -7,9 +7,7 @@ import android.widget.TextView;
 
 import com.projeto_les.easymeal.R;
 
-/**
- * Created by klogi on 25/12/15.
- */
+
 public class ChipView extends FrameLayout {
 
     public ChipView(Context context) {
@@ -24,5 +22,6 @@ public class ChipView extends FrameLayout {
     public void displayItem(String text) {
         ((TextView)findViewById(R.id.chipTextView)).setText(text);
     }
+
 
 }

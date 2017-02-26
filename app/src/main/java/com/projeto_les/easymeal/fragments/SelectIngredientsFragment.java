@@ -39,7 +39,7 @@ public class SelectIngredientsFragment extends Fragment {
     private List<String> mRecentlyAddedIngts;
     private List<String> mIngredients;
     private IngredientListAdapter mListAdapter;
-    private ListView mSelectIngListView;
+    private RecyclerView mSelectIngListView;
 
 
     public SelectIngredientsFragment() {
@@ -76,12 +76,15 @@ public class SelectIngredientsFragment extends Fragment {
         mRecentlyAddedIngts = new ArrayList<String>();
         mIngredients = new ArrayList<String>();
 
-        mListAdapter = new IngredientListAdapter(getActivity(), mIngredients);
+        mListAdapter = new IngredientListAdapter(mIngredients);
 
         final ImageButton backMenuBtn = (ImageButton) view.findViewById(R.id.back_menu_btn);
         final ImageButton nextBtn = (ImageButton) view.findViewById(R.id.next);
 
-        mSelectIngListView = (ListView) view.findViewById(R.id.selected_ingredients_list);
+
+
+        mSelectIngListView = (RecyclerView) view.findViewById(R.id.selected_ingredients_list);
+        mSelectIngListView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mIngredientEditText = (EditText) view.findViewById(R.id.auto_complete_ingredient);
         //actv.setTextLocale(Locale.ENGLISH);
        // mClearBtn = (Button)view.findViewById(R.id.clear_btn);
