@@ -5,22 +5,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 
 
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.projeto_les.easymeal.R;
 
 import java.util.List;
 
-public class IngredientListAdapter extends  ArrayAdapter<String>  {
+public class IngredientListAdapter extends BaseAdapter {
 
     private List<String> items;
     private Activity activity;
 
     public IngredientListAdapter(Activity activity, List<String> items) {
-        super(activity, android.R.layout.simple_list_item_1,items );
 
         this.items = items;
         this.activity = activity;
@@ -49,13 +50,13 @@ public class IngredientListAdapter extends  ArrayAdapter<String>  {
         LayoutInflater inflater = activity.getLayoutInflater();
 
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.selected_list_item, null);
+            convertView = inflater.inflate(R.layout.chip_view, null);
         }
 
-        TextView listItem = (TextView) convertView.findViewById(R.id.selected_element);
+        TextView listItem = (TextView) convertView.findViewById(R.id.chipTextView);
         listItem.setText(currItem);
 
-        Button removeIngredientButton = (Button) convertView.findViewById(R.id.remove_ingredient);
+        ImageButton removeIngredientButton = (ImageButton) convertView.findViewById(R.id.view_chip_close_button);
 
         removeIngredientButton.setOnClickListener(new View.OnClickListener() {
             @Override

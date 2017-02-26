@@ -15,59 +15,115 @@
         android:layout_marginTop="5dp"
         android:id="@+id/ingredient_layout">
 
-        <TextView
-            android:id="@+id/text_ingredient"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/ingredients"
-            style="@style/Base.TextAppearance.AppCompat.Title" />
 
-        <RelativeLayout
+
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/text_ingredient"
             android:id="@+id/auto_complete_ingredient_container">
 
-            <EditText
-                android:id="@+id/auto_complete_ingredient"
-                android:layout_width="match_parent"
+            <ImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textCapSentences|textAutoCorrect"
-                android:layout_alignParentLeft="true"
-                android:ems="15"
-                android:text=""/>
+                android:layout_gravity="bottom"
+                android:paddingRight="10dp"
+                android:src="@drawable/ic_ingredients" />
 
-            <Button
-                android:id="@+id/clear_btn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/ic_clear"
-                android:layout_alignParentTop="true"
-                android:layout_alignRight="@+id/auto_complete_ingredient"
-                android:layout_alignEnd="@+id/auto_complete_ingredient" />
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_ingredients"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content">
 
-        </RelativeLayout>
+                <EditText
+                    android:id="@+id/auto_complete_ingredient"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Type ingredients"
+                    android:layout_alignParentLeft="true"
+                    android:ems="15"
+                    android:text=""
+                    android:inputType="textCapWords" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/add"
-            android:text="@string/add"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/auto_complete_ingredient_container"/>
+            </android.support.design.widget.TextInputLayout>
+
+
+            <!--<Button-->
+                <!--android:id="@+id/clear_btn"-->
+                <!--android:layout_width="30dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:background="@drawable/ic_clear"-->
+                <!--android:layout_alignParentTop="true"-->
+                <!--android:layout_alignEnd="@+id/auto_complete_ingredient" />-->
+
+            <ImageButton
+                android:id="@+id/add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_add_button"
+                android:src="@drawable/ic_add_white"
+                android:paddingTop="6dp"
+                android:paddingLeft="4dp"
+                android:paddingBottom="4dp"
+                android:paddingRight="4dp"
+                android:layout_gravity="center"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"/>
+
+            />
+
+        </LinearLayout>
+
 
     </RelativeLayout>
 
 
-    <TextView
+
+
+
+    <LinearLayout
+        android:id="@+id/select_ingredients_divider"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/selected_ingredients"
-        style="@style/TextAppearance.AppCompat.Title"/>
+        android:gravity="center_vertical"
+        android:layout_gravity="bottom"
+        android:paddingTop="30dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:paddingRight="15dp"
+                android:src="@drawable/ic_ings2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/selected_ingredients"
+                style="@style/TextAppearance.AppCompat.Title"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="15dp"
+            android:src="@drawable/ic_ing1" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/vw_divider"
+        android:layout_width="match_parent"
+        android:paddingBottom="15dp"
+        android:background="@color/colorPrimary"
+        android:layout_below="@+id/select_ingredients_divider"
+        android:layout_height="1dp" />
+
     <ScrollView
         android:layout_width="match_parent"
+        android:paddingTop="15dp"
         android:layout_height="284dp"
         android:layout_weight="0.97">
         <LinearLayout
@@ -81,6 +137,7 @@
                 />
         </LinearLayout>
     </ScrollView>
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

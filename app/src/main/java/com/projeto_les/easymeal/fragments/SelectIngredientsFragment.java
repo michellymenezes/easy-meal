@@ -3,6 +3,8 @@ package com.projeto_les.easymeal.fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,13 +32,13 @@ public class SelectIngredientsFragment extends Fragment {
 
     private static SelectIngredientsFragment fragment;
     public static final String TAG = "SELECT_INGREDIENTS_FRAGMENT";
-    private Button mClearBtn;
+   // private Button mClearBtn;
     private EditText mIngredientEditText;
-    private Button mAddBtn;
+    private ImageButton mAddBtn;
 
     private List<String> mRecentlyAddedIngts;
     private List<String> mIngredients;
-    private ArrayAdapter mListAdapter;
+    private IngredientListAdapter mListAdapter;
     private ListView mSelectIngListView;
 
 
@@ -73,7 +75,6 @@ public class SelectIngredientsFragment extends Fragment {
 
         mRecentlyAddedIngts = new ArrayList<String>();
         mIngredients = new ArrayList<String>();
-        mListAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, mIngredients);
 
         mListAdapter = new IngredientListAdapter(getActivity(), mIngredients);
 
@@ -83,12 +84,12 @@ public class SelectIngredientsFragment extends Fragment {
         mSelectIngListView = (ListView) view.findViewById(R.id.selected_ingredients_list);
         mIngredientEditText = (EditText) view.findViewById(R.id.auto_complete_ingredient);
         //actv.setTextLocale(Locale.ENGLISH);
-        mClearBtn = (Button)view.findViewById(R.id.clear_btn);
+       // mClearBtn = (Button)view.findViewById(R.id.clear_btn);
 
-        mAddBtn = (Button) view.findViewById(R.id.add);
+        mAddBtn = (ImageButton) view.findViewById(R.id.add);
         mAddBtn.setEnabled(true);
 
-        clear();
+        //clear();
 
         addIngredient();
 
@@ -112,7 +113,7 @@ public class SelectIngredientsFragment extends Fragment {
 
         return view;
     }
-
+/*
     private void clear(){
         mClearBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +123,7 @@ public class SelectIngredientsFragment extends Fragment {
         });
 
     }
+    */
 
     private void addIngredient() {
         mAddBtn.setOnClickListener(new View.OnClickListener() {
