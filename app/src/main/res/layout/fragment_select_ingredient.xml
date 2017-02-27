@@ -2,24 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
-    android:weightSum="1"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:id="@+id/ingredient_layout">
+        android:layout_height="90dp"
+        android:gravity="center_vertical"
+        android:background="@color/colorPrimary"
+        android:id="@+id/ingredient_layout"
+        android:padding="20dp"
+        >
 
 
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
+            android:background="@drawable/rounded_bg_text_input"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
             android:layout_height="wrap_content"
             android:id="@+id/auto_complete_ingredient_container">
 
@@ -27,7 +28,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:paddingRight="10dp"
                 android:src="@drawable/ic_ingredients" />
 
             <android.support.design.widget.TextInputLayout
@@ -41,7 +41,6 @@
                     android:layout_height="wrap_content"
                     android:hint="Type ingredients"
                     android:layout_alignParentLeft="true"
-                    android:ems="15"
                     android:text=""
                     android:inputType="textCapWords" />
 
@@ -78,48 +77,54 @@
 
     </RelativeLayout>
 
-
-
-
-
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/select_ingredients_divider"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_marginLeft="30dp"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:paddingTop="15dp">
-
+        >
             <ImageView
+                android:id="@+id/ingredient_ic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="bottom"
                 android:paddingRight="15dp"
-                android:src="@drawable/ic_ings2" />
+                android:src="@drawable/ic_ings2"
+                />
 
             <TextView
+                android:id="@+id/type_ingredientes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="bottom"
+                android:layout_marginTop="20dp"
                 android:text="@string/selected_ingredients"
-                style="@style/TextAppearance.AppCompat.Title"/>
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_toRightOf="@+id/ingredient_ic"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:paddingLeft="15dp"
-            android:src="@drawable/ic_ing1" />
-    </LinearLayout>
+            android:src="@drawable/ic_ing1"
+            android:layout_toRightOf="@+id/type_ingredientes"/>
+
+            />
+    </RelativeLayout>
+
 
     <ScrollView
+        android:id="@+id/scrollView_id"
         android:layout_width="match_parent"
-        android:paddingTop="15dp"
-        android:background="@drawable/rounded_background"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingBottom="15dp"
         android:layout_height="284dp"
         android:layout_weight="0.97">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
@@ -135,14 +140,14 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:gravity="bottom">
-    <ImageButton
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/back_menu_btn"
             android:background="@drawable/ic_menu"
             android:layout_alignParentRight="false"
             android:onClick="onBackMenuPressed"/>
-    <ImageButton
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/next"
@@ -150,4 +155,6 @@
             android:layout_alignParentRight="true"
             android:onClick="onNextPressed"/>
     </RelativeLayout>
+
+
 </LinearLayout>
