@@ -2,6 +2,7 @@ package com.projeto_les.easymeal.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -78,8 +79,7 @@ public class SelectIngredientsFragment extends Fragment {
 
         mListAdapter = new IngredientListAdapter(mIngredients);
 
-        final ImageButton backMenuBtn = (ImageButton) view.findViewById(R.id.back_menu_btn);
-        final ImageButton nextBtn = (ImageButton) view.findViewById(R.id.next);
+        final FloatingActionButton nextBtn = (FloatingActionButton) view.findViewById(R.id.next);
 
 
 
@@ -96,12 +96,12 @@ public class SelectIngredientsFragment extends Fragment {
 
         addIngredient();
 
-        backMenuBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainActivity) getActivity()).changeFragment(InitialFragment.getInstance(),InitialFragment.TAG,true );
-            }
-        });
+//        backMenuBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ((MainActivity) getActivity()).changeFragment(InitialFragment.getInstance(),InitialFragment.TAG,true );
+//            }
+//        });
 
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override

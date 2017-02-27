@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -42,8 +43,8 @@
                     android:hint="Type ingredients"
                     android:layout_alignParentLeft="true"
                     android:text=""
-                    android:inputType="textCapWords" />
-
+                    android:inputType="textCapWords"
+                    />
             </android.support.design.widget.TextInputLayout>
 
 
@@ -103,15 +104,7 @@
                 style="@style/TextAppearance.AppCompat.Title"
                 android:layout_toRightOf="@+id/ingredient_ic"/>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:paddingLeft="15dp"
-            android:src="@drawable/ic_ing1"
-            android:layout_toRightOf="@+id/type_ingredientes"/>
 
-            />
     </RelativeLayout>
 
 
@@ -135,25 +128,26 @@
         </LinearLayout>
     </ScrollView>
 
+
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:gravity="bottom">
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/back_menu_btn"
-            android:background="@drawable/ic_menu"
-            android:layout_alignParentRight="false"
-            android:onClick="onBackMenuPressed"/>
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/next"
-            android:background="@drawable/ic_next"
-            android:layout_alignParentRight="true"
-            android:onClick="onNextPressed"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:clickable="true"
+            android:src="@drawable/ic_next"
+            android:paddingTop="6dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:paddingBottom="4dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
     </RelativeLayout>
 
 

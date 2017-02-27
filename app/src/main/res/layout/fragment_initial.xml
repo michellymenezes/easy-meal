@@ -34,8 +34,6 @@
             android:drawableLeft="@drawable/ic_chef"
             android:textSize="20dp"
             android:onClick="onSelectIngredientsButtonPressed"/>
-
-
     </LinearLayout>
 
 
