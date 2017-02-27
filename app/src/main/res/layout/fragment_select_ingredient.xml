@@ -88,8 +88,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:layout_gravity="bottom"
-        android:paddingTop="30dp">
+        android:paddingTop="15dp">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -101,29 +100,22 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="bottom"
                 android:text="@string/selected_ingredients"
                 style="@style/TextAppearance.AppCompat.Title"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="bottom"
             android:paddingLeft="15dp"
             android:src="@drawable/ic_ing1" />
     </LinearLayout>
 
-    <View
-        android:id="@+id/vw_divider"
-        android:layout_width="match_parent"
-        android:paddingBottom="15dp"
-        android:background="@color/colorPrimary"
-        android:layout_below="@+id/select_ingredients_divider"
-        android:layout_height="1dp" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:paddingTop="15dp"
+        android:background="@drawable/rounded_background"
         android:layout_height="284dp"
         android:layout_weight="0.97">
         <LinearLayout
