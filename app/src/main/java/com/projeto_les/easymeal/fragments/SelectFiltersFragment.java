@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -79,7 +80,7 @@ public class SelectFiltersFragment extends Fragment {
 
         final FilterListAdapter mAdapter= new FilterListAdapter(getActivity(),filterList, selectedFilterList);
 
-        final ListView checkboxListView = (ListView) view.findViewById(R.id.filter_list);
+        final GridView checkboxListView = (GridView) view.findViewById(R.id.filter_list);
         checkboxListView.setAdapter(mAdapter);
 
 //        final ImageButton backBtn = (ImageButton) view.findViewById(R.id.back);

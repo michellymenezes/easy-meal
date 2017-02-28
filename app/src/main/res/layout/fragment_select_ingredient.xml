@@ -141,7 +141,7 @@
             android:layout_marginBottom="16dp"
             android:padding="6dp"
             android:drawableRight="@drawable/ic_next"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@android:color/white"
             android:layout_alignParentRight="true"/>
 
         <Button
@@ -154,7 +154,7 @@
             android:text="clear"
             android:layout_marginRight="2dp"
             android:layout_marginBottom="16dp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@android:color/white"
             android:layout_toLeftOf="@+id/next"/>
     </RelativeLayout>
 
