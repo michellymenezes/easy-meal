@@ -1,20 +1,24 @@
 package com.projeto_les.easymeal.fragments;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.projeto_les.easymeal.adapters.IngredientListAdapter;
@@ -130,25 +134,44 @@ public class SelectIngredientsFragment extends Fragment {
     */
 
     private void addIngredient() {
+
         mAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String ingredient = mIngredientEditText.getText().toString().toUpperCase().trim();
-
-                if(ingredientsRestrictions(ingredient)){
-                    if (!mIngredients.contains(ingredient)) {
-                        mIngredients.add(ingredient);
-                    } else {
-                        Toast.makeText(getContext(), R.string.already_exist, Toast.LENGTH_SHORT).show();
-                    }
-                }
-                mSelectIngListView.setAdapter(mListAdapter);
-                hideKeyboard(getActivity());
-                mIngredientEditText.setText("");
+                addIngredientAux();
             }
         });
+
+        mIngredientEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if(actionId == EditorInfo.IME_ACTION_NEXT){
+                    addIngredientAux();
+                }
+                return handled;
+            }
+        });
+
+
     }
+
+    private void addIngredientAux(){
+        String ingredient = mIngredientEditText.getText().toString().toUpperCase().trim();
+        if(ingredientsRestrictions(ingredient)){
+            if (!mIngredients.contains(ingredient)) {
+                mIngredients.add(ingredient);
+            } else {
+                Toast.makeText(getContext(), R.string.already_exist, Toast.LENGTH_SHORT).show();
+            }
+        }
+        mSelectIngListView.setAdapter(mListAdapter);
+        hideKeyboard(getActivity());
+        mIngredientEditText.setText("");
+
+    }
+
+
 
     private void hideKeyboard(Activity activity) {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);

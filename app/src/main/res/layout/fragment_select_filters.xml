@@ -46,6 +46,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_button"
             android:text="Search"
+            android:padding="6dp"
+            android:drawableRight="@drawable/ic_search_"
             android:textColor="@color/colorPrimary"
             android:layout_alignParentRight="true"/>
     </RelativeLayout>
