@@ -47,10 +47,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_marginLeft="2dp"
             android:background="@drawable/bg_button"
             android:drawableRight="@drawable/ic_search_"
             android:padding="6dp"
             android:text="Search"
+            android:textColor="@color/colorAccent" />
+
+        <Button
+            android:id="@+id/select_all_filters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/search_recipes"
+            android:background="@drawable/bg_button"
+            android:layout_marginRight="2dp"
+            android:drawableRight="@drawable/ic_check_all"
+            android:padding="6dp"
+            android:text="CHECK ALL"
             android:textColor="@color/colorAccent" />
     </RelativeLayout>
 
