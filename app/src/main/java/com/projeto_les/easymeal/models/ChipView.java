@@ -1,4 +1,4 @@
-package com.projeto_les.easymeal.adapters;
+package com.projeto_les.easymeal.models;
 
 import android.content.Context;
 import android.view.LayoutInflater;

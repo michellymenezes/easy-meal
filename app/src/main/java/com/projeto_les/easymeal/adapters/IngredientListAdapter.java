@@ -6,8 +6,8 @@ package com.projeto_les.easymeal.adapters;
     import android.widget.ImageButton;
 
     import com.projeto_les.easymeal.R;
+    import com.projeto_les.easymeal.models.ChipView;
 
-    import java.util.ArrayList;
     import java.util.List;
 
 

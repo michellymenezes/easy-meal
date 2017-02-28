@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.projeto_les.easymeal.adapters.FilterListAdapter;
 import com.projeto_les.easymeal.MainActivity;
 import com.projeto_les.easymeal.R;
+import com.projeto_les.easymeal.models.FilterItem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,7 +29,9 @@ public class SelectFiltersFragment extends Fragment {
 
     private static SelectFiltersFragment fragment;
     public static final String TAG = "SELECT_FILTERS_FRAGMENT";
-    private List<String> filterList;
+    private List<FilterItem> filterList;
+    private List<String> filterListName;
+    private int[] filterListIcon;
     private List<String> selectedFilterList;
 
     public SelectFiltersFragment() {
@@ -61,8 +65,15 @@ public class SelectFiltersFragment extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_select_filters, container, false);
 
-        filterList = new ArrayList<>(Arrays.asList( "main course", "side dish", "dessert", "appetizer",
-                "salad", "bread", "breakfast", "soup", "beverage", "sauce", "drink"));
+
+
+        filterListName = new ArrayList<>(Arrays.asList( "Main Course", "Side Dish", "Dessert", "Appetizer",
+                "Salad", "Bread", "Breakfast", "Soup", "Beverage"));
+
+        filterListIcon = new int []{R.drawable.ic_main_course, R.drawable.ic_side_dish, R.drawable.ic_dessert, R.drawable.ic_appetizer,
+                R.drawable.ic_salad, R.drawable.ic_bread, R.drawable.ic_breakfast, R.drawable.ic_soup, R.drawable.ic_beverage};
+
+        filterList = addItens(filterListName, filterListIcon);
 
         selectedFilterList = new ArrayList<>();
 
@@ -71,17 +82,18 @@ public class SelectFiltersFragment extends Fragment {
         final ListView checkboxListView = (ListView) view.findViewById(R.id.filter_list);
         checkboxListView.setAdapter(mAdapter);
 
-        final ImageButton backBtn = (ImageButton) view.findViewById(R.id.back);
-        final ImageButton srcBtn = (ImageButton) view.findViewById(R.id.search_recipes);
+//        final ImageButton backBtn = (ImageButton) view.findViewById(R.id.back);
+
+        final Button srcBtn = (Button) view.findViewById(R.id.search_recipes);
 
 
 
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainActivity) getActivity()).changeFragment(SelectIngredientsFragment.getInstance(),SelectIngredientsFragment.TAG,true );
-            }
-        });
+//        backBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ((MainActivity) getActivity()).changeFragment(SelectIngredientsFragment.getInstance(),SelectIngredientsFragment.TAG,true );
+//            }
+//        });
 
         srcBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +108,14 @@ public class SelectFiltersFragment extends Fragment {
 
         return view;
 
+    }
+
+    private List<FilterItem> addItens(List<String> filterListName, int[] filterListIcon) {
+        ArrayList<FilterItem> filters = new ArrayList<>();
+        for (int i = 0; i < filterListName.size(); i++) {
+            filters.add(new FilterItem(filterListName.get(i),filterListIcon[i]));
+        }
+        return filters;
     }
 
     private String getStrigsFromList(List<String> selectedFilterList) {

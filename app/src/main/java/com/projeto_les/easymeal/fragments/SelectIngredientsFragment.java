@@ -79,7 +79,7 @@ public class SelectIngredientsFragment extends Fragment {
 
         mListAdapter = new IngredientListAdapter(mIngredients);
 
-        final FloatingActionButton nextBtn = (FloatingActionButton) view.findViewById(R.id.next);
+        final Button nextBtn = (Button) view.findViewById(R.id.next);
 
 
 

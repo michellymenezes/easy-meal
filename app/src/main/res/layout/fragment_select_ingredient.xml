@@ -134,20 +134,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:gravity="bottom">
-        <android.support.design.widget.FloatingActionButton
+        android:gravity="center">
+        <Button
             android:id="@+id/next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:clickable="true"
-            android:src="@drawable/ic_next"
-            android:paddingTop="6dp"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            android:paddingBottom="4dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true" />
+            android:background="@drawable/rounded_background"
+            android:text="Next"
+            android:layout_marginLeft="2dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/colorPrimary"
+            android:layout_alignParentRight="true"/>
+
+        <Button
+            android:id="@+id/clear_all_ings_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_background"
+            android:text="clear"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/colorPrimary"
+            android:layout_toLeftOf="@+id/next"/>
     </RelativeLayout>
 
 
