@@ -17,7 +17,7 @@
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:background="@drawable/rounded_bg_text_input"
-            android:alpha="0.8"
+            android:alpha="0.9"
             android:gravity="center"
             android:paddingLeft="5dp"
             android:layout_height="60dp"
@@ -141,7 +141,7 @@
             android:layout_marginBottom="16dp"
             android:padding="6dp"
             android:drawableRight="@drawable/ic_next"
-            android:textColor="@android:color/white"
+            android:textColor="@color/colorAccent"
             android:layout_alignParentRight="true"/>
 
         <Button
@@ -154,7 +154,7 @@
             android:text="clear"
             android:layout_marginRight="2dp"
             android:layout_marginBottom="16dp"
-            android:textColor="@android:color/white"
+            android:textColor="@color/colorAccent"
             android:layout_toLeftOf="@+id/next"/>
     </RelativeLayout>
 
