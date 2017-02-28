@@ -44,7 +44,7 @@
             android:id="@+id/search_recipes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_background"
+            android:background="@drawable/bg_button"
             android:text="Search"
             android:textColor="@color/colorPrimary"
             android:layout_alignParentRight="true"/>

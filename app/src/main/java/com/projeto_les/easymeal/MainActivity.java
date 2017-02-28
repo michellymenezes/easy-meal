@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         initialFragment = InitialFragment.getInstance();
         selectIngredientsFragment = SelectIngredientsFragment.getInstance();
 
