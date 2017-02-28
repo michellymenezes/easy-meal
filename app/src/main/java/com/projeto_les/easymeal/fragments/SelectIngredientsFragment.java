@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.projeto_les.easymeal.adapters.IngredientListAdapter;
 import com.projeto_les.easymeal.MainActivity;
 import com.projeto_les.easymeal.R;
+import com.xiaofeng.flowlayoutmanager.FlowLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +85,7 @@ public class SelectIngredientsFragment extends Fragment {
 
 
         mSelectIngListView = (RecyclerView) view.findViewById(R.id.selected_ingredients_list);
-        mSelectIngListView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mSelectIngListView.setLayoutManager(new FlowLayoutManager());
         mIngredientEditText = (EditText) view.findViewById(R.id.auto_complete_ingredient);
         //actv.setTextLocale(Locale.ENGLISH);
        // mClearBtn = (Button)view.findViewById(R.id.clear_btn);
