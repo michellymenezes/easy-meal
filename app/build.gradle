@@ -38,7 +38,13 @@ dependencies {
     compile 'com.squareup.okhttp3:logging-interceptor:3.3.0'
     compile 'com.google.code.gson:gson:2.2.4'
 }
-dependencies{
+dependencies {
     compile 'com.xiaofeng.android:flowlayoutmanager:1.2.3.2'
 
+}
+dependencies {
+    compile 'com.android.support:support-v4:25.+'
+}
+dependencies {
+    compile 'com.android.support:support-v4:25.+'
 }

@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.projeto_les.easymeal.fragments.RecipeDetailsFragment;
 import com.projeto_les.easymeal.fragments.SelectFiltersFragment;
 import com.projeto_les.easymeal.services.retrofit_models.IngredientsMapper;
 import com.projeto_les.easymeal.services.retrofit_models.Recipe;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
     private InitialFragment initialFragment;
     private SelectIngredientsFragment selectIngredientsFragment;
+    private RecipeDetailsFragment recipeDetailsFragment;
 
     //Menu
     private DrawerLayout mDrawerLayout;
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         setContentView(R.layout.activity_main);
         initialFragment = InitialFragment.getInstance();
         selectIngredientsFragment = SelectIngredientsFragment.getInstance();
+        recipeDetailsFragment = RecipeDetailsFragment.getInstance();
 
         changeFragment(initialFragment, InitialFragment.TAG, true);
 
@@ -188,7 +191,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 break;
 
             case R.id.nav_favorites:
-                Toast.makeText(this, getString(R.string.not_ready), Toast.LENGTH_LONG).show();
+               // Toast.makeText(this, getString(R.string.not_ready), Toast.LENGTH_LONG).show();
+                changeFragment(RecipeDetailsFragment.getInstance(),RecipeDetailsFragment.TAG,true );//apenas para testar a tela de visualizacao da receita
                 //((MainActivity)getActivity()).changeFragment();
                 break;
 

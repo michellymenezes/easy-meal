@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/show_ingredient_iv"
+            android:layout_width="match_parent"
+            android:src="@drawable/recipe"
+            android:scaleType="centerCrop"
+            android:layout_height="160dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentTop="true"/>
+        <TextView
+            android:id="@+id/recipe_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/show_ingredient_iv"
+            android:textSize="20dp"
+            android:text="Recipe name"/>
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/feed_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <android.support.v4.view.PagerTabStrip
+            android:id="@+id/pager_title_strip"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="top"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/white"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp" />
+
+
+    </android.support.v4.view.ViewPager>
+
+</LinearLayout>
