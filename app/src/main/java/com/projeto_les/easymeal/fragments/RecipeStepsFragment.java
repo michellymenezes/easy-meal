@@ -53,17 +53,7 @@ public class RecipeStepsFragment extends Fragment {
     }
 
     private void startAdapter() {
-        //mRecycleView = (RecyclerView) mview.findViewById(R.id.recipe_ingredient_list);
-       // mRecycleView.setHasFixedSize(true);
-
-      //  LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-     //   llm.setOrientation(LinearLayoutManager.VERTICAL);
-      //  mRecycleView.setLayoutManager(llm);
-
-
-//        FoundFeedCardAdapter adapter = new FoundFeedCardAdapter(getActivity(),mList);
-//        adapter.setRecycleViewOnClickListener(this);
-//        mRecycleView.setAdapter(adapter);
+       
     }
 
     @Override

@@ -64,14 +64,6 @@ public class RecipeIngredientsFragment extends Fragment {
 
     private void startAdapter() {
 
-      //  LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-       // llm.setOrientation(LinearLayoutManager.VERTICAL);
-      //  mRecycleView.setLayoutManager(llm);
-
-
-            //   FoundFeedCardAdapter adapter = new FoundFeedCardAdapter(getActivity(),mList);
-//        adapter.setRecycleViewOnClickListener(this);
-//        mRecycleView.setAdapter(adapter);
     }
 
     @Override

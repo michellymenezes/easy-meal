@@ -16,15 +16,11 @@ import com.projeto_les.easymeal.R;
 public class RecipeDescriptionFragment extends Fragment {
 
     public static final String TAG = "DESCRIPTION_FRAGMENT";
-
     private RecyclerView mRecycleView;
     private View mview;
 
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
+
     public RecipeDescriptionFragment() {
     }
 
@@ -53,17 +49,7 @@ public class RecipeDescriptionFragment extends Fragment {
     }
 
     private void startAdapter() {
-       // mRecycleView = (RecyclerView) mview.findViewById(R.id.recipe_ingredient_list);
-      //  mRecycleView.setHasFixedSize(true);
 
-      //  LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-       // llm.setOrientation(LinearLayoutManager.VERTICAL);
-      //  mRecycleView.setLayoutManager(llm);
-
-
-//        FoundFeedCardAdapter adapter = new FoundFeedCardAdapter(getActivity(),mList);
-//        adapter.setRecycleViewOnClickListener(this);
-//        mRecycleView.setAdapter(adapter);
     }
 
     @Override
