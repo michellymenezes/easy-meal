@@ -1,12 +1,25 @@
 package com.projeto_les.easymeal;
 
 import android.annotation.SuppressLint;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
+
+import com.projeto_les.easymeal.fragments.RecipeDetailsFragment;
+import com.projeto_les.easymeal.fragments.SelectFiltersFragment;
 
 import com.projeto_les.easymeal.services.retrofit_models.IngredientsMapper;
 import com.projeto_les.easymeal.services.retrofit_models.Recipe;
@@ -25,10 +38,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener{
 
     private InitialFragment initialFragment;
     private SelectIngredientsFragment selectIngredientsFragment;
+    private RecipeDetailsFragment recipeDetailsFragment;
+
+    //Menu
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mToggle;
+    private Toolbar mToolbar;
+    private NavigationView mNavigationView;
+
 
     public static final String TAG = "MAIN_ACTIVITY";
 
@@ -36,13 +57,30 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
-
         initialFragment = InitialFragment.getInstance();
         selectIngredientsFragment = SelectIngredientsFragment.getInstance();
+        recipeDetailsFragment = RecipeDetailsFragment.getInstance();
 
         changeFragment(initialFragment, InitialFragment.TAG, true);
 
+        // Para iniciar o menu
+        mToolbar = (Toolbar) findViewById(R.id.nav_action);
+        setSupportActionBar(mToolbar);
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        //Para tornar o menu clicável
+        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        mNavigationView.setNavigationItemSelectedListener(this);
+
+
+        // end menu
 
         //Quando precisar iniciar a conexão a Key deve ser utilizada da seguinte maneira: getString(R.string.SPOONACULATOR_API_KEY)
 
@@ -147,4 +185,45 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
+
+    //Menu
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //Açao para o botao de menu e voltar do menu
+        if (mToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
+    // Deve ser implementado para dar ação aos itens do menu
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.nav_home_screen:
+                changeFragment(InitialFragment.getInstance(),InitialFragment.TAG,true );
+                break;
+
+            case R.id.nav_ingredient:
+                changeFragment(SelectIngredientsFragment.getInstance(),SelectIngredientsFragment.TAG,true );
+                break;
+
+            case R.id.nav_favorites:
+               // Toast.makeText(this, getString(R.string.not_ready), Toast.LENGTH_LONG).show();
+                changeFragment(RecipeDetailsFragment.getInstance(),RecipeDetailsFragment.TAG,true );//apenas para testar a tela de visualizacao da receita
+                //((MainActivity)getActivity()).changeFragment();
+                break;
+
+            case R.id.nav_about:
+                Toast.makeText(this, getString(R.string.not_ready), Toast.LENGTH_LONG).show();
+                //((MainActivity)getActivity()).changeFragment();
+                break;
+
+        }
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
 }

@@ -55,8 +55,8 @@ public class InitialFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_initial, container, false);
 
         Button selectIngredients = (Button) view.findViewById(R.id.select_ingredients_btn);
-        Button favorite = (Button) view.findViewById(R.id.favorites_btn);
-        Button help = (Button) view.findViewById(R.id.help_btn);
+//        Button favorite = (Button) view.findViewById(R.id.favorites_btn);
+//        Button help = (Button) view.findViewById(R.id.help_btn);
 
         selectIngredients.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,21 +65,21 @@ public class InitialFragment extends Fragment{
             }
         });
 
-        favorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), getString(R.string.not_ready), Toast.LENGTH_LONG).show();
-                //((MainActivity)getActivity()).changeFragment();
-            }
-        });
-
-        help.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), getString(R.string.not_ready), Toast.LENGTH_LONG).show();
-                //((MainActivity)getActivity()).changeFragment();
-            }
-        });
+//        favorite.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getActivity(), getString(R.string.not_ready), Toast.LENGTH_LONG).show();
+//                ((MainActivity)getActivity()).changeFragment();
+//            }
+//        });
+//
+//        help.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getActivity(), getString(R.string.not_ready), Toast.LENGTH_LONG).show();
+//                ((MainActivity)getActivity()).changeFragment();
+//            }
+//        });
         return view;
 
     }

@@ -1,19 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="35dp"
-    android:layout_centerHorizontal="true"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
     android:padding="5dp">
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/checkbox" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Filter"
-        android:textSize="20dp"
-        android:id="@+id/checkbox_name"/>
+    <ImageView
+        android:id="@+id/icon_filter_list_itenm"
+        android:background="@drawable/rounded_bg_filter_icon"
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_appetizer"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        />
 
-</LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/rounded_bg_filter_name"
+        android:padding="5dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/icon_filter_list_itenm">
+
+        <TextView
+                android:layout_width="wrap_content"
+            android:layout_alignParentLeft="true"
+                android:gravity="bottom"
+                android:layout_height="wrap_content"
+                android:text="Filter"
+                android:textSize="15dp"
+                android:id="@+id/checkbox_name"
+               />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="bottom"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkbox"
+                />
+
+    </RelativeLayout>
+
+</RelativeLayout>

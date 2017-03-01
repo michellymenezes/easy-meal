@@ -1,22 +1,30 @@
 package com.projeto_les.easymeal.fragments;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.projeto_les.easymeal.adapters.IngredientListAdapter;
 import com.projeto_les.easymeal.MainActivity;
 import com.projeto_les.easymeal.R;
+import com.xiaofeng.flowlayoutmanager.FlowLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,14 +38,14 @@ public class SelectIngredientsFragment extends Fragment {
 
     private static SelectIngredientsFragment fragment;
     public static final String TAG = "SELECT_INGREDIENTS_FRAGMENT";
-    private Button mClearBtn;
+   // private Button mClearBtn;
     private EditText mIngredientEditText;
-    private Button mAddBtn;
+    private ImageButton mAddBtn;
 
     private List<String> mRecentlyAddedIngts;
     private List<String> mIngredients;
-    private ArrayAdapter mListAdapter;
-    private ListView mSelectIngListView;
+    private IngredientListAdapter mListAdapter;
+    private RecyclerView mSelectIngListView;
 
 
     public SelectIngredientsFragment() {
@@ -73,31 +81,32 @@ public class SelectIngredientsFragment extends Fragment {
 
         mRecentlyAddedIngts = new ArrayList<String>();
         mIngredients = new ArrayList<String>();
-        mListAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, mIngredients);
 
-        mListAdapter = new IngredientListAdapter(getActivity(), mIngredients);
+        mListAdapter = new IngredientListAdapter(mIngredients);
 
-        final ImageButton backMenuBtn = (ImageButton) view.findViewById(R.id.back_menu_btn);
-        final ImageButton nextBtn = (ImageButton) view.findViewById(R.id.next);
+        final Button nextBtn = (Button) view.findViewById(R.id.next);
 
-        mSelectIngListView = (ListView) view.findViewById(R.id.selected_ingredients_list);
+
+
+        mSelectIngListView = (RecyclerView) view.findViewById(R.id.selected_ingredients_list);
+        mSelectIngListView.setLayoutManager(new FlowLayoutManager());
         mIngredientEditText = (EditText) view.findViewById(R.id.auto_complete_ingredient);
         //actv.setTextLocale(Locale.ENGLISH);
-        mClearBtn = (Button)view.findViewById(R.id.clear_btn);
+       // mClearBtn = (Button)view.findViewById(R.id.clear_btn);
 
-        mAddBtn = (Button) view.findViewById(R.id.add);
+        mAddBtn = (ImageButton) view.findViewById(R.id.add);
         mAddBtn.setEnabled(true);
 
-        clear();
+        //clear();
 
         addIngredient();
 
-        backMenuBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainActivity) getActivity()).changeFragment(InitialFragment.getInstance(),InitialFragment.TAG,true );
-            }
-        });
+//        backMenuBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ((MainActivity) getActivity()).changeFragment(InitialFragment.getInstance(),InitialFragment.TAG,true );
+//            }
+//        });
 
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +121,7 @@ public class SelectIngredientsFragment extends Fragment {
 
         return view;
     }
-
+/*
     private void clear(){
         mClearBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,27 +131,47 @@ public class SelectIngredientsFragment extends Fragment {
         });
 
     }
+    */
 
     private void addIngredient() {
+
         mAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String ingredient = mIngredientEditText.getText().toString().toUpperCase().trim();
-
-                if(ingredientsRestrictions(ingredient)){
-                    if (!mIngredients.contains(ingredient)) {
-                        mIngredients.add(ingredient);
-                    } else {
-                        Toast.makeText(getContext(), R.string.already_exist, Toast.LENGTH_SHORT).show();
-                    }
-                }
-                mSelectIngListView.setAdapter(mListAdapter);
-                hideKeyboard(getActivity());
-                mIngredientEditText.setText("");
+                addIngredientAux();
             }
         });
+
+        mIngredientEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if(actionId == EditorInfo.IME_ACTION_NEXT){
+                    addIngredientAux();
+                }
+                return handled;
+            }
+        });
+
+
     }
+
+    private void addIngredientAux(){
+        String ingredient = mIngredientEditText.getText().toString().toUpperCase().trim();
+        if(ingredientsRestrictions(ingredient)){
+            if (!mIngredients.contains(ingredient)) {
+                mIngredients.add(ingredient);
+            } else {
+                Toast.makeText(getContext(), R.string.already_exist, Toast.LENGTH_SHORT).show();
+            }
+        }
+        mSelectIngListView.setAdapter(mListAdapter);
+        hideKeyboard(getActivity());
+        mIngredientEditText.setText("");
+
+    }
+
+
 
     private void hideKeyboard(Activity activity) {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);

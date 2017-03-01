@@ -1,54 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="5dp">
-    <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="430dp"
-        android:layout_weight="0.95">
-        <LinearLayout
-            android:id="@+id/filter_layout"
+        android:layout_height="440dp"
+        android:layout_margin="5dp"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:id="@+id/filter_tv"
+            style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="5dp"
-            android:layout_marginTop="10dp">
-
-            <TextView
+            android:gravity="center"
+            android:text="@string/filters" />
+            <LinearLayout
+                android:id="@+id/filter_layout"
+                android:layout_below="@+id/filter_tv"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/filters"
-                style="@style/TextAppearance.AppCompat.Title" />
+                android:layout_height="440dp">
+                <GridView
+                    android:id="@+id/filter_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:numColumns="2"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp" />
+            </LinearLayout>
+    </RelativeLayout>
 
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="384dp"
-                android:id="@+id/filter_list"
-                />
 
-
-        </LinearLayout>
-    </ScrollView>
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:gravity="bottom">
-        <ImageButton
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:background="@android:color/transparent"
+        android:gravity="right">
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/back"
-            android:background="@drawable/ic_back"
-            android:layout_alignParentRight="false"
-            android:onClick="onBackPressed"/>
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:src="@drawable/ic_roll_down"
+            />
+
+        <Button
             android:id="@+id/search_recipes"
-            android:background="@drawable/ic_search_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:onClick="onSearchPressed"/>
+            android:layout_marginLeft="2dp"
+            android:background="@drawable/bg_button"
+            android:drawableRight="@drawable/ic_search_"
+            android:padding="6dp"
+            android:text="Search"
+            android:textColor="@color/colorAccent" />
+
+        <Button
+            android:id="@+id/select_all_filters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/search_recipes"
+            android:background="@drawable/bg_button"
+            android:layout_marginRight="2dp"
+            android:drawableRight="@drawable/ic_check_all"
+            android:padding="6dp"
+            android:text="CHECK ALL"
+            android:textColor="@color/colorAccent" />
     </RelativeLayout>
 
 </LinearLayout>
