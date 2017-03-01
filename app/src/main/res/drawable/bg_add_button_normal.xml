@@ -9,8 +9,8 @@
     <stroke android:width="2px" android:color="@android:color/white"/>
 
     <size
-        android:width="60dp"
-        android:height="60dp"
+        android:width="40dp"
+        android:height="40dp"
         />
     <corners
         android:topRightRadius="10dp"
