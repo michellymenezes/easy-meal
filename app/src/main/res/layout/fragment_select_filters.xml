@@ -40,8 +40,15 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:paddingRight="20dp"
+        android:paddingLeft="20dp"
         android:background="@android:color/transparent"
         android:gravity="right">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_roll_down"
+            />
 
         <Button
             android:id="@+id/search_recipes"
