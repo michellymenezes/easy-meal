@@ -4,25 +4,11 @@
     android:layout_height="match_parent"
     >
 
-    <RelativeLayout
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/recipe">
+        android:layout_height="250dp"
+        android:background="@drawable/recipe"/>
 
-        <TextView
-            android:gravity="center"
-            android:layout_alignParentBottom="true"
-            android:background="@android:color/white"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:alpha="0.8"
-            android:id="@+id/recipe_name_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:textColor="@color/colorSecundaryText"
-            android:textSize="25dp"
-            android:text="Recipe name"/>
-    </RelativeLayout>
 
     <android.support.v4.view.ViewPager
         xmlns:android="http://schemas.android.com/apk/res/android"

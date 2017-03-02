@@ -2,17 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="140dp"
-    android:background="@color/colorPrimary"
-    android:padding="@dimen/size_default">
+    android:layout_height="200dp"
+  >
+
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:background="@drawable/rounded_bg_recipe_img"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_laucher_easy_meal"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_vertical"
         android:gravity="center"
         android:text="@string/app_name"
-        android:textColor="@android:color/white"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="@dimen/size_default"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="40dp"
+        android:layout_height="2dp"
+        android:background="@color/colorSecundaryText"
+        >
+
+    </View>
 
 </LinearLayout>

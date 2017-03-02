@@ -8,7 +8,7 @@
     <string name="home_screen">Home Screen</string>
     <string name="ingredients">Ingredients</string>
     <string name="filters">Filters</string>
-    <string name="selected_ingredients">Selected ingredients</string>
+    <string name="selected_ingredients">Ingredients</string>
     <string name="select_ingredients"> Start cooking</string>
 
     <!--  Toast -->

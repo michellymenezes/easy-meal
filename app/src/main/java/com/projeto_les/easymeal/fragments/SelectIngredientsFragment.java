@@ -40,7 +40,7 @@ public class SelectIngredientsFragment extends Fragment {
     public static final String TAG = "SELECT_INGREDIENTS_FRAGMENT";
    // private Button mClearBtn;
     private EditText mIngredientEditText;
-    private ImageButton mAddBtn;
+    private Button mAddBtn;
 
     private List<String> mRecentlyAddedIngts;
     private List<String> mIngredients;
@@ -94,7 +94,7 @@ public class SelectIngredientsFragment extends Fragment {
         //actv.setTextLocale(Locale.ENGLISH);
        // mClearBtn = (Button)view.findViewById(R.id.clear_btn);
 
-        mAddBtn = (ImageButton) view.findViewById(R.id.add);
+        mAddBtn = (Button) view.findViewById(R.id.add);
         mAddBtn.setEnabled(true);
 
         //clear();
