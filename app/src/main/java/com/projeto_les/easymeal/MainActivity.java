@@ -21,6 +21,8 @@ import android.widget.Toast;
 import com.projeto_les.easymeal.fragments.RecipeDetailsFragment;
 import com.projeto_les.easymeal.fragments.SelectFiltersFragment;
 
+import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructions;
+import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructionsMapper;
 import com.projeto_les.easymeal.services.retrofit_models.IngredientsMapper;
 import com.projeto_les.easymeal.services.retrofit_models.Recipe;
 import com.projeto_les.easymeal.services.retrofit_models.RecipeInformation;
@@ -92,14 +94,14 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
         final SpoonacularService spoonacularService = new SpoonacularService(getString(R.string.SPOONACULATOR_API_KEY));
 
-    /*    // Parameters of the request, we're using an object to encapsulate them.
+        // Parameters of the request, we're using an object to encapsulate them.
         IngredientsMapper ingredientsMapper = new IngredientsMapper();
         ingredientsMapper.setFillIngredients(false);
         ingredientsMapper.setLimitLicense(false);
         ingredientsMapper.setNumber(5);
         ingredientsMapper.setRanking(1);
 
-        List<String> ingredients = new ArrayList<>(Arrays.asList("sugar", "flour", "apples"));
+        /* List<String> ingredients = new ArrayList<>(Arrays.asList("sugar", "flour", "apples"));
         ingredientsMapper.setIngredients(ingredients);
 
         // pass the mapper object and a callback (the request is async)
@@ -127,6 +129,24 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                         }
                         @Override
                         public void onFailure(Call<RecipeInformation> call, Throwable t) {
+
+                        }
+                    });
+
+
+                    // Now you can get instructions by steps
+                    AnalyzedRecipeInstructionsMapper analyzedRecipeInstructionsMapper = new AnalyzedRecipeInstructionsMapper(r.getId(), false);
+                    spoonacularService.getAnalyzedRecipeInstructions(analyzedRecipeInstructionsMapper, new Callback<AnalyzedRecipeInstructions>() {
+                        @Override
+                        public void onResponse(Call<AnalyzedRecipeInstructions> call, Response<AnalyzedRecipeInstructions> response) {
+                            AnalyzedRecipeInstructions analyzedRecipeInstructions = response.body();
+                            // If everything goes right, you should see information on log
+                            Log.d("spoonacularService.getAnalyzedRecipeInstructions", analyzedRecipeInstructions.toString());
+
+
+                        }
+                        @Override
+                        public void onFailure(Call<AnalyzedRecipeInstructions> call, Throwable t) {
 
                         }
                     });

@@ -110,4 +110,18 @@ public class SpoonacularService {
 
         call.enqueue(callback);
     }
+
+    public void getAnalyzedRecipeInstructions(final AnalyzedRecipeInstructionsMapper analyzedRecipeInstructionsMapper,
+                                     final Callback<AnalyzedRecipeInstructions> callback) {
+
+        Call<AnalyzedRecipeInstructions> call = spoonacularService.getAnalyzedRecipeInstructions(
+                MASHAPE_KEY,
+                CONTENT_TYPE_HEADER,
+                ACCEPT_HEADER,
+                analyzedRecipeInstructionsMapper.getId(),
+                analyzedRecipeInstructionsMapper.isStepBreakdown()
+        );
+
+        call.enqueue(callback);
+    }
 }
