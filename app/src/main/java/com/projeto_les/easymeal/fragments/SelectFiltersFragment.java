@@ -68,11 +68,14 @@ public class SelectFiltersFragment extends Fragment {
 
 
 
-        filterListName = new ArrayList<>(Arrays.asList( "Main Course", "Side Dish", "Dessert", "Appetizer",
-                "Salad", "Bread", "Breakfast", "Soup", "Beverage"));
+        filterListName = new ArrayList<>(Arrays.asList( "Main Course", "Side Dish", "Dessert",
+                "Appetizer", "Salad", "Bread", "Breakfast", "Soup", "Beverage", "Sauce", "Drink"));
 
-        filterListIcon = new int []{R.drawable.ic_main_course, R.drawable.ic_side_dish, R.drawable.ic_dessert, R.drawable.ic_appetizer,
-                R.drawable.ic_salad, R.drawable.ic_bread, R.drawable.ic_breakfast, R.drawable.ic_soup, R.drawable.ic_beverage};
+        filterListIcon = new int []{R.drawable.ic_main_course, R.drawable.ic_side_dish,
+                R.drawable.ic_dessert, R.drawable.ic_appetizer,
+                R.drawable.ic_salad, R.drawable.ic_bread, R.drawable.ic_breakfast,
+                R.drawable.ic_soup, R.drawable.ic_beverage, R.drawable.ic_sauce,
+                R.drawable.ic_drink};
 
         filterList = addItens(filterListName, filterListIcon);
 

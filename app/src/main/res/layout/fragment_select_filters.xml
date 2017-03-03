@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:background="@drawable/rounded_background_scr"
         android:alpha="0.9"
-        android:layout_height="480dp"
+        android:layout_height="340dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp">
         <TextView
@@ -26,7 +26,7 @@
                 android:layout_below="@+id/filter_tv"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="4800dp">
+                android:layout_height="340dp">
                 <GridView
                     android:id="@+id/filter_list"
                     android:layout_width="match_parent"
