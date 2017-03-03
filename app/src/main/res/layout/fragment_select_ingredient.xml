@@ -57,7 +57,7 @@
             android:layout_height="40dp"
             android:layout_toRightOf="@id/auto_complete_ingredient_container"
             android:background="@drawable/bg_add_button"
-            android:drawableRight="@drawable/ic_add_white"
+            android:drawableRight="@drawable/ic_add_blue"
             android:textColor="@color/colorPrimary"
             android:text="add"
             android:padding="5dp"
