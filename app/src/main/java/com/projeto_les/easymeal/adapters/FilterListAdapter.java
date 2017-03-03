@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,21 +61,22 @@ public class FilterListAdapter extends ArrayAdapter<FilterItem> {
             v = inflater.inflate(R.layout.filter_list_item, null);
         }
 
-        final ImageView imViewItem = (ImageView) v.findViewById(R.id.icon_filter_list_itenm);
         final CheckBox checkboxItem = (CheckBox) v.findViewById(R.id.checkbox);
-        final TextView checkboxName = (TextView) v.findViewById(R.id.checkbox_name);
-        checkboxName.setText(currFilter.getNome());
-        imViewItem.setImageResource(currFilter.getIcon());
+        final ImageButton mImgBtn = (ImageButton) v.findViewById(R.id.icon_im);
+        checkboxItem.setText(currFilter.getNome());
+        mImgBtn.setImageResource(currFilter.getIcon());
+
+
 
         checkboxItem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                if(!checkboxItem.isChecked() && selectedItems.contains(checkboxName.getText().toString())){
-                    selectedItems.remove(checkboxName.getText().toString());
+                if(!checkboxItem.isChecked() && selectedItems.contains(checkboxItem.getText().toString())){
+                    selectedItems.remove(checkboxItem.getText().toString());
                 }
-                else if(checkboxItem.isChecked() && !selectedItems.contains(checkboxName.getText().toString())) {
-                    selectedItems.add(checkboxName.getText().toString());
+                else if(checkboxItem.isChecked() && !selectedItems.contains(checkboxItem.getText().toString())) {
+                    selectedItems.add(checkboxItem.getText().toString());
                 }
             }
         });

@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF9800</color>
     <color name="colorSecundaryText">#757575</color>
     <color name="colorLightPrimary">#C5CAE9</color>
+    <color name="iconColor">#FFFFFF</color>
 
 
     <color name="chip_text">#DD000000</color>
