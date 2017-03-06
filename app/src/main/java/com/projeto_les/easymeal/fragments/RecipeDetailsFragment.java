@@ -2,16 +2,24 @@ package com.projeto_les.easymeal.fragments;
 
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
-import com.projeto_les.easymeal.MainActivity;
+import com.projeto_les.easymeal.Globals;
 import com.projeto_les.easymeal.R;
 import com.projeto_les.easymeal.adapters.RecipeSwipeAdapter;
+import com.projeto_les.easymeal.services.retrofit_models.RecipeInformation;
+
+import java.io.InputStream;
 
 /**
  * Created by samirsmedeiros on 28/02/17.
@@ -23,6 +31,8 @@ public class RecipeDetailsFragment extends Fragment {
 
     private RecipeSwipeAdapter mAdapter;
     private ViewPager mPager;
+    private ImageView mRecipeImage;
+    private RecipeInformation mRecipe;
 
     public RecipeDetailsFragment() {
         // Required empty public constructor
@@ -55,11 +65,16 @@ public class RecipeDetailsFragment extends Fragment {
         mAdapter = new RecipeSwipeAdapter(getChildFragmentManager());
         mPager = (ViewPager) feed_view.findViewById(R.id.feed_pager);
         mPager.setAdapter(mAdapter);
+        Globals g = Globals.getInstance();
+        mRecipe = g.getRecipeInformation();
+
+        mRecipeImage = (ImageView) feed_view.findViewById(R.id.recipe_image);
+        new DownloadImageTask(mRecipeImage)
+                .execute(mRecipe.getImage());
 
         // Inflate the layout for this fragment
         return feed_view;
     }
-
 
     @Override
     public void onAttach(Context context) {
@@ -70,5 +85,29 @@ public class RecipeDetailsFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
     }
+}
 
+class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+    ImageView bmImage;
+
+    public DownloadImageTask(ImageView bmImage) {
+        this.bmImage = bmImage;
+    }
+
+    protected Bitmap doInBackground(String... urls) {
+        String urldisplay = urls[0];
+        Bitmap mIcon11 = null;
+        try {
+            InputStream in = new java.net.URL(urldisplay).openStream();
+            mIcon11 = BitmapFactory.decodeStream(in);
+        } catch (Exception e) {
+            Log.e("Error", e.getMessage());
+            e.printStackTrace();
+        }
+        return mIcon11;
+    }
+
+    protected void onPostExecute(Bitmap result) {
+        bmImage.setImageBitmap(result);
+    }
 }

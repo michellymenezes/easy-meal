@@ -1,6 +1,7 @@
 package com.projeto_les.easymeal;
 
 import android.annotation.SuppressLint;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -10,17 +11,14 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
+import com.projeto_les.easymeal.fragments.InitialFragment;
 import com.projeto_les.easymeal.fragments.RecipeDetailsFragment;
-import com.projeto_les.easymeal.fragments.SelectFiltersFragment;
-
+import com.projeto_les.easymeal.fragments.SelectIngredientsFragment;
 import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructions;
 import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructionsMapper;
 import com.projeto_les.easymeal.services.retrofit_models.IngredientsMapper;
@@ -28,9 +26,6 @@ import com.projeto_les.easymeal.services.retrofit_models.Recipe;
 import com.projeto_les.easymeal.services.retrofit_models.RecipeInformation;
 import com.projeto_les.easymeal.services.retrofit_models.RecipeInformationMapper;
 import com.projeto_les.easymeal.services.retrofit_models.SpoonacularService;
-
-import com.projeto_les.easymeal.fragments.InitialFragment;
-import com.projeto_les.easymeal.fragments.SelectIngredientsFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -101,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         ingredientsMapper.setNumber(5);
         ingredientsMapper.setRanking(1);
 
-        /* List<String> ingredients = new ArrayList<>(Arrays.asList("sugar", "flour", "apples"));
+         List<String> ingredients = new ArrayList<>(Arrays.asList("sugar", "flour", "apples"));
         ingredientsMapper.setIngredients(ingredients);
 
         // pass the mapper object and a callback (the request is async)
@@ -114,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
                 for (Recipe r : recipes) {
 
-                    Log.d("spoonacularService.findRecipesByIngredients", r.toString());
+                   // Log.d("spoonacularService.findRecipesByIngredients", r.toString());
 
                     // Now it's getting the main recipe information
                     RecipeInformationMapper recipeInformationMapper = new RecipeInformationMapper(r.getId(), false);
@@ -122,6 +117,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                         @Override
                         public void onResponse(Call<RecipeInformation> call, Response<RecipeInformation> response) {
                             RecipeInformation recipeInformation = response.body();
+                            Globals g = Globals.getInstance();
+                            g.setRecipeInformation(recipeInformation);
                             // If everything goes right, you should see information on log
                             Log.d("spoonacularService.getRecipeInformation", recipeInformation.toString());
 
@@ -147,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                         }
                         @Override
                         public void onFailure(Call<AnalyzedRecipeInstructions> call, Throwable t) {
-
+                            Log.d("spoonacularService.getAnalyzedRecipeInstructions", t.toString());
                         }
                     });
                 }
@@ -158,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 // If fail, what should we do? Handle errors and re-requests here.
                 t.printStackTrace();
             }
-        }); */
+        });
 
     }
 

@@ -1,16 +1,17 @@
 package com.projeto_les.easymeal.fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.projeto_les.easymeal.Globals;
 import com.projeto_les.easymeal.R;
+import com.projeto_les.easymeal.services.retrofit_models.RecipeInformation;
 
 
 public class RecipeStepsFragment extends Fragment {
@@ -19,6 +20,8 @@ public class RecipeStepsFragment extends Fragment {
 
     private RecyclerView mRecycleView;
     private View mview;
+    private TextView mIngredientText;
+    private RecipeInformation mRecipe;
 
 
     /**
@@ -49,6 +52,12 @@ public class RecipeStepsFragment extends Fragment {
         mview = inflater.inflate(R.layout.fragment_recipe_steps, container, false);
         startAdapter();
 
+        mIngredientText = (TextView) mview.findViewById(R.id.recipeSteps);
+
+        Globals g = Globals.getInstance();
+        mRecipe = g.getRecipeInformation();
+        mIngredientText.setText(mRecipe.getInstructions());
+
         return mview;
     }
 
@@ -69,6 +78,5 @@ public class RecipeStepsFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
     }
-
 
 }
