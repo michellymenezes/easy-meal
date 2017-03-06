@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.projeto_les.easymeal.R;
 import com.projeto_les.easymeal.models.FilterItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FilterListAdapter extends ArrayAdapter<FilterItem> {
@@ -25,6 +27,7 @@ public class FilterListAdapter extends ArrayAdapter<FilterItem> {
     private final List<FilterItem> items;
     private final List<String> selectedItems;
     private final Activity activity;
+    private List<CheckBox> checkBoxItems;
 
 
     public FilterListAdapter(Activity activity, List<FilterItem> items, List<String> selectedItems) {
@@ -32,6 +35,7 @@ public class FilterListAdapter extends ArrayAdapter<FilterItem> {
         this.items = items;
         this.selectedItems = selectedItems;
         this.activity = activity;
+        checkBoxItems = new ArrayList<>();
     }
 
     @Override
@@ -65,6 +69,7 @@ public class FilterListAdapter extends ArrayAdapter<FilterItem> {
         final ImageButton mImgBtn = (ImageButton) v.findViewById(R.id.icon_im);
         checkboxItem.setText(currFilter.getNome());
         mImgBtn.setImageResource(currFilter.getIcon());
+        checkBoxItems.add(checkboxItem);
 
 
 
@@ -84,8 +89,19 @@ public class FilterListAdapter extends ArrayAdapter<FilterItem> {
         return v;
     }
 
-     public List<String> getSelectedItems(){
-         return selectedItems;
-     }
+    public List<String> getSelectedItems(){
+        return selectedItems;
+    }
+
+    public void checkAll(){
+        for (CheckBox cb : checkBoxItems){
+            if (!cb.isChecked()) {
+                cb.setChecked(true);
+                if(selectedItems.contains(cb.getText().toString())) selectedItems.add(cb.getText().toString());
+            }
+
+        }
+    }
+
 
 }

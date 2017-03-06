@@ -86,27 +86,28 @@ public class SelectFiltersFragment extends Fragment {
         final GridView checkboxListView = (GridView) view.findViewById(R.id.filter_list);
         checkboxListView.setAdapter(mAdapter);
 
-//        final ImageButton backBtn = (ImageButton) view.findViewById(R.id.back);
 
-        final Button srcBtn = (Button) view.findViewById(R.id.search_recipes);
+        final Button nextBtn = (Button) view.findViewById(R.id.next);
+
+        final Button checkAllBtn = (Button) view.findViewById(R.id.select_all_filters);
 
 
-
-//        backBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ((MainActivity) getActivity()).changeFragment(SelectIngredientsFragment.getInstance(),SelectIngredientsFragment.TAG,true );
-//            }
-//        });
-
-        srcBtn.setOnClickListener(new View.OnClickListener() {
+        nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Toast.makeText(getActivity(), R.string.not_ready, Toast.LENGTH_LONG).show();
+                // Toast.makeText(getActivity(), R.string.not_ready, Toast.LENGTH_LONG).show();
                 selectedFilterList = mAdapter.getSelectedItems();
-
                 Toast.makeText(getActivity(), getStrigsFromList(selectedFilterList), Toast.LENGTH_LONG).show();
-                //((MainActivity) getActivity()).changeFragment();
+                ((MainActivity) getActivity()).changeFragment(SelectIngredientsFragment.getInstance(),SelectIngredientsFragment.TAG,true );
+
+            }
+        });
+
+        checkAllBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
+                mAdapter.checkAll();
             }
         });
 

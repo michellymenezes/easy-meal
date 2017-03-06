@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.projeto_les.easymeal.fragments.InitialFragment;
 import com.projeto_les.easymeal.fragments.RecipeDetailsFragment;
+import com.projeto_les.easymeal.fragments.SelectFiltersFragment;
 import com.projeto_les.easymeal.fragments.SelectIngredientsFragment;
 import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructions;
 import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructionsMapper;
@@ -37,7 +38,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener{
 
-    private InitialFragment initialFragment;
+
     private SelectIngredientsFragment selectIngredientsFragment;
     private RecipeDetailsFragment recipeDetailsFragment;
 
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     private Toolbar mToolbar;
     private NavigationView mNavigationView;
 
+    private SelectFiltersFragment selectFiltersFragment;
 
     public static final String TAG = "MAIN_ACTIVITY";
 
@@ -54,11 +56,12 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initialFragment = InitialFragment.getInstance();
         selectIngredientsFragment = SelectIngredientsFragment.getInstance();
         recipeDetailsFragment = RecipeDetailsFragment.getInstance();
+        selectFiltersFragment = SelectFiltersFragment.getInstance();
 
-        changeFragment(initialFragment, InitialFragment.TAG, true);
+        changeFragment(selectFiltersFragment,SelectFiltersFragment.TAG,true );
+
 
         // Para iniciar o menu
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
@@ -221,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         int id = item.getItemId();
         switch (id) {
             case R.id.nav_home_screen:
-                changeFragment(InitialFragment.getInstance(),InitialFragment.TAG,true );
+                changeFragment(SelectFiltersFragment.getInstance(),SelectFiltersFragment.TAG,true );
                 break;
 
             case R.id.nav_ingredient:
@@ -229,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 break;
 
             case R.id.nav_favorites:
-               // Toast.makeText(this, getString(R.string.not_ready), Toast.LENGTH_LONG).show();
+                // Toast.makeText(this, getString(R.string.not_ready), Toast.LENGTH_LONG).show();
                 changeFragment(RecipeDetailsFragment.getInstance(),RecipeDetailsFragment.TAG,true );//apenas para testar a tela de visualizacao da receita
                 //((MainActivity)getActivity()).changeFragment();
                 break;
@@ -243,4 +246,5 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

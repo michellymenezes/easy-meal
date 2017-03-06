@@ -38,7 +38,7 @@ public class SelectIngredientsFragment extends Fragment {
 
     private static SelectIngredientsFragment fragment;
     public static final String TAG = "SELECT_INGREDIENTS_FRAGMENT";
-   // private Button mClearBtn;
+    // private Button mClearBtn;
     private EditText mIngredientEditText;
     private Button mAddBtn;
 
@@ -84,15 +84,17 @@ public class SelectIngredientsFragment extends Fragment {
 
         mListAdapter = new IngredientListAdapter(mIngredients);
 
-        final Button nextBtn = (Button) view.findViewById(R.id.next);
+        final Button searchBtn = (Button) view.findViewById(R.id.search_recipes);
 
 
 
         mSelectIngListView = (RecyclerView) view.findViewById(R.id.selected_ingredients_list);
         mSelectIngListView.setLayoutManager(new FlowLayoutManager());
         mIngredientEditText = (EditText) view.findViewById(R.id.auto_complete_ingredient);
+        final Button clearBtn = (Button) view.findViewById(R.id.clear_all_ings_btn);
+
         //actv.setTextLocale(Locale.ENGLISH);
-       // mClearBtn = (Button)view.findViewById(R.id.clear_btn);
+        // mClearBtn = (Button)view.findViewById(R.id.clear_btn);
 
         mAddBtn = (Button) view.findViewById(R.id.add);
         mAddBtn.setEnabled(true);
@@ -108,18 +110,29 @@ public class SelectIngredientsFragment extends Fragment {
 //            }
 //        });
 
-        nextBtn.setOnClickListener(new View.OnClickListener() {
+        searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mIngredients.size() > 0){
-                    ((MainActivity) getActivity()).changeFragment(SelectFiltersFragment.getInstance(),SelectFiltersFragment.TAG,true );
+                    Toast.makeText(getContext(), R.string.not_ready, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getContext(), R.string.add_one, Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
+        clearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mIngredients.clear();
+                mSelectIngListView.setAdapter(mListAdapter);
+
+            }
+        });
+
         return view;
+
+
     }
 /*
     private void clear(){
@@ -184,19 +197,19 @@ public class SelectIngredientsFragment extends Fragment {
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-   private boolean ingredientsRestrictions(String ingredient){
-       ingredient = ingredient.trim();
+    private boolean ingredientsRestrictions(String ingredient){
+        ingredient = ingredient.trim();
 
-       if (ingredient==null || ingredient.equals("")){
-           Toast.makeText(getContext(), R.string.empty_ingredient, Toast.LENGTH_SHORT).show();
-           return false;
-       } if (ingredient.matches(".*\\d.*")){
-           Toast.makeText(getContext(), R.string.contain_number, Toast.LENGTH_SHORT).show();
-           return false;
-       } if (ingredient.matches(".*\\W.*") ){
-           Toast.makeText(getContext(), R.string.contain_metacharacter, Toast.LENGTH_SHORT).show();
+        if (ingredient==null || ingredient.equals("")){
+            Toast.makeText(getContext(), R.string.empty_ingredient, Toast.LENGTH_SHORT).show();
             return false;
-       }
+        } if (ingredient.matches(".*\\d.*")){
+            Toast.makeText(getContext(), R.string.contain_number, Toast.LENGTH_SHORT).show();
+            return false;
+        } if (ingredient.matches(".*\\W.*") ){
+            Toast.makeText(getContext(), R.string.contain_metacharacter, Toast.LENGTH_SHORT).show();
+            return false;
+        }
         return  true;
-   }
+    }
 }
