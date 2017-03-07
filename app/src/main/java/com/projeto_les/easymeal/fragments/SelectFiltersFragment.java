@@ -99,6 +99,7 @@ public class SelectFiltersFragment extends Fragment {
                 selectedFilterList = mAdapter.getSelectedItems();
                 Toast.makeText(getActivity(), getStrigsFromList(selectedFilterList), Toast.LENGTH_LONG).show();
                 ((MainActivity) getActivity()).changeFragment(SelectIngredientsFragment.getInstance(),SelectIngredientsFragment.TAG,true );
+                ((MainActivity)getActivity()).setSelectedFilters(selectedFilterList);
 
             }
         });
