@@ -52,6 +52,9 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
     public static final String TAG = "MAIN_ACTIVITY";
 
+    private List<String> mSelectedFilters;
+    private List<String> mSelectedIngredients;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +62,9 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         selectIngredientsFragment = SelectIngredientsFragment.getInstance();
         recipeDetailsFragment = RecipeDetailsFragment.getInstance();
         selectFiltersFragment = SelectFiltersFragment.getInstance();
+
+        mSelectedFilters = new ArrayList<>();
+        mSelectedIngredients = new ArrayList<>();
 
         changeFragment(selectFiltersFragment,SelectFiltersFragment.TAG,true );
 
@@ -84,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
         //Quando precisar iniciar a conexão a Key deve ser utilizada da seguinte maneira: getString(R.string.SPOONACULATOR_API_KEY)
 
-
+/*
         // Example of how to get information from the API
         // Here we have an example of a request to the get recipes endpoint
         // Initialize an instance of the service with our API Key, which is setted inside the file
@@ -159,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 t.printStackTrace();
             }
         });
-
+*/
     }
 
     /**
@@ -247,4 +253,22 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         return true;
     }
 
+
+    public List<String> getSelectedFilters() {
+        return mSelectedFilters;
+    }
+
+    public List<String> getSelectedIngredients() {
+        return mSelectedIngredients;
+    }
+
+    //TODO limpar lista quando "pesquisar " ou "reiniciar" pesquisa
+    public void setSelectedFilters(List<String> selectedFilters) {
+        this.mSelectedFilters = selectedFilters;
+    }
+
+    //TODO limpar lista quando "pesquisar " ou "reiniciar" pesquisa
+    public void setSelectedIngredients(List<String> selectedIngredients) {
+        this.mSelectedIngredients = selectedIngredients;
+    }
 }
