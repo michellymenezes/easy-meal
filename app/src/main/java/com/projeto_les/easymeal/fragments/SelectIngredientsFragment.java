@@ -1,11 +1,8 @@
 package com.projeto_les.easymeal.fragments;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -13,11 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -103,18 +97,14 @@ public class SelectIngredientsFragment extends Fragment {
 
         addIngredient();
 
-//        backMenuBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ((MainActivity) getActivity()).changeFragment(InitialFragment.getInstance(),InitialFragment.TAG,true );
-//            }
-//        });
 
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mIngredients.size() > 0){
-                    Toast.makeText(getContext(), R.string.not_ready, Toast.LENGTH_SHORT).show();
+                    ((MainActivity) getActivity()).setSelectedIngredients(mIngredients);
+                    //Toast.makeText(getContext(), R.string.not_ready, Toast.LENGTH_SHORT).show();
+                    ((MainActivity) getActivity()).changeFragment(RecipesListFragment.getInstance(), RecipesListFragment.TAG,true );
                 } else {
                     Toast.makeText(getContext(), R.string.add_one, Toast.LENGTH_SHORT).show();
                 }
@@ -134,17 +124,7 @@ public class SelectIngredientsFragment extends Fragment {
 
 
     }
-/*
-    private void clear(){
-        mClearBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mIngredientEditText.setText("");
-            }
-        });
 
-    }
-    */
 
     private void addIngredient() {
 
@@ -183,7 +163,6 @@ public class SelectIngredientsFragment extends Fragment {
         mIngredientEditText.setText("");
 
     }
-
 
 
     private void hideKeyboard(Activity activity) {
