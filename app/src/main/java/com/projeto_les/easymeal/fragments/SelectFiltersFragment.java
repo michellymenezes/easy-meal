@@ -106,8 +106,14 @@ public class SelectFiltersFragment extends Fragment {
         checkAllBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
-                mAdapter.checkAll();
+                if (mAdapter.allIschecked()){
+                    mAdapter.uncheckAll();
+                    checkAllBtn.setText("check all");
+                }else {
+                    mAdapter.checkAll();
+                    checkAllBtn.setText("uncheck all");
+
+                }
             }
         });
 
