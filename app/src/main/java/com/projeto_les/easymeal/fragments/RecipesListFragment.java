@@ -7,22 +7,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.projeto_les.easymeal.MainActivity;
 import com.projeto_les.easymeal.R;
 import com.projeto_les.easymeal.adapters.RecipeListViewAdapter;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ListRecipesFragment extends Fragment {
+public class RecipesListFragment extends Fragment {
 
-        private static ListRecipesFragment fragment;
+        private static RecipesListFragment fragment;
         public static final String TAG = "LIST_RECIPES_FRAGMENT";
 
-    public ListRecipesFragment() {
+    public RecipesListFragment() {
             // Required empty public constructor
         }
 
@@ -32,9 +29,9 @@ public class ListRecipesFragment extends Fragment {
          *
          * @return A new instance of fragment SearchFragment.
          */
-    public static ListRecipesFragment getInstance() {
+    public static RecipesListFragment getInstance() {
         if (fragment == null) {
-            fragment = new ListRecipesFragment();
+            fragment = new RecipesListFragment();
             Bundle args = new Bundle();
             fragment.setArguments(args);
         }
@@ -52,27 +49,28 @@ public class ListRecipesFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        final View view = inflater.inflate(R.layout.fragment_list_recipes, container, false);
+        final View view = inflater.inflate(R.layout.fragment_recipes_list, container, false);
 
 
-        //TODO
+        //TODO pegar receitas compatíveis com a pesquisa
         //final ArrayList<String[]> recipeList = ((MainActivity) getActivity()).getResultRecipeList();
 
         ListView recipesListView = (ListView) view.findViewById(R.id.recipes_result);
 
-        //TextView result = (TextView) view.findViewById(R.id.result);
-        recipesListView.setAdapter(new RecipeListViewAdapter(getActivity(), new ArrayList<String>(Arrays.asList("Feijão", "Arroz", "Macarrão", "Carne",
-                "Leite", "Ovos", "Chocolate", "Uva"))));
+        ArrayList<String> recipeList = new ArrayList<String>(Arrays.asList("Feijão com bacon", "Arroz de festa",
+                "Macarrão simples", "Carne na panela de pressão", "Leite fermentado caseiro", "Ovos mexidos", "torta de chocolate tradicional",
+                "surpresa de uva"));
 
-      /*  if(recipeList.isEmpty()){
-            result.setText("Ops, não encontramos nenhuma receita com essas opções :(");
+        recipesListView.setAdapter(new RecipeListViewAdapter(getActivity(), recipeList));
+
+        /*if(recipeList.isEmpty()){
+            result.setText("Ops, we don't find any recipe with this options :(");
         }
         else {
             result.setText("Resultado da pesquisa:");
             recipesListView.setAdapter(new RecipeListViewAdapter(getActivity(), recipeList));
         } */
 
-        //MainActivity.ListUtils.setDynamicHeight(recipesListView);
 
 
         ListUtils.setDynamicHeight(recipesListView);

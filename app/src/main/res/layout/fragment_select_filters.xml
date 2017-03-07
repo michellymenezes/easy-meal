@@ -20,7 +20,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@color/colorSecundaryText"
-            android:text="@string/filters" />
+            android:text="@string/filters"
+            android:padding="10dp"/>
         <LinearLayout
             android:id="@+id/filter_layout"
             android:layout_below="@+id/filter_tv"

@@ -1,6 +1,5 @@
 package com.projeto_les.easymeal;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -16,33 +15,20 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.projeto_les.easymeal.fragments.InitialFragment;
-import com.projeto_les.easymeal.fragments.ListRecipesFragment;
+import com.projeto_les.easymeal.fragments.RecipesListFragment;
 import com.projeto_les.easymeal.fragments.RecipeDetailsFragment;
 import com.projeto_les.easymeal.fragments.SelectFiltersFragment;
 import com.projeto_les.easymeal.fragments.SelectIngredientsFragment;
-import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructions;
-import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructionsMapper;
-import com.projeto_les.easymeal.services.retrofit_models.IngredientsMapper;
-import com.projeto_les.easymeal.services.retrofit_models.Recipe;
-import com.projeto_les.easymeal.services.retrofit_models.RecipeInformation;
-import com.projeto_les.easymeal.services.retrofit_models.RecipeInformationMapper;
-import com.projeto_les.easymeal.services.retrofit_models.SpoonacularService;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener{
 
 
     private SelectIngredientsFragment selectIngredientsFragment;
     private RecipeDetailsFragment recipeDetailsFragment;
-    private ListRecipesFragment listRecipesFragment;
+    private RecipesListFragment listRecipesFragment;
 
     //Menu
     private DrawerLayout mDrawerLayout;
@@ -64,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         selectIngredientsFragment = SelectIngredientsFragment.getInstance();
         recipeDetailsFragment = RecipeDetailsFragment.getInstance();
         selectFiltersFragment = SelectFiltersFragment.getInstance();
-        listRecipesFragment = ListRecipesFragment.getInstance();
+        listRecipesFragment = RecipesListFragment.getInstance();
 
         mSelectedFilters = new ArrayList<>();
         mSelectedIngredients = new ArrayList<>();

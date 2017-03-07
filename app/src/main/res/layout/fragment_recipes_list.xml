@@ -7,12 +7,14 @@
     android:background="@drawable/rounded_background_scr">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/result"
-        android:text="Result:"
-        android:textSize="20dp"
-        android:layout_margin="5dp"/>
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/colorSecundaryText"
+        android:text="@string/result"
+        android:padding="10dp"/>
 
 
     <ScrollView
@@ -35,7 +37,6 @@
                 android:id="@+id/recipes_result"
                 android:focusable="true"
                 />
-
         </LinearLayout>
     </ScrollView>
 

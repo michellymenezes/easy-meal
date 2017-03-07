@@ -15,7 +15,6 @@
     <!---->
 
 
-
     <!-- Menu -->
     <string name="open">Open</string>
     <string name="close">Close</string>
@@ -24,7 +23,6 @@
     <string name="help">Help</string>
     <string name="favorites">Favorites</string>
     <!---->
-
 
 
     <!--Select ingredients Fragment -->
@@ -38,6 +36,7 @@
     <!---->
 
     <!-- List recipe Fragment -->
+    <string name="result">Result</string>
 
     <!---->
 

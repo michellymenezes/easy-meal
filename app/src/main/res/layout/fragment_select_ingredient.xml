@@ -72,11 +72,11 @@
 
     <RelativeLayout
         android:id="@+id/select_ingredients_divider"
-        android:padding="5dp"
+        android:padding="10dp"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/ingredient_ic"
             android:layout_width="wrap_content"
@@ -84,8 +84,7 @@
             android:gravity="center_horizontal"
             android:paddingTop="5dp"
             android:paddingRight="15dp"
-            android:src="@drawable/ic_ings2"
-            />
+            android:src="@drawable/ic_ings2" />
 
         <TextView
             android:id="@+id/type_ingredientes"
@@ -97,8 +96,6 @@
             android:text="@string/ingredients"
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_toRightOf="@+id/ingredient_ic"/>
-
-
 
     </RelativeLayout>
 
