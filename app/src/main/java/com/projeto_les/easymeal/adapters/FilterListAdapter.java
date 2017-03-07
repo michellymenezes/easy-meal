@@ -30,6 +30,7 @@ public class FilterListAdapter extends ArrayAdapter<FilterItem> {
     private List<CheckBox> checkBoxItems;
 
 
+
     public FilterListAdapter(Activity activity, List<FilterItem> items, List<String> selectedItems) {
         super(activity, android.R.layout.simple_list_item_1,items );
         this.items = items;
@@ -102,6 +103,18 @@ public class FilterListAdapter extends ArrayAdapter<FilterItem> {
 
         }
     }
+    public void uncheckAll(){
+        for (CheckBox cb : checkBoxItems){
+            if (cb.isChecked()) {
+                cb.setChecked(false);
+                if(selectedItems.contains(cb.getText().toString())) selectedItems.remove(cb.getText().toString());
+            }
 
+        }
+    }
+
+    public boolean allIschecked() {
+        return selectedItems.size() == 11;
+    }
 
 }
