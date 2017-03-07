@@ -97,7 +97,7 @@ public class FilterListAdapter extends ArrayAdapter<FilterItem> {
         for (CheckBox cb : checkBoxItems){
             if (!cb.isChecked()) {
                 cb.setChecked(true);
-                if(selectedItems.contains(cb.getText().toString())) selectedItems.add(cb.getText().toString());
+                if(!selectedItems.contains(cb.getText().toString())) selectedItems.add(cb.getText().toString());
             }
 
         }
