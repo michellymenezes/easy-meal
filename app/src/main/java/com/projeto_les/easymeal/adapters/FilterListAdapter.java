@@ -28,14 +28,15 @@ public class FilterListAdapter extends ArrayAdapter<FilterItem> {
     private final List<String> selectedItems;
     private final Activity activity;
     private List<CheckBox> checkBoxItems;
+    private Button checkAllBtn;
 
 
-
-    public FilterListAdapter(Activity activity, List<FilterItem> items, List<String> selectedItems) {
+    public FilterListAdapter(Activity activity, List<FilterItem> items, List<String> selectedItems, Button checkAllBtn) {
         super(activity, android.R.layout.simple_list_item_1,items );
         this.items = items;
         this.selectedItems = selectedItems;
         this.activity = activity;
+        this.checkAllBtn = checkAllBtn;
         checkBoxItems = new ArrayList<>();
     }
 
@@ -80,9 +81,11 @@ public class FilterListAdapter extends ArrayAdapter<FilterItem> {
 
                 if(!checkboxItem.isChecked() && selectedItems.contains(checkboxItem.getText().toString())){
                     selectedItems.remove(checkboxItem.getText().toString());
+                    checkAllBtn.setText("check all");
                 }
                 else if(checkboxItem.isChecked() && !selectedItems.contains(checkboxItem.getText().toString())) {
                     selectedItems.add(checkboxItem.getText().toString());
+                    if(allIschecked()) checkAllBtn.setText("uncheck all");
                 }
             }
         });

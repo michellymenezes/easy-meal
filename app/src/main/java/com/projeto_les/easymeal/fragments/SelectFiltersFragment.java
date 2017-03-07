@@ -80,16 +80,17 @@ public class SelectFiltersFragment extends Fragment {
         filterList = addItens(filterListName, filterListIcon);
 
         selectedFilterList = new ArrayList<>();
+        final Button nextBtn = (Button) view.findViewById(R.id.next);
 
-        final FilterListAdapter mAdapter= new FilterListAdapter(getActivity(),filterList, selectedFilterList);
+        final Button checkAllBtn = (Button) view.findViewById(R.id.select_all_filters);
+
+        final FilterListAdapter mAdapter= new FilterListAdapter(getActivity(),filterList, selectedFilterList, checkAllBtn);
 
         final GridView checkboxListView = (GridView) view.findViewById(R.id.filter_list);
         checkboxListView.setAdapter(mAdapter);
 
 
-        final Button nextBtn = (Button) view.findViewById(R.id.next);
 
-        final Button checkAllBtn = (Button) view.findViewById(R.id.select_all_filters);
 
 
         nextBtn.setOnClickListener(new View.OnClickListener() {
