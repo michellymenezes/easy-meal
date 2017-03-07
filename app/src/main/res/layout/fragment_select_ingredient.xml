@@ -94,7 +94,7 @@
             android:gravity="bottom"
             android:layout_marginTop="5dp"
             android:textColor="@color/colorSecundaryText"
-            android:text="@string/selected_ingredients"
+            android:text="@string/ingredients"
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_toRightOf="@+id/ingredient_ic"/>
 

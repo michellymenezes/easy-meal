@@ -115,7 +115,8 @@ public class SelectIngredientsFragment extends Fragment {
             public void onClick(View v) {
                 if (mIngredients.size() > 0){
                     ((MainActivity) getActivity()).setSelectedIngredients(mIngredients);
-                    Toast.makeText(getContext(), R.string.not_ready, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), R.string.not_ready, Toast.LENGTH_SHORT).show();
+                    ((MainActivity) getActivity()).changeFragment(ListRecipesFragment.getInstance(),ListRecipesFragment.TAG,true );
                 } else {
                     Toast.makeText(getContext(), R.string.add_one, Toast.LENGTH_SHORT).show();
                 }

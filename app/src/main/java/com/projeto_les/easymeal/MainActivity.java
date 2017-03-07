@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.projeto_les.easymeal.fragments.InitialFragment;
+import com.projeto_les.easymeal.fragments.ListRecipesFragment;
 import com.projeto_les.easymeal.fragments.RecipeDetailsFragment;
 import com.projeto_les.easymeal.fragments.SelectFiltersFragment;
 import com.projeto_les.easymeal.fragments.SelectIngredientsFragment;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
     private SelectIngredientsFragment selectIngredientsFragment;
     private RecipeDetailsFragment recipeDetailsFragment;
+    private ListRecipesFragment listRecipesFragment;
 
     //Menu
     private DrawerLayout mDrawerLayout;
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         selectIngredientsFragment = SelectIngredientsFragment.getInstance();
         recipeDetailsFragment = RecipeDetailsFragment.getInstance();
         selectFiltersFragment = SelectFiltersFragment.getInstance();
+        listRecipesFragment = ListRecipesFragment.getInstance();
 
         mSelectedFilters = new ArrayList<>();
         mSelectedIngredients = new ArrayList<>();
@@ -271,4 +274,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     public void setSelectedIngredients(List<String> selectedIngredients) {
         this.mSelectedIngredients = selectedIngredients;
     }
+
+
 }
