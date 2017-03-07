@@ -2,6 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:padding="10dp"
+    android:background="@android:color/white"
     android:layout_height="match_parent"
     tools:context="com.projeto_les.easymeal.fragments.RecipeDescriptionFragment">
 
@@ -13,15 +15,18 @@
             android:id="@+id/iv_icon_descrition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_ings2"/>
+            android:src="@drawable/ic_cook"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/iv_icon_descrition"
             android:layout_marginLeft="10sp"
-            android:text="Description"
-            android:textSize="20dp"/>
+            android:text="Title"
+            android:textSize="20dp"
+            android:id="@+id/Title" />
+
+
 
     </RelativeLayout>
 
@@ -29,13 +34,6 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10sp"
-            android:text="Title"
-            android:textSize="20dp"
-            android:id="@+id/Title" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

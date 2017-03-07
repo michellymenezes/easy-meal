@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.projeto_les.easymeal.fragments.InitialFragment;
 import com.projeto_les.easymeal.fragments.RecipeDetailsFragment;
 import com.projeto_les.easymeal.fragments.SelectFiltersFragment;
 import com.projeto_les.easymeal.fragments.SelectIngredientsFragment;
