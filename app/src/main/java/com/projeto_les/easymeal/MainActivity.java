@@ -90,13 +90,13 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
         //Quando precisar iniciar a conexão a Key deve ser utilizada da seguinte maneira: getString(R.string.SPOONACULATOR_API_KEY)
 
-/*
+
         // Example of how to get information from the API
         // Here we have an example of a request to the get recipes endpoint
         // Initialize an instance of the service with our API Key, which is setted inside the file
         // gradle.properties .
 
-        final SpoonacularService spoonacularService = new SpoonacularService(getString(R.string.SPOONACULATOR_API_KEY));
+        /*final SpoonacularService spoonacularService = new SpoonacularService(getString(R.string.SPOONACULATOR_API_KEY));
 
         // Parameters of the request, we're using an object to encapsulate them.
         IngredientsMapper ingredientsMapper = new IngredientsMapper();
@@ -142,17 +142,20 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
                     // Now you can get instructions by steps
                     AnalyzedRecipeInstructionsMapper analyzedRecipeInstructionsMapper = new AnalyzedRecipeInstructionsMapper(r.getId(), false);
-                    spoonacularService.getAnalyzedRecipeInstructions(analyzedRecipeInstructionsMapper, new Callback<AnalyzedRecipeInstructions>() {
+                    spoonacularService.getAnalyzedRecipeInstructions(analyzedRecipeInstructionsMapper, new Callback<List<AnalyzedRecipeInstructions>>() {
                         @Override
-                        public void onResponse(Call<AnalyzedRecipeInstructions> call, Response<AnalyzedRecipeInstructions> response) {
-                            AnalyzedRecipeInstructions analyzedRecipeInstructions = response.body();
-                            // If everything goes right, you should see information on log
-                            Log.d("spoonacularService.getAnalyzedRecipeInstructions", analyzedRecipeInstructions.toString());
+                        public void onResponse(Call<List<AnalyzedRecipeInstructions>> call, Response<List<AnalyzedRecipeInstructions>> response) {
+                            List<AnalyzedRecipeInstructions> analyzedRecipeInstructions = response.body();
 
+                            for (AnalyzedRecipeInstructions i : analyzedRecipeInstructions) {
+                                // If everything goes right, you should see information on log
+                                Log.d("spoonacularService.getAnalyzedRecipeInstructions", i.toString());
+
+                            }
 
                         }
                         @Override
-                        public void onFailure(Call<AnalyzedRecipeInstructions> call, Throwable t) {
+                        public void onFailure(Call<List<AnalyzedRecipeInstructions>> call, Throwable t) {
                             Log.d("spoonacularService.getAnalyzedRecipeInstructions", t.toString());
                         }
                     });
@@ -164,8 +167,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 // If fail, what should we do? Handle errors and re-requests here.
                 t.printStackTrace();
             }
-        });
-*/
+        }); */
+
     }
 
     /**

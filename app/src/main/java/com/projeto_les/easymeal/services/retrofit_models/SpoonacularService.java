@@ -112,9 +112,9 @@ public class SpoonacularService {
     }
 
     public void getAnalyzedRecipeInstructions(final AnalyzedRecipeInstructionsMapper analyzedRecipeInstructionsMapper,
-                                     final Callback<AnalyzedRecipeInstructions> callback) {
+                                     final Callback<List<AnalyzedRecipeInstructions>> callback) {
 
-        Call<AnalyzedRecipeInstructions> call = spoonacularService.getAnalyzedRecipeInstructions(
+        Call<List<AnalyzedRecipeInstructions>> call = spoonacularService.getAnalyzedRecipeInstructions(
                 MASHAPE_KEY,
                 CONTENT_TYPE_HEADER,
                 ACCEPT_HEADER,

@@ -93,7 +93,7 @@ public interface ISpoonacularService {
      * @return  AnalyzedRecipeInstructions object with response
      */
     @GET("recipes/{id}/analyzedInstructions")
-    Call<AnalyzedRecipeInstructions> getAnalyzedRecipeInstructions(
+    Call<List<AnalyzedRecipeInstructions>> getAnalyzedRecipeInstructions(
             @Header("X-Mashape-Key") String mashapeKey,
             @Header("Content-Type") String contentType,
             @Header("Accept") String accept,
