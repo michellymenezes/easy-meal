@@ -7,7 +7,6 @@ package com.projeto_les.easymeal.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +15,8 @@ import android.widget.ListView;
 
 import com.projeto_les.easymeal.Globals;
 import com.projeto_les.easymeal.R;
-import com.projeto_les.easymeal.adapters.RecipeIngredientsAdapter;
 import com.projeto_les.easymeal.services.retrofit_models.ExtendedIngredient;
 import com.projeto_les.easymeal.services.retrofit_models.RecipeInformation;
-import com.xiaofeng.flowlayoutmanager.Alignment;
-import com.xiaofeng.flowlayoutmanager.FlowLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +29,7 @@ public class RecipeIngredientsFragment extends Fragment {
 
     public static final String TAG = "RECIPE_INGREDIENTS_FRAGMENT";
 
-    private RecyclerView mListView;
+    private ListView mListView;
     private View mview;
     private List<String> mIngredients;
     private RecipeInformation mRecipe;
@@ -71,16 +67,15 @@ public class RecipeIngredientsFragment extends Fragment {
         Globals g = Globals.getInstance();
         mRecipe = g.getRecipeInformation();
 
-        mListView = (RecyclerView) mview.findViewById(R.id.recipe_ingredient_list);
+        mListView = (ListView) mview.findViewById(R.id.recipe_ingredient_list);
 
         mIngredients = new ArrayList<String>();
         for (ExtendedIngredient x: mRecipe.getExtendedIngredients()) {
             mIngredients.add(x.getOriginalString());
 
         }
-        RecipeIngredientsAdapter adapter = new RecipeIngredientsAdapter(mIngredients);
-        mListView.setLayoutManager(new FlowLayoutManager().setAlignment(Alignment.LEFT));
-
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getContext(),
+                android.R.layout.simple_list_item_1, mIngredients);
         mListView.setAdapter(adapter);
 
         return mview;
