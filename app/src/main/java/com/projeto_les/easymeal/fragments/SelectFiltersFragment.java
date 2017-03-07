@@ -80,16 +80,17 @@ public class SelectFiltersFragment extends Fragment {
         filterList = addItens(filterListName, filterListIcon);
 
         selectedFilterList = new ArrayList<>();
+        final Button nextBtn = (Button) view.findViewById(R.id.next);
 
-        final FilterListAdapter mAdapter= new FilterListAdapter(getActivity(),filterList, selectedFilterList);
+        final Button checkAllBtn = (Button) view.findViewById(R.id.select_all_filters);
+
+        final FilterListAdapter mAdapter= new FilterListAdapter(getActivity(),filterList, selectedFilterList, checkAllBtn);
 
         final GridView checkboxListView = (GridView) view.findViewById(R.id.filter_list);
         checkboxListView.setAdapter(mAdapter);
 
 
-        final Button nextBtn = (Button) view.findViewById(R.id.next);
 
-        final Button checkAllBtn = (Button) view.findViewById(R.id.select_all_filters);
 
 
         nextBtn.setOnClickListener(new View.OnClickListener() {
@@ -97,9 +98,9 @@ public class SelectFiltersFragment extends Fragment {
             public void onClick(View v) {
                 // Toast.makeText(getActivity(), R.string.not_ready, Toast.LENGTH_LONG).show();
                 selectedFilterList = mAdapter.getSelectedItems();
-                Toast.makeText(getActivity(), getStrigsFromList(selectedFilterList), Toast.LENGTH_LONG).show();
-                ((MainActivity) getActivity()).changeFragment(SelectIngredientsFragment.getInstance(),SelectIngredientsFragment.TAG,true );
+                //Toast.makeText(getActivity(), getStrigsFromList(selectedFilterList), Toast.LENGTH_LONG).show();
                 ((MainActivity)getActivity()).setSelectedFilters(selectedFilterList);
+                ((MainActivity) getActivity()).changeFragment(SelectIngredientsFragment.getInstance(),SelectIngredientsFragment.TAG,true );
 
             }
         });
