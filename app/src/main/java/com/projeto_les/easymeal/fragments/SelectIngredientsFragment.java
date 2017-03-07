@@ -206,10 +206,10 @@ public class SelectIngredientsFragment extends Fragment {
         } if (ingredient.matches(".*\\d.*")){
             Toast.makeText(getContext(), R.string.contain_number, Toast.LENGTH_SHORT).show();
             return false;
-        } if (ingredient.matches(".*\\W.*") ){
+        }/* if (ingredient.matches(".*\\W.*") ){
             Toast.makeText(getContext(), R.string.contain_metacharacter, Toast.LENGTH_SHORT).show();
             return false;
-        }
+        }*/
         return  true;
     }
 }
