@@ -1,5 +1,6 @@
 package com.projeto_les.easymeal;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -19,9 +20,21 @@ import com.projeto_les.easymeal.fragments.RecipesListFragment;
 import com.projeto_les.easymeal.fragments.RecipeDetailsFragment;
 import com.projeto_les.easymeal.fragments.SelectFiltersFragment;
 import com.projeto_les.easymeal.fragments.SelectIngredientsFragment;
+import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructions;
+import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructionsMapper;
+import com.projeto_les.easymeal.services.retrofit_models.IngredientsMapper;
+import com.projeto_les.easymeal.services.retrofit_models.Recipe;
+import com.projeto_les.easymeal.services.retrofit_models.RecipeInformation;
+import com.projeto_les.easymeal.services.retrofit_models.RecipeInformationMapper;
+import com.projeto_les.easymeal.services.retrofit_models.SpoonacularService;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener{
 
@@ -42,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
     private List<String> mSelectedFilters;
     private List<String> mSelectedIngredients;
+    private SpoonacularService spoonacularService;
+    private Globals globals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         recipeDetailsFragment = RecipeDetailsFragment.getInstance();
         selectFiltersFragment = SelectFiltersFragment.getInstance();
         listRecipesFragment = RecipesListFragment.getInstance();
+
+        globals = Globals.getInstance();
 
         mSelectedFilters = new ArrayList<>();
         mSelectedIngredients = new ArrayList<>();
@@ -85,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         // Initialize an instance of the service with our API Key, which is setted inside the file
         // gradle.properties .
 
-        /*final SpoonacularService spoonacularService = new SpoonacularService(getString(R.string.SPOONACULATOR_API_KEY));
+        spoonacularService = new SpoonacularService(getString(R.string.SPOONACULATOR_API_KEY));
 
         // Parameters of the request, we're using an object to encapsulate them.
         IngredientsMapper ingredientsMapper = new IngredientsMapper();
@@ -110,24 +127,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                    // Log.d("spoonacularService.findRecipesByIngredients", r.toString());
 
                     // Now it's getting the main recipe information
-                    RecipeInformationMapper recipeInformationMapper = new RecipeInformationMapper(r.getId(), false);
-                    spoonacularService.getRecipeInformation(recipeInformationMapper, new Callback<RecipeInformation>() {
-                        @Override
-                        public void onResponse(Call<RecipeInformation> call, Response<RecipeInformation> response) {
-                            RecipeInformation recipeInformation = response.body();
-                            Globals g = Globals.getInstance();
-                            g.setRecipeInformation(recipeInformation);
-                            // If everything goes right, you should see information on log
-                            Log.d("spoonacularService.getRecipeInformation", recipeInformation.toString());
-
-
-                        }
-                        @Override
-                        public void onFailure(Call<RecipeInformation> call, Throwable t) {
-
-                        }
-                    });
-
+                    getRecipeInformation(r.getId(), false);
 
                     // Now you can get instructions by steps
                     AnalyzedRecipeInstructionsMapper analyzedRecipeInstructionsMapper = new AnalyzedRecipeInstructionsMapper(r.getId(), false);
@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 // If fail, what should we do? Handle errors and re-requests here.
                 t.printStackTrace();
             }
-        }); */
+        });
 
     }
 
@@ -264,5 +264,35 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         this.mSelectedIngredients = selectedIngredients;
     }
 
+    public SpoonacularService getSpoonacularService() {
+        if (spoonacularService==null){
+            spoonacularService = new SpoonacularService(getString(R.string.SPOONACULATOR_API_KEY));
+        }
+        return spoonacularService;
+    }
 
+    public Globals getGlobals() {
+        return globals;
+    }
+
+    public void getRecipeInformation(int id, Boolean includeNutrition){
+        // Now it's getting the main recipe information
+        RecipeInformationMapper recipeInformationMapper = new RecipeInformationMapper(id, includeNutrition);
+        spoonacularService.getRecipeInformation(recipeInformationMapper, new Callback<RecipeInformation>() {
+            @Override
+            public void onResponse(Call<RecipeInformation> call, Response<RecipeInformation> response) {
+                RecipeInformation recipeInformation = response.body();
+                Globals g = Globals.getInstance();
+                g.setRecipeInformation(recipeInformation);
+                // If everything goes right, you should see information on log
+                Log.d("spoonacularService.getRecipeInformation", recipeInformation.toString());
+
+
+            }
+            @Override
+            public void onFailure(Call<RecipeInformation> call, Throwable t) {
+
+            }
+        });
+    }
 }

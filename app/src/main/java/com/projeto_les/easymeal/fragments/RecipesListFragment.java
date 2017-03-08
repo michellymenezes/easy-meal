@@ -60,24 +60,25 @@ public class RecipesListFragment extends Fragment {
         ArrayList<String[]> recipeList = new ArrayList<String[]>(Arrays.<String[]>asList(
                 new String[]{"98730", "Jalapeno Burger", "https://spoonacular.com/recipeImages/jalapeno-burger-2-98730.jpg"},
                 new String[]{"98668", "Wisconsin Badger Burge", "https://spoonacular.com/recipeImages/wisconsin-badger-burger-2-98668.jpg"},
-                new String[]{"480050", "\"The All American Classic Bacon Cheese Burger\"", "https://spoonacular.com/recipeImages/The-All-American-Classic-Bacon-Cheese-Burger-480050.jpg"}));
+                new String[]{"480050", "The All American Classic Bacon Cheese Burger", "https://spoonacular.com/recipeImages/The-All-American-Classic-Bacon-Cheese-Burger-480050.jpg"}));
 
-        recipesListView.setAdapter(new RecipeListViewAdapter(getActivity(), recipeList));
 
-        /*if(recipeList.isEmpty()){
-            result.setText("Ops, we don't find any recipe with this options :(");
+        if(recipeList==null || recipeList.isEmpty()){
+            view.findViewById(R.id.no_result).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.scrollView_recipes).setVisibility(View.GONE);
         }
         else {
-            result.setText("Resultado da pesquisa:");
+            view.findViewById(R.id.no_result).setVisibility(View.GONE);
+            view.findViewById(R.id.scrollView_recipes).setVisibility(View.VISIBLE);
+
             recipesListView.setAdapter(new RecipeListViewAdapter(getActivity(), recipeList));
-        } */
+            ListUtils.setDynamicHeight(recipesListView);
+
+        }
 
 
-
-        ListUtils.setDynamicHeight(recipesListView);
         return view;
     }
-
 
 
     // Para adaptar o scroll view ao tamanho da lista de receitas
@@ -108,7 +109,7 @@ public class RecipesListFragment extends Fragment {
 
                 // Set list height.
                 ViewGroup.LayoutParams params = mListView.getLayoutParams();
-                params.height = totalItemsHeight + totalDividersHeight + totalPadding;
+                params.height = totalItemsHeight + totalDividersHeight + totalPadding + 50;
                 mListView.setLayoutParams(params);
                 mListView.requestLayout();
             }
