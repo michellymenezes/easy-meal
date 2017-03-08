@@ -57,9 +57,10 @@ public class RecipesListFragment extends Fragment {
 
         ListView recipesListView = (ListView) view.findViewById(R.id.recipes_result);
 
-        ArrayList<String> recipeList = new ArrayList<String>(Arrays.asList("Feijão com bacon", "Arroz de festa",
-                "Macarrão simples", "Carne na panela de pressão", "Leite fermentado caseiro", "Ovos mexidos", "torta de chocolate tradicional",
-                "surpresa de uva"));
+        ArrayList<String[]> recipeList = new ArrayList<String[]>(Arrays.<String[]>asList(
+                new String[]{"98730", "Jalapeno Burger", "https://spoonacular.com/recipeImages/jalapeno-burger-2-98730.jpg"},
+                new String[]{"98668", "Wisconsin Badger Burge", "https://spoonacular.com/recipeImages/wisconsin-badger-burger-2-98668.jpg"},
+                new String[]{"480050", "\"The All American Classic Bacon Cheese Burger\"", "https://spoonacular.com/recipeImages/The-All-American-Classic-Bacon-Cheese-Burger-480050.jpg"}));
 
         recipesListView.setAdapter(new RecipeListViewAdapter(getActivity(), recipeList));
 

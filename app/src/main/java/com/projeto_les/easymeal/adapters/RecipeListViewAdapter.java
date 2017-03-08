@@ -1,12 +1,14 @@
 package com.projeto_les.easymeal.adapters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.DataSetObserver;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -19,10 +21,10 @@ import java.util.List;
 
 public class RecipeListViewAdapter extends ArrayAdapter {
 
-    private List<String> items;
+    private List<String[]> items;
     private Activity activity;
 
-    public RecipeListViewAdapter(Activity activity, List<String> items) {
+    public RecipeListViewAdapter(Activity activity, List<String[]> items) {
         super(activity, android.R.layout.simple_list_item_1,items );
 
         this.items = items;
@@ -30,7 +32,7 @@ public class RecipeListViewAdapter extends ArrayAdapter {
     }
 
     @Override
-    public String getItem(int position) {
+    public String[] getItem(int position) {
         return items.get(position);
     }
 
@@ -48,7 +50,7 @@ public class RecipeListViewAdapter extends ArrayAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
-        final String name = items.get(position);
+        final String name = items.get(position)[2];
 
         LayoutInflater inflater = activity.getLayoutInflater();
 
@@ -57,14 +59,17 @@ public class RecipeListViewAdapter extends ArrayAdapter {
         }
 
         TextView recipeName = (TextView) convertView.findViewById(R.id.recipe_item_name);
-        TextView numberIngr = (TextView) convertView.findViewById(R.id.have);
+        ImageView recipeImage = (ImageView) convertView.findViewById(R.id.recipe_image);
 
         recipeName.setText(name);
-        //numberIngr.setText();
+        //recipeImage.setImageDrawable();
 
         recipeName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent selectedRecipe = new Intent(view.getContext(), MainActivity.class);
+                //TODO adicionar na intet o valor real de ID das receitas
+                selectedRecipe.putExtra("SELECTED_RECIPE", getItemId(position));
                 //((MainActivity) activity).viewReceitaSelecionada(getContext(),currItem);
                 //((MainActivity) activity).onRecipePressed(view);
             }

@@ -4,29 +4,36 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerHorizontal="true"
-    android:padding="5dp">
+    android:padding="5dp"
+    android:weightSum="3">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:id="@+id/recipe_image"/>
+
+    <TextView
+        android:id="@+id/recipe_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:text="Name"
+        android:padding="5dp"
+        style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+        android:layout_alignParentLeft="true"
+        android:layout_weight="2"/>
+
+    <!--
+    <TextView
+        android:id="@+id/have"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:padding="5dp">
+        android:text="1/2"
+        android:layout_alignParentRight="true" /> -->
 
-        <TextView
-            android:id="@+id/recipe_item_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="Name"
-            android:padding="5dp"
-            style="@style/TextAppearance.AppCompat.Headline"
-            android:layout_alignParentLeft="true"/>
 
-        <TextView
-            android:id="@+id/have"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1/2"
-            android:layout_alignParentRight="true" />
-    </RelativeLayout>
 </LinearLayout>
