@@ -358,6 +358,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 List<AnalyzedRecipeInstructions> analyzedRecipeInstructions = response.body();
 
                 for (AnalyzedRecipeInstructions i : analyzedRecipeInstructions) {
+                    Globals g = Globals.getInstance();
+                    g.setmAnalyzedRecipeInstructions(i);
                     // If everything goes right, you should see information on log
                     Log.d("spoonacularService.getAnalyzedRecipeInstructions", i.toString());
 

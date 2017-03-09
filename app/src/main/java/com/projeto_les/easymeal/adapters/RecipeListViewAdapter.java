@@ -95,6 +95,9 @@ public class RecipeListViewAdapter extends ArrayAdapter {
                 //TODO adicionar na intet o valor real de ID das receitas
                 //selectedRecipe.putExtra("SELECTED_RECIPE", Integer.parseInt(id));
                 ((MainActivity) activity).setmSelectedRecipeID(id);
+                ((MainActivity) activity).getRecipeInformation(id, false);
+                ((MainActivity) activity).getInstructionsByStep(id, false);
+
 
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {

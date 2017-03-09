@@ -61,8 +61,6 @@ public class RecipeDetailsFragment extends Fragment {
         mPager = (ViewPager) feed_view.findViewById(R.id.feed_pager);
         mPager.setAdapter(mAdapter);
 
-        ((MainActivity) getActivity()).getRecipeInformation(((MainActivity) getActivity()).getmSelectedRecipeID(), false);
-
         Globals g = Globals.getInstance();
         mRecipe = g.getRecipeInformation();
         if (mRecipe!= null){
