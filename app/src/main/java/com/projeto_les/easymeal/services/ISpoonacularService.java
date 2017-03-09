@@ -1,5 +1,6 @@
 package com.projeto_les.easymeal.services;
 
+import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructions;
 import com.projeto_les.easymeal.services.retrofit_models.GroceryProducts;
 import com.projeto_les.easymeal.services.retrofit_models.GroceryProductsMapper;
 import com.projeto_les.easymeal.services.retrofit_models.Recipe;
@@ -138,6 +139,25 @@ public interface ISpoonacularService {
             @Query("ranking") Integer ranking,
             @Query("type") String type
 
+    );
+
+    /**
+     * Describe request for 'Get Recipe Information' endpoint
+     *
+     * @param mashapeKey
+     * @param contentType
+     * @param accept
+     * @param id    The id of the recipe.
+     * @param stepBreakdown  Whether to break down the recipe steps even more.
+     * @return  AnalyzedRecipeInstructions object with response
+     */
+    @GET("recipes/{id}/analyzedInstructions")
+    Call<List<AnalyzedRecipeInstructions>> getAnalyzedRecipeInstructions(
+            @Header("X-Mashape-Key") String mashapeKey,
+            @Header("Content-Type") String contentType,
+            @Header("Accept") String accept,
+            @Path("id") int id,
+            @Query("stepBreakdown") boolean stepBreakdown
     );
 
 
