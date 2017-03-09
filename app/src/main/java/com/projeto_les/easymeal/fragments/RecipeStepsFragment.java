@@ -63,19 +63,22 @@ public class RecipeStepsFragment extends Fragment {
 
         Globals g = Globals.getInstance();
         mRecipe = g.getRecipeInformation();
-        mAnalyzedRecipe = g.getAnalyzedRecipeInstructions();
-        
-        ArrayList<String> steps = new ArrayList<>();
-        for (Step s : mAnalyzedRecipe.getSteps()) {
-            String[] stepsArray = s.getStep().split("\\.");
+        if (mRecipe != null) {
+            mAnalyzedRecipe = g.getAnalyzedRecipeInstructions();
 
-            steps = new ArrayList<String>(Arrays.asList(stepsArray));
+            ArrayList<String> steps = new ArrayList<>();
+            for (Step s : mAnalyzedRecipe.getSteps()) {
+                String[] stepsArray = s.getStep().split("\\.");
+
+                steps = new ArrayList<String>(Arrays.asList(stepsArray));
+            }
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getContext(),
+                    android.R.layout.simple_list_item_1,
+                    steps);
+            mListView.setAdapter(adapter);
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getContext(),
-                android.R.layout.simple_list_item_1,
-                steps);
-        mListView.setAdapter(adapter);
 
         return mview;
     }
