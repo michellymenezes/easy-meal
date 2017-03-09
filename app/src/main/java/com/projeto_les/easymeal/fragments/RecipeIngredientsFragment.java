@@ -68,9 +68,14 @@ public class RecipeIngredientsFragment extends Fragment {
 
         Globals g = Globals.getInstance();
         mRecipe = g.getRecipeInformation();
+        if (mRecipe != null) {
+            mRecycleView = (RecyclerView) mview.findViewById(R.id.recipe_ingredient_list);
 
-        mRecycleView = (RecyclerView) mview.findViewById(R.id.recipe_ingredient_list);
+            mIngredients = new ArrayList<String>();
+            for (ExtendedIngredient x: mRecipe.getExtendedIngredients()) {
+                mIngredients.add(x.getOriginalString());
 
+<<<<<<< HEAD
         if (mRecipe!= null){
             mIngredients = new ArrayList<String>();
             for (ExtendedIngredient x: mRecipe.getExtendedIngredients()) {
@@ -82,6 +87,15 @@ public class RecipeIngredientsFragment extends Fragment {
 
             mRecycleView.setAdapter(adapter);
         }
+=======
+            }
+            RecipeIngredientsAdapter adapter = new RecipeIngredientsAdapter(mIngredients);
+            mRecycleView.setLayoutManager(new FlowLayoutManager().setAlignment(Alignment.LEFT));
+
+            mRecycleView.setAdapter(adapter);
+        }
+
+>>>>>>> 61b3af65cf3bf75a0f87543dec46304c4e2158fb
 
         return mview;
     }

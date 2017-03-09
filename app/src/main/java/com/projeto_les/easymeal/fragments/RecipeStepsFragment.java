@@ -7,11 +7,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.projeto_les.easymeal.Globals;
 import com.projeto_les.easymeal.R;
+import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructions;
 import com.projeto_les.easymeal.services.retrofit_models.RecipeInformation;
+import com.projeto_les.easymeal.services.retrofit_models.Step;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class RecipeStepsFragment extends Fragment {
@@ -20,8 +26,9 @@ public class RecipeStepsFragment extends Fragment {
 
     private RecyclerView mRecycleView;
     private View mview;
-    private TextView mIngredientText;
+    private ListView mListView;
     private RecipeInformation mRecipe;
+    private AnalyzedRecipeInstructions mAnalyzedRecipe;
 
 
     /**
@@ -52,13 +59,33 @@ public class RecipeStepsFragment extends Fragment {
         mview = inflater.inflate(R.layout.fragment_recipe_steps, container, false);
         startAdapter();
 
-        mIngredientText = (TextView) mview.findViewById(R.id.recipeSteps);
+        mListView = (ListView) mview.findViewById(R.id.recipe_steps_list);
 
         Globals g = Globals.getInstance();
         mRecipe = g.getRecipeInformation();
+<<<<<<< HEAD
         if (mRecipe!= null){
             mIngredientText.setText(mRecipe.getInstructions());
         }
+=======
+        if (mRecipe != null) {
+            mAnalyzedRecipe = g.getAnalyzedRecipeInstructions();
+
+            ArrayList<String> steps = new ArrayList<>();
+            for (Step s : mAnalyzedRecipe.getSteps()) {
+                String[] stepsArray = s.getStep().split("\\.");
+
+                steps = new ArrayList<String>(Arrays.asList(stepsArray));
+            }
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getContext(),
+                    android.R.layout.simple_list_item_1,
+                    steps);
+            mListView.setAdapter(adapter);
+        }
+
+
+>>>>>>> 61b3af65cf3bf75a0f87543dec46304c4e2158fb
         return mview;
     }
 

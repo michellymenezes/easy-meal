@@ -16,22 +16,19 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.projeto_les.easymeal.fragments.RecipesListFragment;
 import com.projeto_les.easymeal.fragments.RecipeDetailsFragment;
+import com.projeto_les.easymeal.fragments.RecipesListFragment;
 import com.projeto_les.easymeal.fragments.SelectFiltersFragment;
 import com.projeto_les.easymeal.fragments.SelectIngredientsFragment;
 import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructions;
 import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructionsMapper;
-import com.projeto_les.easymeal.services.retrofit_models.ComplexSearchMapper;
 import com.projeto_les.easymeal.services.retrofit_models.IngredientsMapper;
 import com.projeto_les.easymeal.services.retrofit_models.Recipe;
 import com.projeto_les.easymeal.services.retrofit_models.RecipeInformation;
 import com.projeto_les.easymeal.services.retrofit_models.RecipeInformationMapper;
-import com.projeto_les.easymeal.services.retrofit_models.RecipeResponse;
 import com.projeto_les.easymeal.services.retrofit_models.SpoonacularService;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -172,7 +169,22 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                     //getRecipeInformation(r.getId(), false);
 
                     // Now you can get instructions by steps
+<<<<<<< HEAD
                     //getInstructionsByStep(r.getId(), false);
+=======
+                    AnalyzedRecipeInstructionsMapper analyzedRecipeInstructionsMapper = new AnalyzedRecipeInstructionsMapper(r.getId(), false);
+                    spoonacularService.getAnalyzedRecipeInstructions(analyzedRecipeInstructionsMapper, new Callback<List<AnalyzedRecipeInstructions>>() {
+                        @Override
+                        public void onResponse(Call<List<AnalyzedRecipeInstructions>> call, Response<List<AnalyzedRecipeInstructions>> response) {
+                            List<AnalyzedRecipeInstructions> analyzedRecipeInstructions = response.body();
+                            Globals g = Globals.getInstance();
+
+                            for (AnalyzedRecipeInstructions i : analyzedRecipeInstructions) {
+                                // If everything goes right, you should see information on log
+                                Log.d("spoonacularService.getAnalyzedRecipeInstructions", i.toString());
+                                g.setmAnalyzedRecipeInstructions(i);
+                            }
+>>>>>>> 61b3af65cf3bf75a0f87543dec46304c4e2158fb
 
                 }
             }

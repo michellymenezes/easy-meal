@@ -2,13 +2,9 @@ package com.projeto_les.easymeal.fragments;
 
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +15,6 @@ import com.projeto_les.easymeal.MainActivity;
 import com.projeto_les.easymeal.R;
 import com.projeto_les.easymeal.adapters.RecipeSwipeAdapter;
 import com.projeto_les.easymeal.services.retrofit_models.RecipeInformation;
-
-import java.io.InputStream;
 
 /**
  * Created by samirsmedeiros on 28/02/17.
@@ -72,14 +66,13 @@ public class RecipeDetailsFragment extends Fragment {
         Globals g = Globals.getInstance();
         mRecipe = g.getRecipeInformation();
         if (mRecipe!= null){
+
             mRecipeImage = (ImageView) feed_view.findViewById(R.id.recipe_image);
             new DownloadImageTask(mRecipeImage)
                     .execute(mRecipe.getImage());
         }
 
-
-
-        // Inflate the layout for this fragment
+                // Inflate the layout for this fragment
         return feed_view;
     }
 
