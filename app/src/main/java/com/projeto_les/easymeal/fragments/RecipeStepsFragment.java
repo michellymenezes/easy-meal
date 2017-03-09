@@ -63,11 +63,7 @@ public class RecipeStepsFragment extends Fragment {
 
         Globals g = Globals.getInstance();
         mRecipe = g.getRecipeInformation();
-<<<<<<< HEAD
-        if (mRecipe!= null){
-            mIngredientText.setText(mRecipe.getInstructions());
-        }
-=======
+
         if (mRecipe != null) {
             mAnalyzedRecipe = g.getAnalyzedRecipeInstructions();
 
@@ -85,7 +81,6 @@ public class RecipeStepsFragment extends Fragment {
         }
 
 
->>>>>>> 61b3af65cf3bf75a0f87543dec46304c4e2158fb
         return mview;
     }
 

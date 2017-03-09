@@ -161,32 +161,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 // If everything goes right, you should receive a List of Recipe objects.
                 recipes = response.body();
 
-                for (Recipe r : recipes) {
 
-                    // Log.d("spoonacularService.findRecipesByIngredients", r.toString());
-
-                    // Now it's getting the main recipe information
-                    //getRecipeInformation(r.getId(), false);
-
-                    // Now you can get instructions by steps
-<<<<<<< HEAD
-                    //getInstructionsByStep(r.getId(), false);
-=======
-                    AnalyzedRecipeInstructionsMapper analyzedRecipeInstructionsMapper = new AnalyzedRecipeInstructionsMapper(r.getId(), false);
-                    spoonacularService.getAnalyzedRecipeInstructions(analyzedRecipeInstructionsMapper, new Callback<List<AnalyzedRecipeInstructions>>() {
-                        @Override
-                        public void onResponse(Call<List<AnalyzedRecipeInstructions>> call, Response<List<AnalyzedRecipeInstructions>> response) {
-                            List<AnalyzedRecipeInstructions> analyzedRecipeInstructions = response.body();
-                            Globals g = Globals.getInstance();
-
-                            for (AnalyzedRecipeInstructions i : analyzedRecipeInstructions) {
-                                // If everything goes right, you should see information on log
-                                Log.d("spoonacularService.getAnalyzedRecipeInstructions", i.toString());
-                                g.setmAnalyzedRecipeInstructions(i);
-                            }
->>>>>>> 61b3af65cf3bf75a0f87543dec46304c4e2158fb
-
-                }
             }
 
             @Override
