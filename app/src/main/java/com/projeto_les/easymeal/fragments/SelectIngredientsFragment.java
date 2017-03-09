@@ -106,6 +106,7 @@ public class SelectIngredientsFragment extends Fragment {
                     //Toast.makeText(getContext(), R.string.not_ready, Toast.LENGTH_SHORT).show();
                     ((MainActivity) getActivity()).inicializeSpoonacularService();
 
+                    Toast.makeText(getContext(), "Wait .....  :)", Toast.LENGTH_LONG).show();
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         public void run() {

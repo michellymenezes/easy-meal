@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.projeto_les.easymeal.Globals;
 import com.projeto_les.easymeal.MainActivity;
@@ -97,6 +98,8 @@ public class RecipeListViewAdapter extends ArrayAdapter {
                 ((MainActivity) activity).setmSelectedRecipeID(id);
                 ((MainActivity) activity).getRecipeInformation(id, false);
                 ((MainActivity) activity).getInstructionsByStep(id, false);
+
+                Toast.makeText(getContext(), "Wait .....  :)", Toast.LENGTH_LONG).show();
 
 
                 Handler handler = new Handler();
