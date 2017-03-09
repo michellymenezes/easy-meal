@@ -56,8 +56,9 @@ public class RecipeStepsFragment extends Fragment {
 
         Globals g = Globals.getInstance();
         mRecipe = g.getRecipeInformation();
-        mIngredientText.setText(mRecipe.getInstructions());
-
+        if (mRecipe!= null){
+            mIngredientText.setText(mRecipe.getInstructions());
+        }
         return mview;
     }
 

@@ -22,7 +22,7 @@ import com.xiaofeng.flowlayoutmanager.FlowLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import android.os.Handler;
 
 /**
  * Created by michelly on 18/02/17.
@@ -105,7 +105,15 @@ public class SelectIngredientsFragment extends Fragment {
                     ((MainActivity) getActivity()).setSelectedIngredients(mIngredients);
                     //Toast.makeText(getContext(), R.string.not_ready, Toast.LENGTH_SHORT).show();
                     ((MainActivity) getActivity()).inicializeSpoonacularService();
-                    ((MainActivity) getActivity()).changeFragment(RecipesListFragment.getInstance(), RecipesListFragment.TAG,true );
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                            // Actions to do after 10 seconds
+                            ((MainActivity) getActivity()).changeFragment(RecipesListFragment.getInstance(), RecipesListFragment.TAG,true );
+                        }
+                    }, 5000);
+
                 } else {
                     Toast.makeText(getContext(), R.string.add_one, Toast.LENGTH_SHORT).show();
                 }

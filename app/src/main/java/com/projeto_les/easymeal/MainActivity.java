@@ -58,8 +58,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
     private List<String> mSelectedFilters;
     private List<String> mSelectedIngredients;
+    private int mSelectedRecipeID;
     private SpoonacularService spoonacularService;
-    private Globals globals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +69,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         recipeDetailsFragment = RecipeDetailsFragment.getInstance();
         selectFiltersFragment = SelectFiltersFragment.getInstance();
         listRecipesFragment = RecipesListFragment.getInstance();
-
-        globals = Globals.getInstance();
 
         mSelectedFilters = new ArrayList<>();
         mSelectedIngredients = new ArrayList<>();
@@ -171,27 +169,11 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                     // Log.d("spoonacularService.findRecipesByIngredients", r.toString());
 
                     // Now it's getting the main recipe information
-                    getRecipeInformation(r.getId(), false);
+                    //getRecipeInformation(r.getId(), false);
 
                     // Now you can get instructions by steps
-                    AnalyzedRecipeInstructionsMapper analyzedRecipeInstructionsMapper = new AnalyzedRecipeInstructionsMapper(r.getId(), false);
-                    spoonacularService.getAnalyzedRecipeInstructions(analyzedRecipeInstructionsMapper, new Callback<List<AnalyzedRecipeInstructions>>() {
-                        @Override
-                        public void onResponse(Call<List<AnalyzedRecipeInstructions>> call, Response<List<AnalyzedRecipeInstructions>> response) {
-                            List<AnalyzedRecipeInstructions> analyzedRecipeInstructions = response.body();
+                    //getInstructionsByStep(r.getId(), false);
 
-                            for (AnalyzedRecipeInstructions i : analyzedRecipeInstructions) {
-                                // If everything goes right, you should see information on log
-                                Log.d("spoonacularService.getAnalyzedRecipeInstructions", i.toString());
-
-                            }
-
-                        }
-                        @Override
-                        public void onFailure(Call<List<AnalyzedRecipeInstructions>> call, Throwable t) {
-                            Log.d("spoonacularService.getAnalyzedRecipeInstructions", t.toString());
-                        }
-                    });
                 }
             }
 
@@ -331,6 +313,10 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         return mSelectedIngredients;
     }
 
+    public int getmSelectedRecipeID() {
+        return mSelectedRecipeID;
+    }
+
     //TODO limpar lista quando "pesquisar " ou "reiniciar" pesquisa
     public void setSelectedFilters(List<String> selectedFilters) {
         this.mSelectedFilters = selectedFilters;
@@ -341,6 +327,11 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         this.mSelectedIngredients = selectedIngredients;
     }
 
+    //TODO limpar lista quando "pesquisar " ou "reiniciar" pesquisa
+    public void setmSelectedRecipeID(int mSelectedRecipeID) {
+        this.mSelectedRecipeID = mSelectedRecipeID;
+    }
+
     public SpoonacularService getSpoonacularService() {
         if (spoonacularService==null){
             spoonacularService = new SpoonacularService(getString(R.string.SPOONACULATOR_API_KEY));
@@ -348,9 +339,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         return spoonacularService;
     }
 
-    public Globals getGlobals() {
-        return globals;
-    }
 
     public void getRecipeInformation(int id, Boolean includeNutrition){
         // Now it's getting the main recipe information
@@ -372,4 +360,29 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
             }
         });
     }
+
+    public void getInstructionsByStep(int id, boolean stepBreakdown) {
+
+        // Now you can get instructions by steps
+        AnalyzedRecipeInstructionsMapper analyzedRecipeInstructionsMapper = new AnalyzedRecipeInstructionsMapper(id, stepBreakdown);
+        spoonacularService.getAnalyzedRecipeInstructions(analyzedRecipeInstructionsMapper, new Callback<List<AnalyzedRecipeInstructions>>() {
+            @Override
+            public void onResponse(Call<List<AnalyzedRecipeInstructions>> call, Response<List<AnalyzedRecipeInstructions>> response) {
+                List<AnalyzedRecipeInstructions> analyzedRecipeInstructions = response.body();
+
+                for (AnalyzedRecipeInstructions i : analyzedRecipeInstructions) {
+                    // If everything goes right, you should see information on log
+                    Log.d("spoonacularService.getAnalyzedRecipeInstructions", i.toString());
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<AnalyzedRecipeInstructions>> call, Throwable t) {
+                Log.d("spoonacularService.getAnalyzedRecipeInstructions", t.toString());
+            }
+        });
+    }
+
 }

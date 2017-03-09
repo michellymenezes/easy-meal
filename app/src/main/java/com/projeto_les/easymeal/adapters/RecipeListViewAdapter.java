@@ -3,6 +3,7 @@ package com.projeto_les.easymeal.adapters;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.DataSetObserver;
+import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import com.projeto_les.easymeal.MainActivity;
 import com.projeto_les.easymeal.R;
 import com.projeto_les.easymeal.fragments.DownloadImageTask;
 import com.projeto_les.easymeal.fragments.RecipeDetailsFragment;
+import com.projeto_les.easymeal.fragments.RecipesListFragment;
 import com.projeto_les.easymeal.services.retrofit_models.Recipe;
 import com.projeto_les.easymeal.services.retrofit_models.RecipeInformation;
 import com.projeto_les.easymeal.services.retrofit_models.RecipeInformationMapper;
@@ -63,7 +65,7 @@ public class RecipeListViewAdapter extends ArrayAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final String id = items.get(position).getId().toString();
+        final int id = items.get(position).getId();
         final String name = items.get(position).getTitle();
         final String image = items.get(position).getImage();
 
@@ -91,15 +93,21 @@ public class RecipeListViewAdapter extends ArrayAdapter {
                 Intent selectedRecipe = new Intent(view.getContext(), MainActivity.class);
 
                 //TODO adicionar na intet o valor real de ID das receitas
-                selectedRecipe.putExtra("SELECTED_RECIPE", Integer.parseInt(id));
+                //selectedRecipe.putExtra("SELECTED_RECIPE", Integer.parseInt(id));
+                ((MainActivity) activity).setmSelectedRecipeID(id);
 
-                ((MainActivity) activity).getRecipeInformation(Integer.parseInt(id), false);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        // Actions to do after 10 seconds
+                        ((MainActivity)activity).changeFragment(RecipeDetailsFragment.getInstance(),RecipeDetailsFragment.TAG,true );
+                    }
+                }, 5000);
 
-                ((MainActivity)activity).changeFragment(RecipeDetailsFragment.getInstance(),RecipeDetailsFragment.TAG,true );
 
                 // para pegar o id em qualquer lugar
                /* Intent intent = ((MainActivity) activity).getIntent();
-               int id = (Integer) intent.getParcelableExtra("SELECTED_RECIPE"); */
+               int id = (Integer) intent.getIntExtra("SELECTED_RECIPE", -1); */
 
             }
         });

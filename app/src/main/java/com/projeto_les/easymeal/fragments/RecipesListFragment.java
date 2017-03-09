@@ -61,7 +61,6 @@ public class RecipesListFragment extends Fragment {
 
 
 
-
         if(recipeList==null || recipeList.isEmpty()){
             view.findViewById(R.id.no_result).setVisibility(View.VISIBLE);
             view.findViewById(R.id.scrollView_recipes).setVisibility(View.GONE);

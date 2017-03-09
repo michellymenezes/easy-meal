@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.projeto_les.easymeal.Globals;
+import com.projeto_les.easymeal.MainActivity;
 import com.projeto_les.easymeal.R;
 import com.projeto_les.easymeal.adapters.RecipeSwipeAdapter;
 import com.projeto_les.easymeal.services.retrofit_models.RecipeInformation;
@@ -65,12 +66,18 @@ public class RecipeDetailsFragment extends Fragment {
         mAdapter = new RecipeSwipeAdapter(getChildFragmentManager());
         mPager = (ViewPager) feed_view.findViewById(R.id.feed_pager);
         mPager.setAdapter(mAdapter);
+
+        ((MainActivity) getActivity()).getRecipeInformation(((MainActivity) getActivity()).getmSelectedRecipeID(), false);
+
         Globals g = Globals.getInstance();
         mRecipe = g.getRecipeInformation();
+        if (mRecipe!= null){
+            mRecipeImage = (ImageView) feed_view.findViewById(R.id.recipe_image);
+            new DownloadImageTask(mRecipeImage)
+                    .execute(mRecipe.getImage());
+        }
 
-        mRecipeImage = (ImageView) feed_view.findViewById(R.id.recipe_image);
-        new DownloadImageTask(mRecipeImage)
-                .execute(mRecipe.getImage());
+
 
         // Inflate the layout for this fragment
         return feed_view;

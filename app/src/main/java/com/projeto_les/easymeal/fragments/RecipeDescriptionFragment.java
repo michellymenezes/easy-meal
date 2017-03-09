@@ -51,9 +51,10 @@ public class RecipeDescriptionFragment extends Fragment {
 
         Globals g = Globals.getInstance();
         mRecipe = g.getRecipeInformation();
-
-        mTitle.setText(mRecipe.getTitle());
-        mReadyInMinutes.setText("Ready in " + String.valueOf(mRecipe.getReadyInMinutes()) + " minutes.");
+        if(mRecipe!=null){
+            mTitle.setText(mRecipe.getTitle());
+            mReadyInMinutes.setText("Ready in " + String.valueOf(mRecipe.getReadyInMinutes()) + " minutes.");
+        }
 
         return mview;
     }
