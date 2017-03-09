@@ -11,6 +11,9 @@ public class Recipe {
     @SerializedName("id")
     private Integer id;
 
+    @SerializedName("title")
+    private String title;
+
     @SerializedName("image")
     private String image;
 
@@ -41,11 +44,12 @@ public class Recipe {
 
     public Recipe() {}
 
-    public Recipe(Integer id, String image, Integer usedIngredientCount,
+    public Recipe(Integer id, String title, String image, Integer usedIngredientCount,
                   Integer missedIngredientCount, Integer likes) {
 
 
         this.id = id;
+        this.title = title;
         this.image = image;
         this.usedIngredientCount = usedIngredientCount;
         this.missedIngredientCount = missedIngredientCount;
@@ -54,6 +58,14 @@ public class Recipe {
 
     public Integer getId() {
         return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setId(Integer id) {
