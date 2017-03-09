@@ -1,16 +1,14 @@
 package com.projeto_les.easymeal.services;
 
-import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructions;
 import com.projeto_les.easymeal.services.retrofit_models.GroceryProducts;
 import com.projeto_les.easymeal.services.retrofit_models.GroceryProductsMapper;
 import com.projeto_les.easymeal.services.retrofit_models.Recipe;
 import com.projeto_les.easymeal.services.retrofit_models.RecipeInformation;
+import com.projeto_les.easymeal.services.retrofit_models.RecipeResponse;
 
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -81,23 +79,66 @@ public interface ISpoonacularService {
             @Query("includeNutrition") boolean includeNutrition
     );
 
-
     /**
-     * Describe request for 'Get Recipe Information' endpoint
+     * Describes Request for 'Complex Recipe Search' endpoint
      *
      * @param mashapeKey
      * @param contentType
      * @param accept
-     * @param id    The id of the recipe.
-     * @param stepBreakdown  Whether to break down the recipe steps even more.
-     * @return  AnalyzedRecipeInstructions object with response
+     * @param addRecipeInformation
+     * @param cuisine
+     * @param diet
+     * @param excludeIngredients
+     * @param fillIngredients
+     * @param includeIngredients
+     * @param instructionsRequired
+     * @param intolerances
+     * @param limitLicense
+     * @param maxCalories
+     * @param maxCarbs
+     * @param maxFat
+     * @param maxProtein
+     * @param minCalories
+     * @param minCarbs
+     * @param minFat
+     * @param minProtein
+     * @param number
+     * @param offset
+     * @param query
+     * @param ranking
+     * @param type
+     * @return Recipe object with
      */
-    @GET("recipes/{id}/analyzedInstructions")
-    Call<List<AnalyzedRecipeInstructions>> getAnalyzedRecipeInstructions(
+
+    @GET("recipes/searchComplex")
+    Call<RecipeResponse>  searchComplex(
             @Header("X-Mashape-Key") String mashapeKey,
             @Header("Content-Type") String contentType,
             @Header("Accept") String accept,
-            @Path("id") int id,
-            @Query("stepBreakdown") boolean stepBreakdown
+            @Query("addRecipeInformation") boolean addRecipeInformation,
+            @Query("cuisine") String cuisine,
+            @Query("diet") String diet,
+            @Query("excludeIngredients") String excludeIngredients,
+            @Query("fillIngredients") boolean fillIngredients,
+            @Query("includeIngredients") String includeIngredients,
+            @Query("instructionsRequired") boolean instructionsRequired,
+            @Query("intolerances") String intolerances,
+            @Query("limitLicense") boolean limitLicense,
+            @Query("maxCalories") Integer maxCalories,
+            @Query("maxCarbs") Integer maxCarbs,
+            @Query("maxFat") Integer maxFat,
+            @Query("maxProtein") Integer maxProtein,
+            @Query("minCalories") Integer minCalories,
+            @Query("minCarbs") Integer minCarbs,
+            @Query("minFat") Integer minFat,
+            @Query("minProtein") Integer minProtein,
+            @Query("number") Integer number,
+            @Query("offset") Integer offset,
+            @Query("query") String query,
+            @Query("ranking") Integer ranking,
+            @Query("type") String type
+
     );
+
+
 }

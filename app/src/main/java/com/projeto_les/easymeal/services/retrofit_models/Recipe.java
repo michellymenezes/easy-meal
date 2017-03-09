@@ -14,6 +14,9 @@ public class Recipe {
     @SerializedName("image")
     private String image;
 
+    @SerializedName("imageType")
+    private String imageType;
+
     @SerializedName("usedIngredientCount")
     private Integer usedIngredientCount;
 
@@ -23,10 +26,24 @@ public class Recipe {
     @SerializedName("likes")
     private Integer likes;
 
+    @SerializedName("calories")
+    private Integer calories;
+
+    @SerializedName("protein")
+    private String protein;
+
+    @SerializedName("fat")
+    private String fat;
+
+    @SerializedName("carbs")
+    private String carbs;
+
+
     public Recipe() {}
 
     public Recipe(Integer id, String image, Integer usedIngredientCount,
                   Integer missedIngredientCount, Integer likes) {
+
 
         this.id = id;
         this.image = image;
@@ -75,6 +92,46 @@ public class Recipe {
         this.likes = likes;
     }
 
+    public String getImageType() {
+        return imageType;
+    }
+
+    public void setImageType(String imageType) {
+        this.imageType = imageType;
+    }
+
+    public Integer getCalories() {
+        return calories;
+    }
+
+    public void setCalories(Integer calories) {
+        this.calories = calories;
+    }
+
+    public String getProtein() {
+        return protein;
+    }
+
+    public void setProtein(String protein) {
+        this.protein = protein;
+    }
+
+    public String getFat() {
+        return fat;
+    }
+
+    public void setFat(String fat) {
+        this.fat = fat;
+    }
+
+    public String getCarbs() {
+        return carbs;
+    }
+
+    public void setCarbs(String carbs) {
+        this.carbs = carbs;
+    }
+
     @Override
     public String toString() {
         return "Recipe{" +
@@ -83,8 +140,14 @@ public class Recipe {
                 ", usedIngredientCount=" + usedIngredientCount +
                 ", missedIngredientCount=" + missedIngredientCount +
                 ", likes=" + likes +
+                ", imageType=" + imageType +
+                ", calories=" + calories +
+                ", protein=" + protein +
+                ", fat=" + fat +
+                ", carbs=" + carbs +
                 '}';
     }
+
 
 
 }

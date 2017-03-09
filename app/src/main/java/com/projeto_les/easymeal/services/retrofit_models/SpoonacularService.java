@@ -1,8 +1,5 @@
 package com.projeto_les.easymeal.services.retrofit_models;
 
-import android.content.Context;
-
-import com.projeto_les.easymeal.R;
 import com.projeto_les.easymeal.services.ISpoonacularService;
 
 import java.io.IOException;
@@ -111,17 +108,37 @@ public class SpoonacularService {
         call.enqueue(callback);
     }
 
-    public void getAnalyzedRecipeInstructions(final AnalyzedRecipeInstructionsMapper analyzedRecipeInstructionsMapper,
-                                     final Callback<List<AnalyzedRecipeInstructions>> callback) {
+    public void searchComplex(final ComplexSearchMapper complexSearchMapper,
+                                final Callback<RecipeResponse>  callback){
 
-        Call<List<AnalyzedRecipeInstructions>> call = spoonacularService.getAnalyzedRecipeInstructions(
+        Call<RecipeResponse> call = spoonacularService.searchComplex(
                 MASHAPE_KEY,
                 CONTENT_TYPE_HEADER,
                 ACCEPT_HEADER,
-                analyzedRecipeInstructionsMapper.getId(),
-                analyzedRecipeInstructionsMapper.isStepBreakdown()
+                complexSearchMapper.getAddRecipeInformation(),
+                complexSearchMapper.getCuisine(),
+                complexSearchMapper.getDiet(),
+                complexSearchMapper.getExcludeIngredientsAsString(","),
+                complexSearchMapper.isFillIngredients(),
+                complexSearchMapper.getIncludeIngredientsAsString(","),
+                complexSearchMapper.isInstructionsRequired(),
+                complexSearchMapper.getIntolerancesAsString(","),
+                complexSearchMapper.isLimitLicense(),
+                complexSearchMapper.getMaxCalories(),
+                complexSearchMapper.getMaxCarbs(),
+                complexSearchMapper.getMaxFat(),
+                complexSearchMapper.getMaxProtein(),
+                complexSearchMapper.getMinCalories(),
+                complexSearchMapper.getMinCarbs(),
+                complexSearchMapper.getMinFat(),
+                complexSearchMapper.getMinProtein(),
+                complexSearchMapper.getNumber(),
+                complexSearchMapper.getOffset(),
+                complexSearchMapper.getQuery(),
+                complexSearchMapper.getRanking(),
+                complexSearchMapper.getType()
         );
-
         call.enqueue(callback);
+
     }
 }
