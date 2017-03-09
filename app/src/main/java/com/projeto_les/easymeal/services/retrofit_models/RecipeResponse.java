@@ -44,10 +44,12 @@ public class RecipeResponse {
     }
 
     public void setRecipes(List<Recipe> recipes) {
+
         this.recipes = recipes;
     }
 
     public String getBaseUri() {
+
         return baseUri;
     }
 

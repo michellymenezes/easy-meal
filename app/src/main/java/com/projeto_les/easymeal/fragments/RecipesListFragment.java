@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.projeto_les.easymeal.MainActivity;
 import com.projeto_les.easymeal.R;
 import com.projeto_les.easymeal.adapters.RecipeListViewAdapter;
+import com.projeto_les.easymeal.services.retrofit_models.Recipe;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,14 +55,11 @@ public class RecipesListFragment extends Fragment {
 
 
         //TODO pegar receitas compatíveis com a pesquisa
-        //final ArrayList<String[]> recipeList = ((MainActivity) getActivity()).getResultRecipeList();
+        final ArrayList<Recipe> recipeList = (ArrayList<Recipe>) ((MainActivity) getActivity()).getRecipes();
 
         ListView recipesListView = (ListView) view.findViewById(R.id.recipes_result);
 
-        ArrayList<String[]> recipeList = new ArrayList<String[]>(Arrays.<String[]>asList(
-                new String[]{"98730", "Jalapeno Burger", "https://spoonacular.com/recipeImages/jalapeno-burger-2-98730.jpg"},
-                new String[]{"98668", "Wisconsin Badger Burge", "https://spoonacular.com/recipeImages/wisconsin-badger-burger-2-98668.jpg"},
-                new String[]{"480050", "The All American Classic Bacon Cheese Burger", "https://spoonacular.com/recipeImages/The-All-American-Classic-Bacon-Cheese-Burger-480050.jpg"}));
+
 
 
         if(recipeList==null || recipeList.isEmpty()){

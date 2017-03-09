@@ -10,13 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.projeto_les.easymeal.Globals;
 import com.projeto_les.easymeal.MainActivity;
 import com.projeto_les.easymeal.R;
+import com.projeto_les.easymeal.fragments.DownloadImageTask;
 import com.projeto_les.easymeal.fragments.RecipeDetailsFragment;
+import com.projeto_les.easymeal.services.retrofit_models.Recipe;
 import com.projeto_les.easymeal.services.retrofit_models.RecipeInformation;
 import com.projeto_les.easymeal.services.retrofit_models.RecipeInformationMapper;
 
@@ -32,10 +35,10 @@ public class RecipeListViewAdapter extends ArrayAdapter {
     public static final String TAG = "RECIPE_LIST_VIEW_ADAPTER";
 
 
-    private List<String[]> items;
+    private List<Recipe> items;
     private Activity activity;
 
-    public RecipeListViewAdapter(Activity activity, List<String[]> items) {
+    public RecipeListViewAdapter(Activity activity, List<Recipe> items) {
         super(activity, android.R.layout.simple_list_item_1,items );
 
         this.items = items;
@@ -43,7 +46,7 @@ public class RecipeListViewAdapter extends ArrayAdapter {
     }
 
     @Override
-    public String[] getItem(int position) {
+    public Recipe getItem(int position) {
         return items.get(position);
     }
 
@@ -60,9 +63,9 @@ public class RecipeListViewAdapter extends ArrayAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final String id = items.get(position)[0];
-        final String name = items.get(position)[1];
-        final String image = items.get(position)[2];
+        final String id = items.get(position).getId().toString();
+        final String name = items.get(position).getTitle();
+        final String image = items.get(position).getImage();
 
         LayoutInflater inflater = activity.getLayoutInflater();
 
@@ -73,10 +76,16 @@ public class RecipeListViewAdapter extends ArrayAdapter {
         TextView recipeName = (TextView) convertView.findViewById(R.id.recipe_item_name);
         ImageView recipeImage = (ImageView) convertView.findViewById(R.id.recipe_image);
 
-        recipeName.setText(name);
-        //recipeImage.setImageDrawable();
+        LinearLayout ll = (LinearLayout) convertView.findViewById(R.id.recipe_ll);
 
-        recipeName.setOnClickListener(new View.OnClickListener() {
+        new DownloadImageTask(recipeImage)
+                .execute(items.get(position).getImage());
+
+        recipeName.setText(name);
+
+
+
+        ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent selectedRecipe = new Intent(view.getContext(), MainActivity.class);
