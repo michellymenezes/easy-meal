@@ -26,19 +26,19 @@ public class ComplexSearchMapper {
     private String diet;
 
     @SerializedName("excludeIngredients")
-    private List<String> excludeIngredients;
+    private String excludeIngredients;
 
     @SerializedName("fillIngredients")
     private boolean fillIngredients;
 
     @SerializedName("includeIngredients")
-    private List<String> includeIngredients;
+    private String includeIngredients;
 
     @SerializedName("instructionsRequired")
     private boolean instructionsRequired;
 
     @SerializedName("intolerances")
-    private List<String> intolerances;
+    private String intolerances;
 
     @SerializedName("limitLicense")
     private boolean limitLicense;
@@ -82,51 +82,37 @@ public class ComplexSearchMapper {
     @SerializedName("type")
     private String type;
 
-    @SerializedName("recipes")
-    private List<String> recipes = new ArrayList<>();
-
 
     public ComplexSearchMapper() {
     }
 
-    public ComplexSearchMapper(boolean addRecipeInformation, String cuisine, String diet, List<String> excludeIngredients, boolean fillIngredients, List<String> includeIngredients, boolean instructionsRequired, List<String> intolerances, boolean limitLicense, Integer maxCalories, Integer maxCarbs, Integer maxFat, Integer maxProtein, Integer minCalories, Integer minCarbs,
-                               Integer minFat, Integer minProtein, Integer number, Integer offset, String query, Integer ranking, String type) {
-        this.addRecipeInformation = addRecipeInformation;
+    public ComplexSearchMapper(String cuisine, String diet, String includeIngredients, String intolerances,
+                               Integer number, String query, Integer ranking, String type) {
+        this.addRecipeInformation = false;
         this.cuisine = cuisine;
         this.diet = diet;
-        setExcludeIngredients(excludeIngredients);
-        this.fillIngredients = fillIngredients;
-        setIncludeIngredients(includeIngredients);
-        this.instructionsRequired = instructionsRequired;
-        setIntolerances(intolerances);
-        this.limitLicense = limitLicense;
-        this.maxCalories = maxCalories;
-        this.maxCarbs = maxCarbs;
-        this.maxFat = maxFat;
-        this.maxProtein = maxProtein;
-        this.minCalories = minCalories;
-        this.minCarbs = minCarbs;
-        this.minFat = minFat;
-        this.minProtein = minProtein;
+        this.excludeIngredients = null;
+        this.fillIngredients = false;
+        this.includeIngredients = includeIngredients;
+        this.instructionsRequired = false;
+        this.intolerances = intolerances;
+        this.limitLicense = false;
+        this.maxCalories = null;
+        this.maxCarbs = null;
+        this.maxFat = null;
+        this.maxProtein = null;
+        this.minCalories = null;
+        this.minCarbs = null;
+        this.minFat = null;
+        this.minProtein = null;
         this.number = number;
-        this.offset = offset;
+        this.offset = 0;
         this.query = query;
         this.ranking = ranking;
         this.type = type;
 
     }
 
-    public ComplexSearchMapper(List<String> recipes) {
-        setRecipes(recipes);
-    }
-
-    public List<String> getRecipes() {
-        return recipes;
-    }
-
-    public void setRecipes(List<String> recipes) {
-        this.recipes = recipes;
-    }
 
     public boolean getAddRecipeInformation() {
         return addRecipeInformation;
@@ -152,11 +138,11 @@ public class ComplexSearchMapper {
         this.diet = diet;
     }
 
-    public List<String> getExcludeIngredients() {
+    public String getExcludeIngredients() {
         return excludeIngredients;
     }
 
-    public void setExcludeIngredients(List<String> excludeIngredients) {
+    public void setExcludeIngredients(String excludeIngredients) {
         this.excludeIngredients = excludeIngredients;
     }
 
@@ -168,11 +154,11 @@ public class ComplexSearchMapper {
         this.fillIngredients = fillIngredients;
     }
 
-    public List<String> getIncludeIngredients() {
+    public String getIncludeIngredients() {
         return includeIngredients;
     }
 
-    public void setIncludeIngredients(List<String> includeIngredients) {
+    public void setIncludeIngredients(String includeIngredients) {
         this.includeIngredients = includeIngredients;
     }
 
@@ -184,11 +170,11 @@ public class ComplexSearchMapper {
         this.instructionsRequired = instructionsRequired;
     }
 
-    public List<String> getIntolerances() {
+    public String getIntolerances() {
         return intolerances;
     }
 
-    public void setIntolerances(List<String> intolerances) {
+    public void setIntolerances(String intolerances) {
 
         this.intolerances = intolerances;
     }
@@ -305,24 +291,6 @@ public class ComplexSearchMapper {
         this.type = type;
     }
 
-    public String getRecipesAsString(final String separator){
-        return listToString(separator , recipes);
-    }
-
-    public String getExcludeIngredientsAsString(final String separator){
-        return listToString(separator , excludeIngredients);
-    }
-
-    public String getIntolerancesAsString(final String separator){
-        return listToString(separator , intolerances);
-    }
-
-    public String getIncludeIngredientsAsString(final String separator){
-        return listToString(separator , includeIngredients);
-    }
-
-
-
 
     @Override
     public String toString() {
@@ -349,26 +317,7 @@ public class ComplexSearchMapper {
                 ", query='" + query + '\'' +
                 ", ranking='" + ranking + '\'' +
                 ", type='" + type + '\'' +
-                ", recipes=" + recipes +
                 '}';
-    }
-
-    private String listToString(final String separator, final List<String> list){
-        final String currentSeparator = (separator == null || separator.trim().isEmpty() ? "," : separator);
-        StringBuilder stringBuilder = new StringBuilder();
-        if(list == null || list.isEmpty()) {
-            return stringBuilder.toString();
-        }
-        synchronized (list) {
-            int size = list.size();
-            int i;
-            for (i = 0; i < size - 1; i++) {
-                stringBuilder.append(list.get(i));
-                stringBuilder.append(currentSeparator);
-            }
-            stringBuilder.append(list.get(i));
-        }
-        return stringBuilder.toString();
     }
 
 }

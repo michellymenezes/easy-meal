@@ -172,6 +172,51 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         });
 
 
+      //######################################################################################
+
+      //COMPLEX SEARCH - FUNCIONANDO
+      //
+      //      coloquei apenas os atributos que interessam a nossa pesquisa:
+      //          em ordem são:
+      //          String cuisine: String para filtro de cozinha separado por virgula
+      //          String diet: String para filtro de dieta separado por virgula
+      //          String includeIngredients: String para filtro de ingredientes separado por virgula
+      //          String intolerances: String para filtro de intoletancias separado por virgula
+      //          Integer number: quantidade de receitas que deve retornar (obrigatório)
+      //          String query: uma palavra pra epscificar o tipo de comida (macarronada, carne...) (obrigatorio)
+      //          Integer ranking: ordenar receitas, o valor pode ser 1 ou 2. Whether to maximize used ingredients (1) or
+      //                          minimize missing ingredients (2) first (obrigatório)
+      //          String type: String para filtro de tipo de refeição separado por virgula
+
+
+/*
+        ComplexSearchMapper complexSearchMapper = new ComplexSearchMapper(null, "vegan", "beans,bacon", null, 5, "beans", 1, null);
+        spoonacularService.searchComplex(complexSearchMapper, new Callback<ComplexSearchResult>() {
+            @Override
+            public void onResponse(Call<ComplexSearchResult> call, Response<ComplexSearchResult> response) {
+
+                ComplexSearchResult result = response.body();
+                //Aqui é retornada uma lista com os objetos de receitas
+                List<Recipe> recipes = result.getResults();
+
+                int i = 1;
+                for(Recipe recipe : recipes){
+                    Log.d("COMPLEX_SEARCH-RECIPE "+i, recipe.toString());
+                    i++;
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ComplexSearchResult> call, Throwable t) {
+
+            }
+        }); */
+
+   // ###################################################################################
+
+
+
         /*complex search
         ComplexSearchMapper itemsToSearchMapper = new ComplexSearchMapper();
         itemsToSearchMapper.setAddRecipeInformation(false);
@@ -337,7 +382,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 Globals g = Globals.getInstance();
                 g.setRecipeInformation(recipeInformation);
                 // If everything goes right, you should see information on log
-                Log.d("spoonacularService.getRecipeInformation", recipeInformation.toString());
+   //             Log.d("spoonacularService.getRecipeInformation", recipeInformation.toString());
 
 
             }
@@ -361,7 +406,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                     Globals g = Globals.getInstance();
                     g.setmAnalyzedRecipeInstructions(i);
                     // If everything goes right, you should see information on log
-                    Log.d("spoonacularService.getAnalyzedRecipeInstructions", i.toString());
+//                    Log.d("spoonacularService.getAnalyzedRecipeInstructions", i.toString());
 
                 }
 
@@ -369,7 +414,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
             @Override
             public void onFailure(Call<List<AnalyzedRecipeInstructions>> call, Throwable t) {
-                Log.d("spoonacularService.getAnalyzedRecipeInstructions", t.toString());
+      //          Log.d("spoonacularService.getAnalyzedRecipeInstructions", t.toString());
             }
         });
     }

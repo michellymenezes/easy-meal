@@ -109,20 +109,20 @@ public class SpoonacularService {
     }
 
     public void searchComplex(final ComplexSearchMapper complexSearchMapper,
-                                final Callback<RecipeResponse>  callback){
+                                final Callback<ComplexSearchResult>  callback){
 
-        Call<RecipeResponse> call = spoonacularService.searchComplex(
+        Call<ComplexSearchResult> call = spoonacularService.searchComplex(
                 MASHAPE_KEY,
                 CONTENT_TYPE_HEADER,
                 ACCEPT_HEADER,
                 complexSearchMapper.getAddRecipeInformation(),
                 complexSearchMapper.getCuisine(),
                 complexSearchMapper.getDiet(),
-                complexSearchMapper.getExcludeIngredientsAsString(","),
+                complexSearchMapper.getExcludeIngredients(),
                 complexSearchMapper.isFillIngredients(),
-                complexSearchMapper.getIncludeIngredientsAsString(","),
+                complexSearchMapper.getIncludeIngredients(),
                 complexSearchMapper.isInstructionsRequired(),
-                complexSearchMapper.getIntolerancesAsString(","),
+                complexSearchMapper.getIntolerances(),
                 complexSearchMapper.isLimitLicense(),
                 complexSearchMapper.getMaxCalories(),
                 complexSearchMapper.getMaxCarbs(),
