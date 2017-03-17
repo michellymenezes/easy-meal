@@ -22,6 +22,8 @@ import com.projeto_les.easymeal.fragments.SelectFiltersFragment;
 import com.projeto_les.easymeal.fragments.SelectIngredientsFragment;
 import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructions;
 import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructionsMapper;
+import com.projeto_les.easymeal.services.retrofit_models.ComplexSearchMapper;
+import com.projeto_les.easymeal.services.retrofit_models.ComplexSearchResult;
 import com.projeto_les.easymeal.services.retrofit_models.IngredientsMapper;
 import com.projeto_les.easymeal.services.retrofit_models.Recipe;
 import com.projeto_les.easymeal.services.retrofit_models.RecipeInformation;
@@ -152,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         ingredientsMapper.setRanking(1);
         List<String> ingredients = getSelectedIngredients();
         ingredientsMapper.setIngredients(ingredients);
-
+/*
         // pass the mapper object and a callback (the request is async)
         spoonacularService.findRecipesByIngredients(ingredientsMapper, new Callback<List<Recipe>>() {
             @SuppressLint("LongLogTag")
@@ -170,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 t.printStackTrace();
             }
         });
-
+ */
 
       //######################################################################################
 
@@ -189,15 +191,24 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
       //          String type: String para filtro de tipo de refeição separado por virgula
 
 
-/*
-        ComplexSearchMapper complexSearchMapper = new ComplexSearchMapper(null, "vegan", "beans,bacon", null, 5, "beans", 1, null);
+
+        ComplexSearchMapper complexSearchMapper1 = new ComplexSearchMapper(null, "vegan", "beans,bacon", null, 5, "beans", 1, null);
+
+        String query = "";
+        if (mSelectedFilters != null || mSelectedFilters.size()>0){
+            query = mSelectedFilters.get(0);
+        } else if (mSelectedIngredients != null || mSelectedIngredients.size() >0){
+            query = mSelectedIngredients.get(0);
+        }
+
+        ComplexSearchMapper complexSearchMapper = new ComplexSearchMapper(null,null,getStringSelectedIngredients(), null, 5,query,1, getStringSelectedFilters());
         spoonacularService.searchComplex(complexSearchMapper, new Callback<ComplexSearchResult>() {
             @Override
             public void onResponse(Call<ComplexSearchResult> call, Response<ComplexSearchResult> response) {
 
                 ComplexSearchResult result = response.body();
                 //Aqui é retornada uma lista com os objetos de receitas
-                List<Recipe> recipes = result.getResults();
+                recipes = result.getResults();
 
                 int i = 1;
                 for(Recipe recipe : recipes){
@@ -211,7 +222,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
             public void onFailure(Call<ComplexSearchResult> call, Throwable t) {
 
             }
-        }); */
+        });
 
    // ###################################################################################
 
@@ -369,6 +380,36 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
             spoonacularService = new SpoonacularService(getString(R.string.SPOONACULATOR_API_KEY));
         }
         return spoonacularService;
+    }
+
+    private String getStringSelectedIngredients(){
+        String ingredients = "";
+
+        if (mSelectedIngredients!= null){
+            for (String string : mSelectedIngredients){
+                ingredients += string + ",";
+            }
+
+            if (ingredients.endsWith(",")){
+                ingredients =ingredients.substring(0, ingredients.length()-1);
+            }
+        }
+        return ingredients;
+    }
+
+    private String getStringSelectedFilters(){
+        String filters = "";
+
+        if (mSelectedFilters!= null){
+            for (String string : mSelectedFilters){
+                filters += string + ",";
+            }
+
+            if (filters.endsWith(",")){
+                filters =filters.substring(0, filters.length()-1);
+            }
+        }
+        return filters;
     }
 
 
