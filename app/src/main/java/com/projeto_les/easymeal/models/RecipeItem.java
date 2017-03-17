@@ -5,6 +5,7 @@ import android.media.Image;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.projeto_les.easymeal.R;
@@ -32,8 +33,11 @@ public class RecipeItem extends FrameLayout {
 
     public void displayImage(Recipe recipe) {
         ImageView recipeImage = (ImageView)findViewById(R.id.recipe_image);
-        new DownloadImageTask(recipeImage)
-                .execute(recipe.getImage());
+        new DownloadImageTask(recipeImage).execute(recipe.getImage());
+    }
+
+    public LinearLayout getLinearLayoutItem (){
+        return (LinearLayout)findViewById(R.id.recipe_ll);
     }
 
 

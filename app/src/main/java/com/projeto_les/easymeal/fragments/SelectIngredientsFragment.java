@@ -113,7 +113,8 @@ public class SelectIngredientsFragment extends Fragment {
                             // Actions to do after 10 seconds
                             ((MainActivity) getActivity()).changeFragment(RecipesListFragment.getInstance(), RecipesListFragment.TAG,true );
                         }
-                    }, 10000);
+                    }, 5000);
+
 
                 } else {
                     Toast.makeText(getContext(), R.string.add_one, Toast.LENGTH_SHORT).show();

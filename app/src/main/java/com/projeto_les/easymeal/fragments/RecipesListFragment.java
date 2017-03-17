@@ -2,9 +2,12 @@ package com.projeto_les.easymeal.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -57,20 +60,20 @@ public class RecipesListFragment extends Fragment {
         //TODO pegar receitas compatíveis com a pesquisa
         final ArrayList<Recipe> recipeList = (ArrayList<Recipe>) ((MainActivity) getActivity()).getRecipes();
 
-        ListView recipesListView = (ListView) view.findViewById(R.id.recipes_result);
+        RecyclerView recipesListView = (RecyclerView) view.findViewById(R.id.recipes_result);
+        recipesListView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
 
 
         if(recipeList==null || recipeList.isEmpty()){
             view.findViewById(R.id.no_result).setVisibility(View.VISIBLE);
-            view.findViewById(R.id.scrollView_recipes).setVisibility(View.GONE);
+            view.findViewById(R.id.recipes_list).setVisibility(View.GONE);
         }
         else {
             view.findViewById(R.id.no_result).setVisibility(View.GONE);
-            view.findViewById(R.id.scrollView_recipes).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.recipes_list).setVisibility(View.VISIBLE);
 
             recipesListView.setAdapter(new RecipeListViewAdapter(getActivity(), recipeList));
-            ListUtils.setDynamicHeight(recipesListView);
 
         }
 
@@ -78,40 +81,5 @@ public class RecipesListFragment extends Fragment {
         return view;
     }
 
-
-    // Para adaptar o scroll view ao tamanho da lista de receitas
-    public static class ListUtils {
-        public static void setDynamicHeight(ListView mListView) {
-            ListAdapter listAdapter = mListView.getAdapter();
-            if (listAdapter != null) {
-
-                int numberOfItems = listAdapter.getCount();
-
-                // Get total height of all items.
-                int totalItemsHeight = 0;
-                for (int itemPos = 0; itemPos < numberOfItems; itemPos++) {
-                    View item = listAdapter.getView(itemPos, null, mListView);
-
-                    float px = 500 * (mListView.getResources().getDisplayMetrics().density);
-                    item.measure(View.MeasureSpec.makeMeasureSpec((int) px, View.MeasureSpec.AT_MOST),
-                            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-
-                    totalItemsHeight += item.getMeasuredHeight();
-                }
-
-                // Get total height of all item dividers.
-                int totalDividersHeight = mListView.getDividerHeight() *
-                        (numberOfItems - 1);
-                // Get padding
-                int totalPadding = mListView.getPaddingTop() + mListView.getPaddingBottom();
-
-                // Set list height.
-                ViewGroup.LayoutParams params = mListView.getLayoutParams();
-                params.height = totalItemsHeight + totalDividersHeight + totalPadding + 50;
-                mListView.setLayoutParams(params);
-                mListView.requestLayout();
-            }
-        }
-    }
 
 }

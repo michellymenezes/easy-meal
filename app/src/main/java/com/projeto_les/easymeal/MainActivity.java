@@ -192,12 +192,12 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
 
 
-        ComplexSearchMapper complexSearchMapper1 = new ComplexSearchMapper(null, "vegan", "beans,bacon", null, 5, "beans", 1, null);
+        //ComplexSearchMapper complexSearchMapper1 = new ComplexSearchMapper(null, "vegan", "beans,bacon", null, 5, "beans", 1, null);
 
         String query = "";
-        if (mSelectedFilters != null || mSelectedFilters.size()>0){
+        if (mSelectedFilters != null && mSelectedFilters.size()>0){
             query = mSelectedFilters.get(0);
-        } else if (mSelectedIngredients != null || mSelectedIngredients.size() >0){
+        } else if (mSelectedIngredients != null && mSelectedIngredients.size() >0){
             query = mSelectedIngredients.get(0);
         }
 
