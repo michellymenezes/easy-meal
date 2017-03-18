@@ -105,12 +105,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         spoonacularService = new SpoonacularService(getString(R.string.SPOONACULATOR_API_KEY));
 
         // Parameters of the request, we're using an object to encapsulate them.
-
-
-
-/*
-        */
-
     }
 
     /**
@@ -154,25 +148,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         ingredientsMapper.setRanking(1);
         List<String> ingredients = getSelectedIngredients();
         ingredientsMapper.setIngredients(ingredients);
-/*
-        // pass the mapper object and a callback (the request is async)
-        spoonacularService.findRecipesByIngredients(ingredientsMapper, new Callback<List<Recipe>>() {
-            @SuppressLint("LongLogTag")
-            @Override
-            public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
-                // If everything goes right, you should receive a List of Recipe objects.
-                recipes = response.body();
-
-
-            }
-
-            @Override
-            public void onFailure(Call<List<Recipe>> call, Throwable t) {
-                // If fail, what should we do? Handle errors and re-requests here.
-                t.printStackTrace();
-            }
-        });
- */
 
       //######################################################################################
 
@@ -224,69 +199,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
             }
         });
 
-   // ###################################################################################
-
-
-
-        /*complex search
-        ComplexSearchMapper itemsToSearchMapper = new ComplexSearchMapper();
-        itemsToSearchMapper.setAddRecipeInformation(false);
-        itemsToSearchMapper.setCuisine(null);
-        itemsToSearchMapper.setDiet(null);
-        itemsToSearchMapper.setFillIngredients(false);
-        itemsToSearchMapper.setExcludeIngredients(null);
-        itemsToSearchMapper.setIncludeIngredients(ingredients);
-        itemsToSearchMapper.setInstructionsRequired(false);
-        itemsToSearchMapper.setIntolerances(null);
-        itemsToSearchMapper.setLimitLicense(false);
-        itemsToSearchMapper.setMaxCalories(null);
-        itemsToSearchMapper.setMaxCarbs(null);
-        itemsToSearchMapper.setType(getSelectedFilters().get(0));
-
-        spoonacularService.searchComplex(itemsToSearchMapper, new Callback<RecipeResponse>() {
-            @Override
-            public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
-                List<Recipe> recipes = response.body().getRecipes();
-                Log.d("response", response.body().toString());
-
-
-
-                for (Recipe r : recipes) {
-
-                    // Log.d("spoonacularService.findRecipesByIngredients", r.toString());
-
-                    // Now it's getting the main recipe information
-                    getRecipeInformation(r.getId(), false);
-
-                    // Now you can get instructions by steps
-                    AnalyzedRecipeInstructionsMapper analyzedRecipeInstructionsMapper = new AnalyzedRecipeInstructionsMapper(r.getId(), false);
-                    spoonacularService.getAnalyzedRecipeInstructions(analyzedRecipeInstructionsMapper, new Callback<List<AnalyzedRecipeInstructions>>() {
-                        @Override
-                        public void onResponse(Call<List<AnalyzedRecipeInstructions>> call, Response<List<AnalyzedRecipeInstructions>> response) {
-                            List<AnalyzedRecipeInstructions> analyzedRecipeInstructions = response.body();
-
-                            for (AnalyzedRecipeInstructions i : analyzedRecipeInstructions) {
-                                // If everything goes right, you should see information on log
-                                Log.d("spoonacularService.getAnalyzedRecipeInstructions", i.toString());
-
-                            }
-
-                        }
-                        @Override
-                        public void onFailure(Call<List<AnalyzedRecipeInstructions>> call, Throwable t) {
-                            Log.d("spoonacularService.getAnalyzedRecipeInstructions", t.toString());
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void onFailure(Call<RecipeResponse> call, Throwable t) {
-
-            }
-        });
-
-        *///end complex search
     }
 
     public List<Recipe> getRecipes(){
