@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by caynan on 14/02/17.
  */
 
-public class Recipe {
+public class Recipe implements Comparable{
 
     @SerializedName("id")
     private Integer id;
@@ -95,7 +95,7 @@ public class Recipe {
     public void setMissedIngredientCount(Integer missedIngredientCount) {
         this.missedIngredientCount = missedIngredientCount;
     }
-
+    
     public Integer getLikes() {
         return likes;
     }
@@ -161,5 +161,10 @@ public class Recipe {
     }
 
 
+    @Override
+    public int compareTo(Object o) {
+        Recipe recipe = (Recipe) o;
 
+        return this.getMissedIngredientCount() - recipe.getMissedIngredientCount();
+    }
 }
