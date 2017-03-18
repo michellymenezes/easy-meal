@@ -13,34 +13,45 @@
         android:background="@drawable/rounded_background_recipe_list"
         android:layout_width="match_parent"
         android:clickable="true"
-        android:layout_height="100dp">
+        android:layout_height="100dp"
+        android:padding="5dp">
 
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_margin="3dp"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:id="@+id/recipe_image"
-        android:src="@drawable/ic_cook"/>
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_margin="3dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:id="@+id/recipe_image"
+            android:src="@drawable/ic_cook"
+            android:padding="5dp"/>
 
-    <TextView
-        android:id="@+id/recipe_item_name"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        android:text="Name"
-        android:padding="5dp"
-        style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
-        android:layout_alignParentLeft="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3">
 
-    <!--
-    <TextView
-        android:id="@+id/have"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1/2"
-        android:layout_alignParentRight="true" /> -->
+
+            <TextView
+                android:id="@+id/recipe_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:text="Name Name Name Name Name Name"
+                android:padding="5dp"
+                style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+                android:layout_alignParentLeft="true"
+                android:layout_weight="2"/>
+
+
+            <TextView
+                android:id="@+id/have_ingredients"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1/2"
+                android:layout_alignParentRight="true" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

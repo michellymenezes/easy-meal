@@ -1,7 +1,6 @@
 package com.projeto_les.easymeal.models;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -29,6 +28,12 @@ public class RecipeItem extends FrameLayout {
 
     public void displayItem(String text) {
         ((TextView)findViewById(R.id.recipe_item_name)).setText(text);
+    }
+
+    public void displayHowManyIngredientsTheUserHas(Integer usedIngredientCount, Integer missingIngredients) {
+        String text = usedIngredientCount +
+                "/ " + (usedIngredientCount + missingIngredients);
+        ((TextView)findViewById(R.id.have_ingredients)).setText(text);
     }
 
     public void displayImage(Recipe recipe) {

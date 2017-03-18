@@ -2,23 +2,15 @@ package com.projeto_les.easymeal.adapters;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
-
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.LinearLayout;
-
 import android.widget.Toast;
 
 import com.projeto_les.easymeal.MainActivity;
-
-import com.projeto_les.easymeal.fragments.RecipeDetailsFragment;
-
 import com.projeto_les.easymeal.models.RecipeItem;
 import com.projeto_les.easymeal.services.retrofit_models.Recipe;
-
 
 import java.util.List;
 
@@ -51,7 +43,9 @@ public class RecipeListViewAdapter extends RecyclerView.Adapter {
         View mView =  ((RecipeItem)holder.itemView);
 
         ((RecipeItem)holder.itemView).displayItem(items.get(position).getTitle());
+        ((RecipeItem)holder.itemView).displayHowManyIngredientsTheUserHas(items.get(position).getUsedIngredientCount(), items.get(position).getMissedIngredientCount());
         ((RecipeItem)holder.itemView).displayImage(items.get(position));
+
 
         LinearLayout ll = ((RecipeItem)holder.itemView).getLinearLayoutItem();
 
