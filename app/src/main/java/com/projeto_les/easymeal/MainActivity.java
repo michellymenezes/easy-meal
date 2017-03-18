@@ -57,10 +57,11 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
     private List<String> mSelectedFilters;
     private List<String> mSelectedIngredients;
-    private int mSelectedRecipeID;
     private List<Recipe> recipes;
 
+    private int mSelectedRecipeID;
 
+    private List<GeneralRecipe> generalRecipes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
         mSelectedFilters = new ArrayList<>();
         mSelectedIngredients = new ArrayList<>();
+
+        generalRecipes = new ArrayList<>();
 
         changeFragment(selectFiltersFragment,SelectFiltersFragment.TAG,true );
 
@@ -171,6 +174,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
         //ComplexSearchMapper complexSearchMapper1 = new ComplexSearchMapper(null, "vegan", "beans,bacon", null, 5, "beans", 1, null);
 
+        generalRecipes.clear();
         String query = "";
         if (mSelectedFilters != null && mSelectedFilters.size()>0){
             query = mSelectedFilters.get(0);
@@ -185,13 +189,14 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
                 ComplexSearchResult result = response.body();
                 //Aqui é retornada uma lista com os objetos de receitas
-                recipes = result.getResults();
+                //recipes = result.getResults();
+
 
                 int i = 1;
-                for(Recipe recipe : recipes){
+                for(Recipe recipe : result.getResults()){
                     Log.d("COMPLEX_SEARCH-RECIPE "+i, recipe.toString());
                     i++;
-                    //generalRecipes.add(new GeneralRecipe(recipe));
+                    generalRecipes.add(new GeneralRecipe(recipe));
                 }
 
                 changeFragment(RecipesListFragment.getInstance(), RecipesListFragment.TAG,true );
@@ -206,8 +211,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
     }
 
-    public List<Recipe> getRecipes(){
-        return recipes;
+    public List<GeneralRecipe> getRecipes(){
+        return generalRecipes;
     }
 
 
@@ -292,6 +297,15 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         this.mSelectedRecipeID = mSelectedRecipeID;
     }
 
+
+    public List<GeneralRecipe> getGeneralRecipes() {
+        return generalRecipes;
+    }
+
+    public void setGeneralRecipes(List<GeneralRecipe> generalRecipes) {
+        this.generalRecipes = generalRecipes;
+    }
+
     public SpoonacularService getSpoonacularService() {
         if (spoonacularService==null){
             spoonacularService = new SpoonacularService(getString(R.string.SPOONACULATOR_API_KEY));
@@ -369,7 +383,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 }
 
                 changeFragment(RecipeDetailsFragment.getInstance(),RecipeDetailsFragment.TAG,true );
-
 
             }
 
