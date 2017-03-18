@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.projeto_les.easymeal.Globals;
+import com.projeto_les.easymeal.MainActivity;
 import com.projeto_les.easymeal.R;
 import com.projeto_les.easymeal.adapters.RecipeIngredientsAdapter;
 import com.projeto_les.easymeal.services.retrofit_models.ExtendedIngredient;
@@ -66,8 +67,10 @@ public class RecipeIngredientsFragment extends Fragment {
 
         startAdapter();
 
-        Globals g = Globals.getInstance();
-        mRecipe = g.getRecipeInformation();
+        //Globals g = Globals.getInstance();
+
+
+        mRecipe = ((MainActivity) getActivity()).getGlobals().getRecipeInformation();
         if (mRecipe != null) {
             mRecycleView = (RecyclerView) mview.findViewById(R.id.recipe_ingredient_list);
 

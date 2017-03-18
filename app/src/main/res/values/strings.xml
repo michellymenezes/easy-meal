@@ -38,6 +38,7 @@
     <!-- List recipe Fragment -->
     <string name="result">Result</string>
     <string name="no_recipe_result">Ops! we don\'t find any recipe with this options :(</string>
+    <string name="wait">Wait .....  :)</string>
 
     <!---->
 

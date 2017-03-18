@@ -95,19 +95,8 @@ public class RecipeListViewAdapter extends ArrayAdapter {
                 //Nesse aqui tem o change
                 ((MainActivity) activity).getInstructionsByStep(items.get(position).getRecipe().getId(), false);
 
+                Toast.makeText(getContext(), R.string.wait, Toast.LENGTH_LONG).show();
 
-                Toast.makeText(getContext(), "Wait .....  :)", Toast.LENGTH_LONG).show();
-
-/*
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-                        // Actions to do after 10 seconds
-                        ((MainActivity)activity).changeFragment(RecipeDetailsFragment.getInstance(),RecipeDetailsFragment.TAG,true );
-                    }
-                }, 5000);
-
-*/
 
             }
         });

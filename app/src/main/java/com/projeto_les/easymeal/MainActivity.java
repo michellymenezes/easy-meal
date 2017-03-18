@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     private int mSelectedRecipeID;
 
     private List<GeneralRecipe> generalRecipes;
+    private Globals g;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         mSelectedIngredients = new ArrayList<>();
 
         generalRecipes = new ArrayList<>();
+
+        g = Globals.getInstance();
 
         changeFragment(selectFiltersFragment,SelectFiltersFragment.TAG,true );
 
@@ -189,11 +192,10 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
                 ComplexSearchResult result = response.body();
                 //Aqui é retornada uma lista com os objetos de receitas
-                //recipes = result.getResults();
-
+                recipes = result.getResults();
 
                 int i = 1;
-                for(Recipe recipe : result.getResults()){
+                for(Recipe recipe : recipes){
                     Log.d("COMPLEX_SEARCH-RECIPE "+i, recipe.toString());
                     i++;
                     generalRecipes.add(new GeneralRecipe(recipe));
@@ -313,6 +315,12 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         return spoonacularService;
     }
 
+    public Globals getGlobals() {
+        return g;
+    }
+
+
+
     private String getStringSelectedIngredients(){
         String ingredients = "";
 
@@ -351,10 +359,11 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
             @Override
             public void onResponse(Call<RecipeInformation> call, Response<RecipeInformation> response) {
                 RecipeInformation recipeInformation = response.body();
-                Globals g = Globals.getInstance();
                 g.setRecipeInformation(recipeInformation);
                 // If everything goes right, you should see information on log
-   //             Log.d("spoonacularService.getRecipeInformation", recipeInformation.toString());
+                Log.d("spoonacularService.getRecipeInformation", recipeInformation.toString());
+
+                //changeFragment(RecipeDetailsFragment.getInstance(),RecipeDetailsFragment.TAG,true );
 
 
             }
@@ -375,7 +384,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 List<AnalyzedRecipeInstructions> analyzedRecipeInstructions = response.body();
 
                 for (AnalyzedRecipeInstructions i : analyzedRecipeInstructions) {
-                    Globals g = Globals.getInstance();
                     g.setmAnalyzedRecipeInstructions(i);
                     // If everything goes right, you should see information on log
 //                    Log.d("spoonacularService.getAnalyzedRecipeInstructions", i.toString());

@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.projeto_les.easymeal.Globals;
+import com.projeto_les.easymeal.MainActivity;
 import com.projeto_les.easymeal.R;
 import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructions;
 import com.projeto_les.easymeal.services.retrofit_models.RecipeInformation;
@@ -27,7 +28,6 @@ public class RecipeStepsFragment extends Fragment {
     private RecyclerView mRecycleView;
     private View mview;
     private ListView mListView;
-    private RecipeInformation mRecipe;
     private AnalyzedRecipeInstructions mAnalyzedRecipe;
 
 
@@ -61,11 +61,10 @@ public class RecipeStepsFragment extends Fragment {
 
         mListView = (ListView) mview.findViewById(R.id.recipe_steps_list);
 
-        Globals g = Globals.getInstance();
-        mRecipe = g.getRecipeInformation();
+        //Globals g = Globals.getInstance();
+        mAnalyzedRecipe = ((MainActivity) getActivity()).getGlobals().getAnalyzedRecipeInstructions();
 
-        if (mRecipe != null) {
-            mAnalyzedRecipe = g.getAnalyzedRecipeInstructions();
+        if (mAnalyzedRecipe != null) {
 
             ArrayList<String> steps = new ArrayList<>();
             for (Step s : mAnalyzedRecipe.getSteps()) {
