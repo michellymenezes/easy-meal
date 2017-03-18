@@ -20,6 +20,7 @@ import com.projeto_les.easymeal.fragments.RecipeDetailsFragment;
 import com.projeto_les.easymeal.fragments.RecipesListFragment;
 import com.projeto_les.easymeal.fragments.SelectFiltersFragment;
 import com.projeto_les.easymeal.fragments.SelectIngredientsFragment;
+import com.projeto_les.easymeal.models.GeneralRecipe;
 import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructions;
 import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructionsMapper;
 import com.projeto_les.easymeal.services.retrofit_models.ComplexSearchMapper;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     private SelectIngredientsFragment selectIngredientsFragment;
     private RecipeDetailsFragment recipeDetailsFragment;
     private RecipesListFragment listRecipesFragment;
-    List<Recipe> recipes;
+    private SelectFiltersFragment selectFiltersFragment;
 
     //Menu
     private DrawerLayout mDrawerLayout;
@@ -51,14 +52,15 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     private Toolbar mToolbar;
     private NavigationView mNavigationView;
 
-    private SelectFiltersFragment selectFiltersFragment;
-
+    private SpoonacularService spoonacularService;
     public static final String TAG = "MAIN_ACTIVITY";
 
     private List<String> mSelectedFilters;
     private List<String> mSelectedIngredients;
     private int mSelectedRecipeID;
-    private SpoonacularService spoonacularService;
+    private List<Recipe> recipes;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -189,7 +191,10 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 for(Recipe recipe : recipes){
                     Log.d("COMPLEX_SEARCH-RECIPE "+i, recipe.toString());
                     i++;
+                    //generalRecipes.add(new GeneralRecipe(recipe));
                 }
+
+                changeFragment(RecipesListFragment.getInstance(), RecipesListFragment.TAG,true );
 
             }
 
@@ -362,6 +367,9 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 //                    Log.d("spoonacularService.getAnalyzedRecipeInstructions", i.toString());
 
                 }
+
+                changeFragment(RecipeDetailsFragment.getInstance(),RecipeDetailsFragment.TAG,true );
+
 
             }
 

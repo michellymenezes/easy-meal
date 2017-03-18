@@ -64,11 +64,13 @@ public class RecipeListViewAdapter extends RecyclerView.Adapter {
                 //selectedRecipe.putExtra("SELECTED_RECIPE", Integer.parseInt(id));
                 ((MainActivity) activity).setmSelectedRecipeID(items.get(position).getId());
                 ((MainActivity) activity).getRecipeInformation(items.get(position).getId(), false);
+
+                //Nesse aqui tem o change
                 ((MainActivity) activity).getInstructionsByStep(items.get(position).getId(), false);
 
                 Toast.makeText(activity.getBaseContext(), "Wait .....  :)", Toast.LENGTH_LONG).show();
 
-
+/*
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     public void run() {
@@ -77,7 +79,7 @@ public class RecipeListViewAdapter extends RecyclerView.Adapter {
                     }
                 }, 5000);
 
-
+*/
 
             }
         });

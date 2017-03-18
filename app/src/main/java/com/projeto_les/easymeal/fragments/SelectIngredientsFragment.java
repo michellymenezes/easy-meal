@@ -106,6 +106,7 @@ public class SelectIngredientsFragment extends Fragment {
                     //Toast.makeText(getContext(), R.string.not_ready, Toast.LENGTH_SHORT).show();
                     ((MainActivity) getActivity()).inicializeSpoonacularService();
 
+                    /*
                     Toast.makeText(getContext(), "Wait .....  :)", Toast.LENGTH_LONG).show();
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -113,7 +114,7 @@ public class SelectIngredientsFragment extends Fragment {
                             // Actions to do after 10 seconds
                             ((MainActivity) getActivity()).changeFragment(RecipesListFragment.getInstance(), RecipesListFragment.TAG,true );
                         }
-                    }, 5000);
+                    }, 5000); */
 
 
                 } else {
