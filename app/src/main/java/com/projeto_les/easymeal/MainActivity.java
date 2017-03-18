@@ -20,7 +20,6 @@ import com.projeto_les.easymeal.fragments.RecipeDetailsFragment;
 import com.projeto_les.easymeal.fragments.RecipesListFragment;
 import com.projeto_les.easymeal.fragments.SelectFiltersFragment;
 import com.projeto_les.easymeal.fragments.SelectIngredientsFragment;
-import com.projeto_les.easymeal.models.GeneralRecipe;
 import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructions;
 import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructionsMapper;
 import com.projeto_les.easymeal.services.retrofit_models.ComplexSearchMapper;
