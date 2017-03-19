@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.projeto_les.easymeal.MainActivity;
 import com.projeto_les.easymeal.R;
 import com.projeto_les.easymeal.adapters.RecipeListViewAdapter;
+import com.projeto_les.easymeal.models.GeneralRecipe;
 import com.projeto_les.easymeal.services.retrofit_models.Recipe;
 
 import java.util.ArrayList;
@@ -55,9 +56,9 @@ public class RecipesListFragment extends Fragment {
 
 
         //TODO pegar receitas compatíveis com a pesquisa
-        final ArrayList<Recipe> recipeList = (ArrayList<Recipe>) ((MainActivity) getActivity()).getRecipes();
+        final ArrayList<GeneralRecipe> recipeList = (ArrayList<GeneralRecipe>) ((MainActivity) getActivity()).getGeneralRecipes();
 
-        Collections.sort(recipeList);
+        //Collections.sort(recipeList);
 
         RecyclerView recipesListView = (RecyclerView) view.findViewById(R.id.recipes_result);
         recipesListView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));

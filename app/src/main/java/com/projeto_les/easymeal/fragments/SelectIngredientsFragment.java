@@ -22,7 +22,6 @@ import com.xiaofeng.flowlayoutmanager.FlowLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
-import android.os.Handler;
 
 /**
  * Created by michelly on 18/02/17.
@@ -103,19 +102,8 @@ public class SelectIngredientsFragment extends Fragment {
             public void onClick(View v) {
                 if (mIngredients.size() > 0){
                     ((MainActivity) getActivity()).setSelectedIngredients(mIngredients);
-                    //Toast.makeText(getContext(), R.string.not_ready, Toast.LENGTH_SHORT).show();
                     ((MainActivity) getActivity()).inicializeSpoonacularService();
-
-                    /*
-                    Toast.makeText(getContext(), "Wait .....  :)", Toast.LENGTH_LONG).show();
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        public void run() {
-                            // Actions to do after 10 seconds
-                            ((MainActivity) getActivity()).changeFragment(RecipesListFragment.getInstance(), RecipesListFragment.TAG,true );
-                        }
-                    }, 5000); */
-
+                    Toast.makeText(getContext(), R.string.wait, Toast.LENGTH_LONG).show();
 
                 } else {
                     Toast.makeText(getContext(), R.string.add_one, Toast.LENGTH_SHORT).show();
@@ -128,15 +116,12 @@ public class SelectIngredientsFragment extends Fragment {
             public void onClick(View v) {
                 mIngredients.clear();
                 mSelectIngListView.setAdapter(mListAdapter);
-
             }
         });
 
         return view;
 
-
     }
-
 
     private void addIngredient() {
 
@@ -157,7 +142,6 @@ public class SelectIngredientsFragment extends Fragment {
                 return handled;
             }
         });
-
 
     }
 

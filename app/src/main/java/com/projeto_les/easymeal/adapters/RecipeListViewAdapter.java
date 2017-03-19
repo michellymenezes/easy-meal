@@ -9,6 +9,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.projeto_les.easymeal.MainActivity;
+import com.projeto_les.easymeal.R;
+import com.projeto_les.easymeal.models.GeneralRecipe;
 import com.projeto_les.easymeal.models.RecipeItem;
 import com.projeto_les.easymeal.services.retrofit_models.Recipe;
 
@@ -24,11 +26,11 @@ import java.util.List;
 public class RecipeListViewAdapter extends RecyclerView.Adapter {
     public static final String TAG = "RECIPE_LIST_VIEW_ADAPTER";
 
-
-    private List<Recipe> items;
+//    private List<Recipe> items;
+    private List<GeneralRecipe> items;
     private Activity activity;
 
-    public RecipeListViewAdapter(Activity activity, List<Recipe> items) {
+    public RecipeListViewAdapter(Activity activity, List<GeneralRecipe> items) {
         this.items = items;
         this.activity = activity;
     }
@@ -42,9 +44,9 @@ public class RecipeListViewAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         View mView =  ((RecipeItem)holder.itemView);
 
-        ((RecipeItem)holder.itemView).displayItem(items.get(position).getTitle());
-        ((RecipeItem)holder.itemView).displayHowManyIngredientsTheUserHas(items.get(position).getUsedIngredientCount(), items.get(position).getMissedIngredientCount());
-        ((RecipeItem)holder.itemView).displayImage(items.get(position));
+        ((RecipeItem)holder.itemView).displayItem(items.get(position).getRecipe().getTitle());
+        ((RecipeItem)holder.itemView).displayHowManyIngredientsTheUserHas(items.get(position).getRecipe().getUsedIngredientCount(), items.get(position).getRecipe().getMissedIngredientCount());
+        ((RecipeItem)holder.itemView).displayImage(items.get(position).getRecipe());
 
 
         LinearLayout ll = ((RecipeItem)holder.itemView).getLinearLayoutItem();
@@ -52,28 +54,18 @@ public class RecipeListViewAdapter extends RecyclerView.Adapter {
         ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent selectedRecipe = new Intent(view.getContext(), MainActivity.class);
 
                 //TODO adicionar na intet o valor real de ID das receitas
-                //selectedRecipe.putExtra("SELECTED_RECIPE", Integer.parseInt(id));
-                ((MainActivity) activity).setmSelectedRecipeID(items.get(position).getId());
-                ((MainActivity) activity).getRecipeInformation(items.get(position).getId(), false);
+                //((MainActivity) activity).setmSelectedRecipeID(items.get(position).getRecipe().getId());
+                ((MainActivity) activity).setGeneralRecipeSelected(items.get(position));
+
+                ((MainActivity) activity).getRecipeInformation(items.get(position).getRecipe().getId(), false);
 
                 //Nesse aqui tem o change
-                ((MainActivity) activity).getInstructionsByStep(items.get(position).getId(), false);
+                ((MainActivity) activity).getInstructionsByStep(items.get(position).getRecipe().getId(), false);
 
-                Toast.makeText(activity.getBaseContext(), "Wait .....  :)", Toast.LENGTH_LONG).show();
+                Toast.makeText(activity.getBaseContext(), R.string.wait, Toast.LENGTH_LONG).show();
 
-/*
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-                        // Actions to do after 10 seconds
-                        ((MainActivity)activity).changeFragment(RecipeDetailsFragment.getInstance(),RecipeDetailsFragment.TAG,true );
-                    }
-                }, 5000);
-
-*/
 
             }
         });

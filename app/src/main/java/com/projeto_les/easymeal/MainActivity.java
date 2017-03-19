@@ -20,6 +20,7 @@ import com.projeto_les.easymeal.fragments.RecipeDetailsFragment;
 import com.projeto_les.easymeal.fragments.RecipesListFragment;
 import com.projeto_les.easymeal.fragments.SelectFiltersFragment;
 import com.projeto_les.easymeal.fragments.SelectIngredientsFragment;
+import com.projeto_les.easymeal.models.GeneralRecipe;
 import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructions;
 import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructionsMapper;
 import com.projeto_les.easymeal.services.retrofit_models.ComplexSearchMapper;
@@ -57,8 +58,11 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     private List<String> mSelectedFilters;
     private List<String> mSelectedIngredients;
     private int mSelectedRecipeID;
-    private List<Recipe> recipes;
 
+    private List<GeneralRecipe> generalRecipes;
+    private GeneralRecipe generalRecipeSelected;
+    private Globals g;
+    //private  List<Recipe> recipes;
 
 
     @Override
@@ -70,8 +74,12 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         selectFiltersFragment = SelectFiltersFragment.getInstance();
         listRecipesFragment = RecipesListFragment.getInstance();
 
+        g = Globals.getInstance();
+
         mSelectedFilters = new ArrayList<>();
         mSelectedIngredients = new ArrayList<>();
+        generalRecipes = new ArrayList<>();
+        generalRecipeSelected = null;
 
         changeFragment(selectFiltersFragment,SelectFiltersFragment.TAG,true );
 
@@ -177,6 +185,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
             query = mSelectedIngredients.get(0);
         }
 
+        generalRecipes.clear();
+
         ComplexSearchMapper complexSearchMapper = new ComplexSearchMapper(null,null,getStringSelectedIngredients(), null, 5,query,1, getStringSelectedFilters());
         spoonacularService.searchComplex(complexSearchMapper, new Callback<ComplexSearchResult>() {
             @Override
@@ -184,17 +194,16 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
                 ComplexSearchResult result = response.body();
                 //Aqui é retornada uma lista com os objetos de receitas
-                recipes = result.getResults();
+                //recipes = result.getResults();
 
                 int i = 1;
-                for(Recipe recipe : recipes){
+                for(Recipe recipe : result.getResults()){
                     Log.d("COMPLEX_SEARCH-RECIPE "+i, recipe.toString());
                     i++;
-                    //generalRecipes.add(new GeneralRecipe(recipe));
+                    generalRecipes.add(new GeneralRecipe(recipe));
                 }
 
                 changeFragment(RecipesListFragment.getInstance(), RecipesListFragment.TAG,true );
-
             }
 
             @Override
@@ -205,10 +214,10 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
     }
 
-    public List<Recipe> getRecipes(){
-        return recipes;
-    }
+    //public List<Recipe> getRecipes(){
 
+    //return recipes;
+    //}
 
     @Override
     public void onBackPressed() {
@@ -221,7 +230,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         super.onBackPressed();
     }
 
-
     //Menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -230,7 +238,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
             return true;
         }
         return super.onOptionsItemSelected(item);
-
     }
 
     // Deve ser implementado para dar ação aos itens do menu
@@ -336,11 +343,9 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
             @Override
             public void onResponse(Call<RecipeInformation> call, Response<RecipeInformation> response) {
                 RecipeInformation recipeInformation = response.body();
-                Globals g = Globals.getInstance();
                 g.setRecipeInformation(recipeInformation);
                 // If everything goes right, you should see information on log
    //             Log.d("spoonacularService.getRecipeInformation", recipeInformation.toString());
-
 
             }
             @Override
@@ -360,15 +365,12 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 List<AnalyzedRecipeInstructions> analyzedRecipeInstructions = response.body();
 
                 for (AnalyzedRecipeInstructions i : analyzedRecipeInstructions) {
-                    Globals g = Globals.getInstance();
                     g.setmAnalyzedRecipeInstructions(i);
                     // If everything goes right, you should see information on log
 //                    Log.d("spoonacularService.getAnalyzedRecipeInstructions", i.toString());
-
                 }
 
                 changeFragment(RecipeDetailsFragment.getInstance(),RecipeDetailsFragment.TAG,true );
-
 
             }
 
@@ -379,4 +381,19 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         });
     }
 
+    public List<GeneralRecipe> getGeneralRecipes() {
+        return generalRecipes;
+    }
+
+    public GeneralRecipe getGeneralRecipeSelected() {
+        return generalRecipeSelected;
+    }
+
+    public void setGeneralRecipeSelected(GeneralRecipe generalRecipeSelected) {
+        this.generalRecipeSelected = generalRecipeSelected;
+    }
+
+    public Globals getGlobals() {
+        return g;
+    }
 }

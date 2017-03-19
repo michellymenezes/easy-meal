@@ -61,15 +61,13 @@ public class RecipeDetailsFragment extends Fragment {
         mPager = (ViewPager) feed_view.findViewById(R.id.feed_pager);
         mPager.setAdapter(mAdapter);
 
-        Globals g = Globals.getInstance();
-        mRecipe = g.getRecipeInformation();
+        mRecipe = ((MainActivity) getActivity()).getGlobals().getRecipeInformation();
         if (mRecipe!= null){
 
             mRecipeImage = (ImageView) feed_view.findViewById(R.id.recipe_image);
             new DownloadImageTask(mRecipeImage)
                     .execute(mRecipe.getImage());
         }
-
                 // Inflate the layout for this fragment
         return feed_view;
     }
