@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import com.projeto_les.easymeal.Globals;
 import com.projeto_les.easymeal.MainActivity;
 import com.projeto_les.easymeal.R;
 import com.projeto_les.easymeal.adapters.RecipeSwipeAdapter;
+import com.projeto_les.easymeal.models.GeneralRecipe;
+import com.projeto_les.easymeal.services.retrofit_models.Recipe;
 import com.projeto_les.easymeal.services.retrofit_models.RecipeInformation;
 
 /**
@@ -27,7 +30,8 @@ public class RecipeDetailsFragment extends Fragment {
     private RecipeSwipeAdapter mAdapter;
     private ViewPager mPager;
     private ImageView mRecipeImage;
-    private RecipeInformation mRecipe;
+    private GeneralRecipe mRecipe;
+    private RecipeInformation recipeInformation;
 
     public RecipeDetailsFragment() {
         // Required empty public constructor
@@ -61,14 +65,26 @@ public class RecipeDetailsFragment extends Fragment {
         mPager = (ViewPager) feed_view.findViewById(R.id.feed_pager);
         mPager.setAdapter(mAdapter);
 
-        //Globals g = Globals.getInstance();
+        recipeInformation = ((MainActivity) getActivity()).getGlobals().getRecipeInformation();
 
-        mRecipe = ((MainActivity) getActivity()).getGlobals().getRecipeInformation();
+        mRecipe = ((MainActivity) getActivity()).getSelectedGeneralRecipe();
+
         if (mRecipe!= null){
 
             mRecipeImage = (ImageView) feed_view.findViewById(R.id.recipe_image);
-            new DownloadImageTask(mRecipeImage)
-                    .execute(mRecipe.getImage());
+
+            if (mRecipe.getImage() == null){
+                DownloadImageTask downloadImageTask = new DownloadImageTask(mRecipeImage);
+                downloadImageTask.execute(mRecipe.getRecipe().getImage());
+                //((MainActivity)getActivity()).getSelectedGeneralRecipe().setImage(downloadImageTask.getImage());
+                ((MainActivity)getActivity()).setImageGeneralRecipe(mRecipe.getRecipe().getId(),downloadImageTask.getImage());
+
+                //mRecipe.setImage(downloadImageTask.getImage());
+                Log.d(TAG, "Download de imagem");
+            } else {
+                mRecipeImage.setImageBitmap(mRecipe.getImage());
+            }
+            //new DownloadImageTask(mRecipeImage).execute(mRecipe.getRecipe().getImage());
         }
 
                 // Inflate the layout for this fragment

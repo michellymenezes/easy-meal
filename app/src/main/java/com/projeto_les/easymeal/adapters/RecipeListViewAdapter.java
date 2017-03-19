@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,9 +62,7 @@ public class RecipeListViewAdapter extends ArrayAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final int id = items.get(position).getRecipe().getId();
-        final String name = items.get(position).getRecipe().getTitle();
-        final String image = items.get(position).getRecipe().getImage();
+        final GeneralRecipe generalRecipe = items.get(position);
 
         LayoutInflater inflater = activity.getLayoutInflater();
 
@@ -76,12 +75,24 @@ public class RecipeListViewAdapter extends ArrayAdapter {
 
         LinearLayout ll = (LinearLayout) convertView.findViewById(R.id.recipe_ll);
 
-        new DownloadImageTask(recipeImage)
-                .execute(items.get(position).getRecipe().getImage());
+        if (generalRecipe.getImage() == null){
+            DownloadImageTask downloadImageTask = new DownloadImageTask(recipeImage);
+            downloadImageTask.execute(generalRecipe.getRecipe().getImage());
+            ((MainActivity)activity).setImageGeneralRecipe(generalRecipe.getRecipe().getId(),downloadImageTask.getImage());
 
-        recipeName.setText(name);
+            //items.get(position).setImage(downloadImageTask.getImage());
+            Log.d(TAG, "Download de imagem");
+
+        } else {
+            recipeImage.setImageBitmap(generalRecipe.getImage());
+        }
+
+        recipeImage.setImageBitmap(generalRecipe.getImage());
 
 
+        //new DownloadImageTask(recipeImage).execute(items.get(position).getRecipe().getImage());
+
+        recipeName.setText(generalRecipe.getRecipe().getTitle());
 
         ll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,14 +100,12 @@ public class RecipeListViewAdapter extends ArrayAdapter {
 
                 //TODO adicionar na intet o valor real de ID das receitas
                 //selectedRecipe.putExtra("SELECTED_RECIPE", Integer.parseInt(id));
-                ((MainActivity) activity).setmSelectedRecipeID(items.get(position).getRecipe().getId());
                 ((MainActivity) activity).getRecipeInformation(items.get(position).getRecipe().getId(), false);
+                ((MainActivity) activity).setSelectedGeneralRecipe(items.get(position));
 
                 //Nesse aqui tem o change
                 ((MainActivity) activity).getInstructionsByStep(items.get(position).getRecipe().getId(), false);
-
                 Toast.makeText(getContext(), R.string.wait, Toast.LENGTH_LONG).show();
-
 
             }
         });

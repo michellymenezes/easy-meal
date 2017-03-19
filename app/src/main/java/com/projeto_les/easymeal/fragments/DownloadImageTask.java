@@ -10,25 +10,38 @@ import java.io.InputStream;
 
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     ImageView bmImage;
+    Bitmap image;
 
     public DownloadImageTask(ImageView bmImage) {
         this.bmImage = bmImage;
+        image = null;
+    }
+
+    public DownloadImageTask(){
+        bmImage = null;
+        image = null;
     }
 
     protected Bitmap doInBackground(String... urls) {
         String urldisplay = urls[0];
-        Bitmap mIcon11 = null;
         try {
             InputStream in = new java.net.URL(urldisplay).openStream();
-            mIcon11 = BitmapFactory.decodeStream(in);
+            image = BitmapFactory.decodeStream(in);
         } catch (Exception e) {
             Log.e("Error", e.getMessage());
             e.printStackTrace();
         }
-        return mIcon11;
+        Log.d("Globals", "doInBackground");
+        return image;
     }
 
     protected void onPostExecute(Bitmap result) {
-        bmImage.setImageBitmap(result);
+        if(bmImage!= null){
+            bmImage.setImageBitmap(result);
+        }
+    }
+
+    public Bitmap getImage() {
+        return image;
     }
 }

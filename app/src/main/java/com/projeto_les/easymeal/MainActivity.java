@@ -1,6 +1,7 @@
 package com.projeto_les.easymeal;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.projeto_les.easymeal.fragments.DownloadImageTask;
 import com.projeto_les.easymeal.fragments.RecipeDetailsFragment;
 import com.projeto_les.easymeal.fragments.RecipesListFragment;
 import com.projeto_les.easymeal.fragments.SelectFiltersFragment;
@@ -40,7 +42,6 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener{
 
-
     private SelectIngredientsFragment selectIngredientsFragment;
     private RecipeDetailsFragment recipeDetailsFragment;
     private RecipesListFragment listRecipesFragment;
@@ -58,10 +59,9 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     private List<String> mSelectedFilters;
     private List<String> mSelectedIngredients;
     private List<Recipe> recipes;
-
-    private int mSelectedRecipeID;
-
     private List<GeneralRecipe> generalRecipes;
+
+    private GeneralRecipe selectedGeneralRecipe;
     private Globals g;
 
     @Override
@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
         changeFragment(selectFiltersFragment,SelectFiltersFragment.TAG,true );
 
-
         // Para iniciar o menu
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
@@ -98,12 +97,9 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         //Para tornar o menu clicável
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
-
-
         // end menu
 
         //Quando precisar iniciar a conexão a Key deve ser utilizada da seguinte maneira: getString(R.string.SPOONACULATOR_API_KEY)
-
 
         // Example of how to get information from the API
         // Here we have an example of a request to the get recipes endpoint
@@ -130,7 +126,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
             //fragment not in back stack, create it.
             FragmentTransaction transaction = manager.beginTransaction();
 
-
             transaction.replace(R.id.content_layout, frag, tag);
 
             if (saveInBackstack) {
@@ -148,7 +143,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     }
 
     public void inicializeSpoonacularService(){
-
         IngredientsMapper ingredientsMapper = new IngredientsMapper();
         ingredientsMapper.setFillIngredients(false);
         ingredientsMapper.setLimitLicense(false);
@@ -173,8 +167,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
       //                          minimize missing ingredients (2) first (obrigatório)
       //          String type: String para filtro de tipo de refeição separado por virgula
 
-
-
         //ComplexSearchMapper complexSearchMapper1 = new ComplexSearchMapper(null, "vegan", "beans,bacon", null, 5, "beans", 1, null);
 
         generalRecipes.clear();
@@ -193,16 +185,19 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 ComplexSearchResult result = response.body();
                 //Aqui é retornada uma lista com os objetos de receitas
                 recipes = result.getResults();
-
                 int i = 1;
                 for(Recipe recipe : recipes){
                     Log.d("COMPLEX_SEARCH-RECIPE "+i, recipe.toString());
                     i++;
-                    generalRecipes.add(new GeneralRecipe(recipe));
+
+                    /*
+                    DownloadImageTask downloadImageTask = new DownloadImageTask();
+                    downloadImageTask.execute(recipe.getImage());
+                    GeneralRecipe generalRecipe = new GeneralRecipe(recipe, downloadImageTask.getImage());
+                    generalRecipes.add(generalRecipe);*/
+                    
                 }
-
                 changeFragment(RecipesListFragment.getInstance(), RecipesListFragment.TAG,true );
-
             }
 
             @Override
@@ -210,13 +205,11 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
             }
         });
-
     }
 
     public List<GeneralRecipe> getRecipes(){
         return generalRecipes;
     }
-
 
     @Override
     public void onBackPressed() {
@@ -225,10 +218,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
             finish();
             return;
         }
-
         super.onBackPressed();
     }
-
 
     //Menu
     @Override
@@ -238,7 +229,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
             return true;
         }
         return super.onOptionsItemSelected(item);
-
     }
 
     // Deve ser implementado para dar ação aos itens do menu
@@ -265,12 +255,10 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 Toast.makeText(this, getString(R.string.not_ready), Toast.LENGTH_LONG).show();
                 //((MainActivity)getActivity()).changeFragment();
                 break;
-
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
     public List<String> getSelectedFilters() {
         return mSelectedFilters;
@@ -278,10 +266,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
     public List<String> getSelectedIngredients() {
         return mSelectedIngredients;
-    }
-
-    public int getmSelectedRecipeID() {
-        return mSelectedRecipeID;
     }
 
     //TODO limpar lista quando "pesquisar " ou "reiniciar" pesquisa
@@ -293,12 +277,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     public void setSelectedIngredients(List<String> selectedIngredients) {
         this.mSelectedIngredients = selectedIngredients;
     }
-
-    //TODO limpar lista quando "pesquisar " ou "reiniciar" pesquisa
-    public void setmSelectedRecipeID(int mSelectedRecipeID) {
-        this.mSelectedRecipeID = mSelectedRecipeID;
-    }
-
 
     public List<GeneralRecipe> getGeneralRecipes() {
         return generalRecipes;
@@ -319,7 +297,21 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         return g;
     }
 
+    public GeneralRecipe getSelectedGeneralRecipe() {
+        return selectedGeneralRecipe;
+    }
 
+    public void setSelectedGeneralRecipe(GeneralRecipe selectedGeneralRecipe) {
+        this.selectedGeneralRecipe = selectedGeneralRecipe;
+    }
+
+    public void setImageGeneralRecipe(int id, Bitmap bitmap){
+        for (GeneralRecipe generalRecipe : generalRecipes){
+            if (generalRecipe.getRecipe().getId() == id){
+                generalRecipe.setImage(bitmap);
+            }
+        }
+    }
 
     private String getStringSelectedIngredients(){
         String ingredients = "";
@@ -364,8 +356,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 Log.d("spoonacularService.getRecipeInformation", recipeInformation.toString());
 
                 //changeFragment(RecipeDetailsFragment.getInstance(),RecipeDetailsFragment.TAG,true );
-
-
             }
             @Override
             public void onFailure(Call<RecipeInformation> call, Throwable t) {
@@ -375,7 +365,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     }
 
     public void getInstructionsByStep(int id, boolean stepBreakdown) {
-
         // Now you can get instructions by steps
         AnalyzedRecipeInstructionsMapper analyzedRecipeInstructionsMapper = new AnalyzedRecipeInstructionsMapper(id, stepBreakdown);
         spoonacularService.getAnalyzedRecipeInstructions(analyzedRecipeInstructionsMapper, new Callback<List<AnalyzedRecipeInstructions>>() {
@@ -387,11 +376,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                     g.setmAnalyzedRecipeInstructions(i);
                     // If everything goes right, you should see information on log
 //                    Log.d("spoonacularService.getAnalyzedRecipeInstructions", i.toString());
-
                 }
-
                 changeFragment(RecipeDetailsFragment.getInstance(),RecipeDetailsFragment.TAG,true );
-
             }
 
             @Override
