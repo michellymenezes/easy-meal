@@ -78,8 +78,7 @@ public class SelectIngredientsFragment extends Fragment {
         mListAdapter = new IngredientListAdapter(mIngredients);
 
         final Button searchBtn = (Button) view.findViewById(R.id.search_recipes);
-
-
+        searchBtn.setClickable(true);
 
         mSelectIngListView = (RecyclerView) view.findViewById(R.id.selected_ingredients_list);
         mSelectIngListView.setLayoutManager(new FlowLayoutManager());
@@ -100,6 +99,7 @@ public class SelectIngredientsFragment extends Fragment {
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                searchBtn.setClickable(false);
                 if (mIngredients.size() > 0){
                     ((MainActivity) getActivity()).setSelectedIngredients(mIngredients);
                     ((MainActivity) getActivity()).inicializeSpoonacularService();

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.projeto_les.easymeal.Globals;
 import com.projeto_les.easymeal.MainActivity;
 import com.projeto_les.easymeal.R;
+import com.projeto_les.easymeal.models.GeneralRecipe;
 import com.projeto_les.easymeal.services.retrofit_models.RecipeInformation;
 
 
@@ -21,6 +22,7 @@ public class RecipeDescriptionFragment extends Fragment {
     private TextView mTitle;
     private TextView mReadyInMinutes;
     private RecipeInformation mRecipe;
+    private GeneralRecipe generalRecipe;
 
 
     public RecipeDescriptionFragment() {
@@ -52,8 +54,12 @@ public class RecipeDescriptionFragment extends Fragment {
 
         mRecipe = ((MainActivity) getActivity()).getGlobals().getRecipeInformation();
 
+        generalRecipe = ((MainActivity) getActivity()).getGeneralRecipeSelected();
+
+        if (generalRecipe != null){
+            mTitle.setText(generalRecipe.getRecipe().getTitle());
+        }
         if (mRecipe != null) {
-            mTitle.setText(mRecipe.getTitle());
             mReadyInMinutes.setText("Ready in " + String.valueOf(mRecipe.getReadyInMinutes()) + " minutes.");
         }
 

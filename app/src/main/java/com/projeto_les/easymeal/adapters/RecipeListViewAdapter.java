@@ -2,6 +2,7 @@ package com.projeto_les.easymeal.adapters;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import com.projeto_les.easymeal.MainActivity;
 import com.projeto_les.easymeal.R;
+import com.projeto_les.easymeal.fragments.RecipeDetailsFragment;
 import com.projeto_les.easymeal.models.GeneralRecipe;
 import com.projeto_les.easymeal.models.RecipeItem;
 import com.projeto_les.easymeal.services.retrofit_models.Recipe;
@@ -65,8 +67,15 @@ public class RecipeListViewAdapter extends RecyclerView.Adapter {
                 ((MainActivity) activity).getInstructionsByStep(items.get(position).getRecipe().getId(), false);
 
                 Toast.makeText(activity.getBaseContext(), R.string.wait, Toast.LENGTH_LONG).show();
-
-
+/*
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        // Actions to do after 10 seconds
+                        ((MainActivity)activity).changeFragment(RecipeDetailsFragment.getInstance(),RecipeDetailsFragment.TAG,true );
+                    }
+                }, 5000);
+*/
             }
         });
 

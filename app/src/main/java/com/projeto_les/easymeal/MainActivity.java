@@ -344,8 +344,11 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
             public void onResponse(Call<RecipeInformation> call, Response<RecipeInformation> response) {
                 RecipeInformation recipeInformation = response.body();
                 g.setRecipeInformation(recipeInformation);
+                if (generalRecipeSelected != null){
+                    generalRecipeSelected.setRecipeInformation(recipeInformation);
+                }
                 // If everything goes right, you should see information on log
-   //             Log.d("spoonacularService.getRecipeInformation", recipeInformation.toString());
+                Log.d("spoonacularService.getRecipeInformation", recipeInformation.toString());
 
             }
             @Override
@@ -366,8 +369,11 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
                 for (AnalyzedRecipeInstructions i : analyzedRecipeInstructions) {
                     g.setmAnalyzedRecipeInstructions(i);
+                    if (generalRecipeSelected != null){
+                        generalRecipeSelected.setAnalyzedRecipeInstructions(i);
+                    }
                     // If everything goes right, you should see information on log
-//                    Log.d("spoonacularService.getAnalyzedRecipeInstructions", i.toString());
+                    Log.d("spoonacularService.getAnalyzedRecipeInstructions", i.toString());
                 }
 
                 changeFragment(RecipeDetailsFragment.getInstance(),RecipeDetailsFragment.TAG,true );
