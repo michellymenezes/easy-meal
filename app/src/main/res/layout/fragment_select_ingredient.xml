@@ -8,22 +8,22 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@drawable/list_ingredients"
+        android:layout_height="200dp"
+        android:background="@drawable/src"
         android:gravity="center"
         android:id="@+id/ingredient_layout"
         android:padding="20dp"
         >
 
-
         <RelativeLayout
-            android:alpha="0.9"
+            android:alpha="0.95"
+            android:layout_marginTop="20dp"
             android:layout_width="255dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/rounded_bg_text_input"
             android:gravity="center"
             android:paddingLeft="5dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:id="@+id/auto_complete_ingredient_container">
 
 
@@ -48,12 +48,15 @@
                     />
             </android.support.design.widget.TextInputLayout>
 
+
+
         </RelativeLayout>
 
         <Button
             android:id="@+id/add"
+            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
-            android:alpha="0.9"
+            android:alpha="0.95"
             android:layout_height="40dp"
             android:layout_toRightOf="@id/auto_complete_ingredient_container"
             android:background="@drawable/bg_add_button"
@@ -66,7 +69,45 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"/>
 
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_below="@id/auto_complete_ingredient_container">
 
+        <Button
+            android:id="@+id/id_type"
+            android:alpha="0.95"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@drawable/reounded_bg_category_type"
+            android:text="type"
+            android:textColor="@color/colorPrimaryDark"/>
+
+        <Button
+            android:id="@+id/id_cuisine"
+            android:alpha="0.95"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@drawable/reounded_bg_category_type"
+            android:text="cuisine"
+            android:textColor="@color/colorPrimaryDark"/>
+
+        <Button
+            android:id="@+id/id_diet"
+            android:layout_margin="5dp"
+            android:alpha="0.95"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@drawable/reounded_bg_category_type"
+            android:text="diet"
+            android:textColor="@color/colorPrimaryDark"/>
+
+        </LinearLayout>
 
     </RelativeLayout>
 
@@ -97,6 +138,7 @@
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_toRightOf="@+id/ingredient_ic"/>
 
+
     </RelativeLayout>
 
 
@@ -105,7 +147,7 @@
         android:alpha="0.9"
         android:layout_width="match_parent"
         android:background="@drawable/rounded_background_scr"
-        android:layout_height="280dp"
+        android:layout_height="250dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         >
@@ -115,7 +157,7 @@
             android:layout_height="wrap_content">
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="280dp"
+                android:layout_height="250dp"
                 android:id="@+id/selected_ingredients_list"
                 android:focusable="true"
                 />
@@ -128,7 +170,7 @@
         android:alpha="0.9"
         android:background="@drawable/rounded_background_src_bottom"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_gravity="center"
