@@ -206,6 +206,7 @@ public class SelectIngredientsFragment extends Fragment {
                 final FilterListAdapter mAdapter= new FilterListAdapter(getActivity(), filterDietList, selectedFilterDietList);
                 final GridView checkboxListView = (GridView) mView.findViewById(R.id.filter_list);
                 final Button checkall = (Button) mView.findViewById(R.id.select_all_filters);
+                if(mAdapter.allIschecked()) checkall.setText("uncheck all");
                 mAdapter.setBtnCheckall(checkall);
                 checkboxListView.setAdapter(mAdapter);
                 checkall.setOnClickListener(new View.OnClickListener() {
@@ -252,6 +253,7 @@ public class SelectIngredientsFragment extends Fragment {
                 final GridView checkboxListView = (GridView) mView.findViewById(R.id.filter_list);
                 final Button checkall = (Button) mView.findViewById(R.id.select_all_filters);
                 mAdapter.setBtnCheckall(checkall);
+                if(mAdapter.allIschecked()) checkall.setText("uncheck all");
                 checkboxListView.setAdapter(mAdapter);
                 checkall.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -296,6 +298,7 @@ public class SelectIngredientsFragment extends Fragment {
                 final GridView checkboxListView = (GridView) mView.findViewById(R.id.filter_list);
                 final Button checkall = (Button) mView.findViewById(R.id.select_all_filters);
                 mAdapter.setBtnCheckall(checkall);
+                if(mAdapter.allIschecked()) checkall.setText("uncheck all");
                 checkboxListView.setAdapter(mAdapter);
                 checkall.setOnClickListener(new View.OnClickListener() {
                     @Override
