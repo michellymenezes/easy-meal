@@ -4,7 +4,7 @@
     <!--  Toasts -->
     <string name="not_ready">Sorry, not ready yet :\'(</string>
 
-
+    <string name="Type_filters">Select type</string>
     <!-- Toast - Select ingredients Fragment -->
     <string name="already_exist">Already in the list :)</string>
     <string name="add_one">You must add at least one item</string>

@@ -31,12 +31,11 @@ public class FilterListAdapter extends ArrayAdapter<FilterItem> {
     private Button checkAllBtn;
 
 
-    public FilterListAdapter(Activity activity, List<FilterItem> items, List<String> selectedItems, Button checkAllBtn) {
+    public FilterListAdapter(Activity activity, List<FilterItem> items, List<String> selectedItems) {
         super(activity, android.R.layout.simple_list_item_1,items );
         this.items = items;
         this.selectedItems = selectedItems;
         this.activity = activity;
-        this.checkAllBtn = checkAllBtn;
         checkBoxItems = new ArrayList<>();
     }
 
@@ -117,7 +116,10 @@ public class FilterListAdapter extends ArrayAdapter<FilterItem> {
     }
 
     public boolean allIschecked() {
-        return selectedItems.size() == 11;
+        return selectedItems.size() == items.size();
     }
 
+    public void setBtnCheckall(Button checkall) {
+        checkAllBtn = checkall;
+    }
 }

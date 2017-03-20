@@ -1,6 +1,5 @@
 package com.projeto_les.easymeal;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -18,7 +17,6 @@ import android.widget.Toast;
 
 import com.projeto_les.easymeal.fragments.RecipeDetailsFragment;
 import com.projeto_les.easymeal.fragments.RecipesListFragment;
-import com.projeto_les.easymeal.fragments.SelectFiltersFragment;
 import com.projeto_les.easymeal.fragments.SelectIngredientsFragment;
 import com.projeto_les.easymeal.models.GeneralRecipe;
 import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructions;
@@ -44,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     private SelectIngredientsFragment selectIngredientsFragment;
     private RecipeDetailsFragment recipeDetailsFragment;
     private RecipesListFragment listRecipesFragment;
-    private SelectFiltersFragment selectFiltersFragment;
 
     //Menu
     private DrawerLayout mDrawerLayout;
@@ -71,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         setContentView(R.layout.activity_main);
         selectIngredientsFragment = SelectIngredientsFragment.getInstance();
         recipeDetailsFragment = RecipeDetailsFragment.getInstance();
-        selectFiltersFragment = SelectFiltersFragment.getInstance();
         listRecipesFragment = RecipesListFragment.getInstance();
 
         g = Globals.getInstance();
@@ -81,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         generalRecipes = new ArrayList<>();
         generalRecipeSelected = null;
 
-        changeFragment(selectFiltersFragment,SelectFiltersFragment.TAG,true );
+        changeFragment(selectIngredientsFragment,SelectIngredientsFragment.TAG,true );
 
 
         // Para iniciar o menu
@@ -246,10 +242,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
         int id = item.getItemId();
         switch (id) {
-            case R.id.nav_home_screen:
-                changeFragment(SelectFiltersFragment.getInstance(),SelectFiltersFragment.TAG,true );
-                break;
-
             case R.id.nav_ingredient:
                 changeFragment(SelectIngredientsFragment.getInstance(),SelectIngredientsFragment.TAG,true );
                 break;
