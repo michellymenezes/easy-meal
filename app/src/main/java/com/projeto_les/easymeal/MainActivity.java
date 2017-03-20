@@ -243,13 +243,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
         int id = item.getItemId();
         switch (id) {
-<<<<<<< HEAD
-=======
-            case R.id.nav_home_screen:
-                changeFragment(SelectFiltersFragment.getInstance(), SelectFiltersFragment.TAG, true );
-                break;
 
->>>>>>> 0a59e437ddc79cd8393bdad1d3c9adef78e854bd
             case R.id.nav_ingredient:
                 changeFragment(SelectIngredientsFragment.getInstance(), SelectIngredientsFragment.TAG, true );
                 break;
