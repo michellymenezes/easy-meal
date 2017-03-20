@@ -16,7 +16,7 @@
         >
 
         <RelativeLayout
-            android:alpha="0.95"
+            android:alpha="0.9"
             android:layout_marginTop="20dp"
             android:layout_width="255dp"
             android:layout_marginRight="10dp"
@@ -44,7 +44,6 @@
                     android:layout_alignParentLeft="true"
                     android:text=""
                     android:inputType="textCapWords"
-
                     />
             </android.support.design.widget.TextInputLayout>
 
@@ -56,7 +55,7 @@
             android:id="@+id/add"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
-            android:alpha="0.95"
+            android:alpha="0.9"
             android:layout_height="40dp"
             android:layout_toRightOf="@id/auto_complete_ingredient_container"
             android:background="@drawable/bg_add_button"
@@ -79,32 +78,41 @@
 
         <Button
             android:id="@+id/id_type"
-            android:alpha="0.95"
+            android:alpha="0.9"
             android:layout_margin="5dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:background="@drawable/reounded_bg_category_type"
-            android:text="type"
+            android:text="recipe type"
+            android:textSize="12dp"
             android:textColor="@color/colorPrimaryDark"/>
 
         <Button
             android:id="@+id/id_cuisine"
-            android:alpha="0.95"
+            android:alpha="0.9"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:background="@drawable/reounded_bg_category_type"
             android:text="cuisine"
+            android:textSize="12dp"
             android:textColor="@color/colorPrimaryDark"/>
 
         <Button
             android:id="@+id/id_diet"
             android:layout_margin="5dp"
-            android:alpha="0.95"
+            android:alpha="0.9"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:background="@drawable/reounded_bg_category_type"
             android:text="diet"
+            android:textSize="12dp"
             android:textColor="@color/colorPrimaryDark"/>
 
         </LinearLayout>
