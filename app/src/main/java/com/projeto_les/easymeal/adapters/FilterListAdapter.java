@@ -70,9 +70,9 @@ public class FilterListAdapter extends ArrayAdapter<FilterItem> {
         final ImageButton mImgBtn = (ImageButton) v.findViewById(R.id.icon_im);
         checkboxItem.setText(currFilter.getNome());
         mImgBtn.setImageResource(currFilter.getIcon());
-        checkBoxItems.add(checkboxItem);
+        if (!checkBoxItems.contains(checkboxItem))checkBoxItems.add(checkboxItem);
 
-
+        setChecked();
 
         checkboxItem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -94,6 +94,15 @@ public class FilterListAdapter extends ArrayAdapter<FilterItem> {
 
     public List<String> getSelectedItems(){
         return selectedItems;
+    }
+
+    public void setChecked(){
+        for (CheckBox cb: checkBoxItems) {
+            if(selectedItems.contains(cb.getText())){
+                cb.setChecked(true);
+            }
+            notifyDataSetChanged();
+        }
     }
 
     public void checkAll(){
