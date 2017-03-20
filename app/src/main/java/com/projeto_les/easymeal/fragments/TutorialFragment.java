@@ -64,30 +64,7 @@ public class TutorialFragment extends Fragment {
 
         mview = inflater.inflate(R.layout.fragment_tutorial, container, false);
 
-        startAdapter();
-
-        mRecipe = ((MainActivity) getActivity()).getGlobals().getRecipeInformation();
-        if (mRecipe != null) {
-            mRecycleView = (RecyclerView) mview.findViewById(R.id.recipe_ingredient_list);
-
-            mIngredients = new ArrayList<String>();
-            for (ExtendedIngredient x: mRecipe.getExtendedIngredients()) {
-                mIngredients.add(x.getOriginalString());
-
-
-            }
-            RecipeIngredientsAdapter adapter = new RecipeIngredientsAdapter(mIngredients);
-            mRecycleView.setLayoutManager(new FlowLayoutManager().setAlignment(Alignment.LEFT));
-
-            mRecycleView.setAdapter(adapter);
-        }
-
-
         return mview;
-    }
-
-    private void startAdapter() {
-
     }
 
     @Override
