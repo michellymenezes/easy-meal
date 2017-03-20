@@ -20,6 +20,7 @@ import com.projeto_les.easymeal.fragments.RecipeDetailsFragment;
 import com.projeto_les.easymeal.fragments.RecipesListFragment;
 import com.projeto_les.easymeal.fragments.SelectFiltersFragment;
 import com.projeto_les.easymeal.fragments.SelectIngredientsFragment;
+import com.projeto_les.easymeal.fragments.TutorialFragment;
 import com.projeto_les.easymeal.models.GeneralRecipe;
 import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructions;
 import com.projeto_les.easymeal.services.retrofit_models.AnalyzedRecipeInstructionsMapper;
@@ -247,17 +248,21 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         int id = item.getItemId();
         switch (id) {
             case R.id.nav_home_screen:
-                changeFragment(SelectFiltersFragment.getInstance(),SelectFiltersFragment.TAG,true );
+                changeFragment(SelectFiltersFragment.getInstance(), SelectFiltersFragment.TAG, true );
                 break;
 
             case R.id.nav_ingredient:
-                changeFragment(SelectIngredientsFragment.getInstance(),SelectIngredientsFragment.TAG,true );
+                changeFragment(SelectIngredientsFragment.getInstance(), SelectIngredientsFragment.TAG, true );
                 break;
 
             case R.id.nav_favorites:
                 // Toast.makeText(this, getString(R.string.not_ready), Toast.LENGTH_LONG).show();
-                changeFragment(RecipeDetailsFragment.getInstance(),RecipeDetailsFragment.TAG,true );//apenas para testar a tela de visualizacao da receita
+                changeFragment(RecipeDetailsFragment.getInstance(), RecipeDetailsFragment.TAG, true );//apenas para testar a tela de visualizacao da receita
                 //((MainActivity)getActivity()).changeFragment();
+                break;
+
+            case R.id.nav_tutorial:
+                changeFragment(TutorialFragment.getInstance(), TutorialFragment.TAG, true );
                 break;
 
             case R.id.nav_about:

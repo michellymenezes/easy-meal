@@ -14,6 +14,10 @@
         android:title="@string/favorites"
         android:icon="@drawable/ic_favorite"/>
     <item
+        android:id="@+id/nav_tutorial"
+        android:title="@string/tutorial"
+        android:icon="@drawable/ic_tutorial"/>
+    <item
         android:id="@+id/nav_about"
         android:title="About"
         android:icon="@drawable/ic_help"/>
