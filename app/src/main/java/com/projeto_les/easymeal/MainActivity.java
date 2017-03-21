@@ -384,7 +384,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     }
 
 
-    public void getRecipeInformation(int id, Boolean includeNutrition){
+    public void getRecipeInformation(final int id, Boolean includeNutrition){
         // Now it's getting the main recipe information
         RecipeInformationMapper recipeInformationMapper = new RecipeInformationMapper(id, includeNutrition);
         spoonacularService.getRecipeInformation(recipeInformationMapper, new Callback<RecipeInformation>() {
@@ -396,7 +396,10 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                     generalRecipeSelected.setRecipeInformation(recipeInformation);
                 }
                 // If everything goes right, you should see information on log
-                Log.d("spoonacularService.getRecipeInformation", recipeInformation.toString());
+                Log.d("getRecipeInformation", recipeInformation.toString());
+
+                //Nesse aqui tem o change
+                getInstructionsByStep(id, false);
 
             }
             @Override

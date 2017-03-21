@@ -63,8 +63,8 @@ public class RecipeListViewAdapter extends RecyclerView.Adapter {
 
                 ((MainActivity) activity).getRecipeInformation(items.get(position).getRecipe().getId(), false);
 
-                //Nesse aqui tem o change
-                ((MainActivity) activity).getInstructionsByStep(items.get(position).getRecipe().getId(), false);
+/*                //Nesse aqui tem o change
+                ((MainActivity) activity).getInstructionsByStep(items.get(position).getRecipe().getId(), false); */
 
                 Toast.makeText(activity.getBaseContext(), R.string.wait, Toast.LENGTH_LONG).show();
 /*
