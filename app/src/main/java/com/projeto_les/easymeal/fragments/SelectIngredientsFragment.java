@@ -228,6 +228,8 @@ public class SelectIngredientsFragment extends Fragment {
                         .setPositiveButton("Done", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 selectedFilterDietList = mAdapter.getSelectedItems();
+                                ((MainActivity) getActivity()).setSelectedDiets(selectedFilterDietList);
+
 
                             }
                         })
@@ -274,6 +276,8 @@ public class SelectIngredientsFragment extends Fragment {
                         .setPositiveButton("Done", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 selectedFilterCuisineList = mAdapter.getSelectedItems();
+                                ((MainActivity) getActivity()).setSelectedCuisines(selectedFilterCuisineList);
+
 
                             }
                         })
@@ -319,6 +323,8 @@ public class SelectIngredientsFragment extends Fragment {
                         .setPositiveButton("Done", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 selectedFilterTypeList = mAdapter.getSelectedItems();
+                                ((MainActivity) getActivity()).setSelectedFilters(selectedFilterTypeList);
+
 
                             }
                         })

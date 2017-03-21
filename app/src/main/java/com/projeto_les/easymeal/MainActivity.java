@@ -54,6 +54,9 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     public static final String TAG = "MAIN_ACTIVITY";
 
     private List<String> mSelectedFilters;
+    private List<String> mSelectedCuisines;
+    private List<String> mSelectedDiets;
+
     private List<String> mSelectedIngredients;
     private int mSelectedRecipeID;
 
@@ -74,6 +77,9 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         g = Globals.getInstance();
 
         mSelectedFilters = new ArrayList<>();
+        mSelectedDiets = new ArrayList<>();
+        mSelectedCuisines = new ArrayList<>();
+
         mSelectedIngredients = new ArrayList<>();
         generalRecipes = new ArrayList<>();
         generalRecipeSelected = null;
@@ -109,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         // gradle.properties .
 
         spoonacularService = new SpoonacularService(getString(R.string.SPOONACULATOR_API_KEY));
+
 
         // Parameters of the request, we're using an object to encapsulate them.
     }
@@ -184,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
         generalRecipes.clear();
 
-        ComplexSearchMapper complexSearchMapper = new ComplexSearchMapper(null,null,getStringSelectedIngredients(), null, 5,query,1, getStringSelectedFilters());
+        ComplexSearchMapper complexSearchMapper = new ComplexSearchMapper(getStringSelectedCuisines(),getStringSelectedDiets(),getStringSelectedIngredients(), null, 5,null,1, getStringSelectedFilters());
         spoonacularService.searchComplex(complexSearchMapper, new Callback<ComplexSearchResult>() {
             @Override
             public void onResponse(Call<ComplexSearchResult> call, Response<ComplexSearchResult> response) {
@@ -287,6 +294,16 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     }
 
     //TODO limpar lista quando "pesquisar " ou "reiniciar" pesquisa
+    public void setSelectedCuisines(List<String> selectedCuisines) {
+        this.mSelectedCuisines = selectedCuisines;
+    }
+
+    //TODO limpar lista quando "pesquisar " ou "reiniciar" pesquisa
+    public void setSelectedDiets(List<String> selectedDiets) {
+        this.mSelectedDiets = selectedDiets;
+    }
+
+    //TODO limpar lista quando "pesquisar " ou "reiniciar" pesquisa
     public void setSelectedIngredients(List<String> selectedIngredients) {
         this.mSelectedIngredients = selectedIngredients;
     }
@@ -330,7 +347,40 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 filters =filters.substring(0, filters.length()-1);
             }
         }
+
         return filters;
+    }
+
+    private String getStringSelectedCuisines(){
+        String cuisines = "";
+
+        if (mSelectedCuisines!= null){
+            for (String string : mSelectedCuisines){
+                cuisines += string + ",";
+            }
+
+            if (cuisines.endsWith(",")){
+                cuisines =cuisines.substring(0, cuisines.length()-1);
+            }
+        }
+
+        return cuisines;
+    }
+
+    private String getStringSelectedDiets(){
+        String diets = "";
+
+        if (mSelectedDiets!= null){
+            for (String string : mSelectedDiets){
+                diets += string + ",";
+            }
+
+            if (diets.endsWith(",")){
+                diets =diets.substring(0, diets.length()-1);
+            }
+        }
+
+        return diets;
     }
 
 
