@@ -19,5 +19,6 @@
     <dimen name="view_addButton_Padding">4dp</dimen>
 
     <dimen name="text_size_material_body">14sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>

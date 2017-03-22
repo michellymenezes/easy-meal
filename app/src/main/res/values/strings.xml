@@ -47,6 +47,7 @@
     <string name="tutorial_004_text">Once you have selected all the filters, click on the <b>Search</b> button to see the result.\n</string>
     <string name="tutorial_005_text">After that, we will receive some recipes containing the desired ingredients according to the chosen filters.\n</string>
     <string name="tutorial_006_text">When you select a recipe, there are sections where you can see details about it. There are information about preparation time, ingredients and instructions. See it below.\n</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
 
     <!---->
 
