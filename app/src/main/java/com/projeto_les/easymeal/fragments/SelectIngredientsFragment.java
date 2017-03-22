@@ -168,7 +168,7 @@ public class SelectIngredientsFragment extends Fragment {
                 if (mIngredients.size() > 0){
                     ((MainActivity) getActivity()).setSelectedIngredients(mIngredients);
                     ((MainActivity) getActivity()).inicializeSpoonacularService();
-                    Toast.makeText(getContext(), R.string.wait, Toast.LENGTH_LONG).show();
+                   // Toast.makeText(getContext(), R.string.wait, Toast.LENGTH_LONG).show();
 
                 } else {
                     Toast.makeText(getContext(), R.string.add_one, Toast.LENGTH_SHORT).show();

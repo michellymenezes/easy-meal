@@ -1,6 +1,7 @@
 package com.projeto_les.easymeal.fragments;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -63,6 +64,14 @@ public class RecipesListFragment extends Fragment {
         RecyclerView recipesListView = (RecyclerView) view.findViewById(R.id.recipes_result);
         recipesListView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
+
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                view.findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+            }
+        }, 4000);
 
 
         if(recipeList==null || recipeList.isEmpty()){

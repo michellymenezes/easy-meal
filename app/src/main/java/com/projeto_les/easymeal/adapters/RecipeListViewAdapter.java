@@ -46,6 +46,8 @@ public class RecipeListViewAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         View mView =  ((RecipeItem)holder.itemView);
 
+        mView.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
+
         ((RecipeItem)holder.itemView).displayItem(items.get(position).getRecipe().getTitle());
         ((RecipeItem)holder.itemView).displayHowManyIngredientsTheUserHas(items.get(position).getRecipe().getUsedIngredientCount(), items.get(position).getRecipe().getMissedIngredientCount());
         ((RecipeItem)holder.itemView).displayImage(items.get(position).getRecipe());

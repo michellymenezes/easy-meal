@@ -1,6 +1,7 @@
 package com.projeto_les.easymeal.models;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
