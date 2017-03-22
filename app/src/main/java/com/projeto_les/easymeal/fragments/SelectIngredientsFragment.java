@@ -3,6 +3,7 @@ package com.projeto_les.easymeal.fragments;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -102,13 +103,12 @@ public class SelectIngredientsFragment extends Fragment {
 
         mListAdapter = new IngredientListAdapter(mIngredients);
 
-        final Button searchBtn = (Button) view.findViewById(R.id.search_recipes);
+        final FloatingActionButton searchBtn = (FloatingActionButton) view.findViewById(R.id.search_recipes);
         searchBtn.setClickable(true);
 
         mSelectIngListView = (RecyclerView) view.findViewById(R.id.selected_ingredients_list);
         mSelectIngListView.setLayoutManager(new FlowLayoutManager());
         mIngredientEditText = (EditText) view.findViewById(R.id.auto_complete_ingredient);
-        final Button clearBtn = (Button) view.findViewById(R.id.clear_all_ings_btn);
 
         //actv.setTextLocale(Locale.ENGLISH);
         // mClearBtn = (Button)view.findViewById(R.id.clear_btn);
@@ -159,6 +159,9 @@ public class SelectIngredientsFragment extends Fragment {
 
         //clear();
 
+        final Button clearBtn = (Button) view.findViewById(R.id.clear_all_ings_btn);
+
+
 
 
         searchBtn.setOnClickListener(new View.OnClickListener() {
@@ -172,6 +175,7 @@ public class SelectIngredientsFragment extends Fragment {
 
                 } else {
                     Toast.makeText(getContext(), R.string.add_one, Toast.LENGTH_SHORT).show();
+                    searchBtn.setClickable(true);
                 }
             }
         });
