@@ -40,7 +40,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="1">
 
             <com.uncopt.android.widget.text.justify.JustifiedTextView
                 android:id="@+id/textView0"
@@ -57,10 +58,12 @@
                 android:text="@string/tutorial_001_text" />
 
             <ImageView
-                android:id="@+id/select_filters_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/tutorial_select_filters" />
+                android:id="@+id/ingredients_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="2dp"
+                android:src="@drawable/tutorial_ingredients"
+                android:adjustViewBounds="true" />
 
             <com.uncopt.android.widget.text.justify.JustifiedTextView
                 android:id="@+id/textView2"
@@ -70,11 +73,12 @@
                 android:text="@string/tutorial_002_text" />
 
             <ImageView
-                android:id="@+id/ingredients_img"
-                android:layout_width="wrap_content"
+                android:id="@+id/filters_categories_img"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="2dp"
-                android:src="@drawable/tutorial_ingredients" />
+                android:src="@drawable/tutorial_filter_categories"
+                android:adjustViewBounds="true"/>
+
 
             <com.uncopt.android.widget.text.justify.JustifiedTextView
                 android:id="@+id/textView3"
@@ -84,11 +88,50 @@
                 android:text="@string/tutorial_003_text" />
 
             <ImageView
+                android:id="@+id/select_filters_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tutorial_select_filters"
+                android:adjustViewBounds="true"/>
+
+            <com.uncopt.android.widget.text.justify.JustifiedTextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:text="@string/tutorial_004_text" />
+
+            <com.uncopt.android.widget.text.justify.JustifiedTextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:text="@string/tutorial_005_text" />
+
+            <ImageView
                 android:id="@+id/recipe_result_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="2dp"
                 android:src="@drawable/tutorial_recipe_result" />
+
+            <com.uncopt.android.widget.text.justify.JustifiedTextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:text="@string/tutorial_006_text" />
+
+            <ImageView
+                android:id="@+id/recipe_details_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="2dp"
+                android:src="@drawable/tutorial_recipe_details"
+                android:adjustViewBounds="true"/>
+
+
+
         </LinearLayout>
 
 

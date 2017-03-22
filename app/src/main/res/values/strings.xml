@@ -41,10 +41,12 @@
     <string name="no_recipe_result">Ops! we don\'t find any recipe with this options :(</string>
     <string name="wait">Wait .....  :)</string>
     <string name="tutorial_000_text">Search through hundreds of thousands of recipes using advanced filtering and ranking.</string>
-    <string name="tutorial_001_text">\nIn the <b>\'Select Filters\'</b> menu item you can choose which types of recipes you want to consult: main course, side dish, dessert, appetizer, salad, bread, breakfast, soup, beverage, sauce, or drink.
-    </string>
-    <string name="tutorial_002_text">In the <b>\'Select Ingredients\'</b> menu item you can add ingredients should/must be contained in the recipe. Add an ingredient per line. If you want select all filters you must click on <b>\'Check All\'</b> button. To clear the selected filter you can uncheck one by one or click on <b>\'Uncheck All\'</b> button. Once you have selected all the filters, click on the <b>\'Next\'</b> button to select the ingredients.</string>
-    <string name="tutorial_003_text">After that, we will receive some recipes containing the desired ingredients according to the chosen filters.</string>
+    <string name="tutorial_001_text">In the <b>Select Ingredients</b> menu item you can add ingredients should/must be contained in the recipe. Add an ingredient per line.</string>
+    <string name="tutorial_002_text">\n You can also select some filters before you go searching. There are three types of filters as you can see below.\n</string>
+    <string name="tutorial_003_text">When you click in a filter category you can select as many options you want. If you want select all filters you must click on <b>Check All</b> button. To clear the selected filter you can uncheck one by one or click on <b>Uncheck All</b> button. It is possible to combine all three categories.\n</string>
+    <string name="tutorial_004_text">Once you have selected all the filters, click on the <b>Search</b> button to see the result.\n</string>
+    <string name="tutorial_005_text">After that, we will receive some recipes containing the desired ingredients according to the chosen filters.\n</string>
+    <string name="tutorial_006_text">When you select a recipe, there are sections where you can see details about it. There are information about preparation time, ingredients and instructions. See it below.\n</string>
 
     <!---->
 
