@@ -3,6 +3,7 @@ package com.projeto_les.easymeal.adapters;
     import android.support.v7.widget.RecyclerView;
     import android.view.View;
     import android.view.ViewGroup;
+    import android.widget.Button;
     import android.widget.ImageButton;
 
     import com.projeto_les.easymeal.R;
@@ -14,9 +15,11 @@ package com.projeto_les.easymeal.adapters;
 public class IngredientListAdapter extends RecyclerView.Adapter {
 
         private List<String> items;
+        private Button clear;
 
-        public IngredientListAdapter(List<String> items) {
+        public IngredientListAdapter(List<String> items, Button clear) {
             this.items = items;
+            this.clear = clear;
         }
 
         @Override
@@ -36,9 +39,16 @@ public class IngredientListAdapter extends RecyclerView.Adapter {
                     removeIngredient(position);
                 }
             });
+            hideClearBtn();
+
 
 
         }
+
+    private void hideClearBtn() {
+        if(items.size()>0) clear.setVisibility(View.VISIBLE);
+        else clear.setVisibility(View.GONE);
+    }
 
     private void removeIngredient(int position){
         items.remove(position);

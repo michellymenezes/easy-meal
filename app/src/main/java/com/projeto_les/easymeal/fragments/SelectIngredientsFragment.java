@@ -66,6 +66,7 @@ public class SelectIngredientsFragment extends Fragment {
     private List<String> selectedFilterTypeList;
     private List<String> selectedFilterCuisineList;
     private List<String> selectedFilterDietList;
+    private Button mClearBtn;
 
 
     public SelectIngredientsFragment() {
@@ -101,7 +102,11 @@ public class SelectIngredientsFragment extends Fragment {
 
         mIngredients = new ArrayList<String>();
 
-        mListAdapter = new IngredientListAdapter(mIngredients);
+        mClearBtn = (Button) view.findViewById(R.id.clear_all_ings_btn);
+        mClearBtn.setVisibility(View.GONE);
+
+
+        mListAdapter = new IngredientListAdapter(mIngredients, mClearBtn);
 
         final FloatingActionButton searchBtn = (FloatingActionButton) view.findViewById(R.id.search_recipes);
         searchBtn.setClickable(true);
@@ -159,11 +164,6 @@ public class SelectIngredientsFragment extends Fragment {
 
         //clear();
 
-        final Button clearBtn = (Button) view.findViewById(R.id.clear_all_ings_btn);
-
-
-
-
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,7 +180,7 @@ public class SelectIngredientsFragment extends Fragment {
             }
         });
 
-        clearBtn.setOnClickListener(new View.OnClickListener() {
+        mClearBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mIngredients.clear();
