@@ -22,7 +22,7 @@ public class ExtendedIngredient {
     private String name;
 
     @SerializedName("amount")
-    private Integer amount;
+    private Float amount;
 
     @SerializedName("unit")
     private String unit;
@@ -43,7 +43,7 @@ public class ExtendedIngredient {
 
     public ExtendedIngredient() {}
 
-    public ExtendedIngredient(Integer id, String aisle, String image, String name, Integer amount, String unit, String unitShort, String unitLong, String originalString, List<String> metaInfortmation) {
+    public ExtendedIngredient(Integer id, String aisle, String image, String name, Float amount, String unit, String unitShort, String unitLong, String originalString, List<String> metaInfortmation) {
         this.id = id;
         this.aisle = aisle;
         this.image = image;
@@ -72,7 +72,7 @@ public class ExtendedIngredient {
         return name;
     }
 
-    public Integer getAmount() {
+    public Float getAmount() {
         return amount;
     }
 

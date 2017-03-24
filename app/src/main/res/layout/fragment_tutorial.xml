@@ -64,6 +64,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/tutorial_menu" />
+                <!--android:id="@+id/ingredients_img"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:paddingTop="2dp"-->
+                <!--android:src="@drawable/tutorial_ingredients"-->
+                <!--android:adjustViewBounds="true" />-->
+<!--&gt;>>>>>> b42d207f098aa0a10e10329b59aa544c3955b408-->
 
             <com.uncopt.android.widget.text.justify.JustifiedTextView
                 android:id="@+id/textViewTutorialSelectIngredients"
@@ -99,6 +106,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/tutorial_select_ingredients_003" />
+=======
+                android:id="@+id/filters_categories_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tutorial_filter_categories"
+                android:adjustViewBounds="true"/>
+
+>>>>>>> b42d207f098aa0a10e10329b59aa544c3955b408
 
             <com.uncopt.android.widget.text.justify.JustifiedTextView
                 android:id="@+id/textViewTutorialSelectRecipeTypes"

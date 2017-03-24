@@ -35,15 +35,13 @@
     <!-- Select filters Fragment-->
     <string name="filters">Select filters</string>
     <!---->
-
+    <string name="title_activity_splash_screen">SplashScreen</string>
     <!-- List recipe Fragment -->
     <string name="result">Result</string>
     <string name="no_recipe_result">Ops! we don\'t find any recipe with this options :(</string>
     <string name="wait">Wait .....  :)</string>
     <string name="tutorial_000_text">Search through hundreds of thousands of recipes using advanced filtering and ranking.</string>
-    <string name="tutorial_text_001">\nIn the <b>\'Sideview menu\'</b> you can see the following menu items: Select Ingredients, Favorites, Tutorial and About.
-    </string>
-
+    <string name="tutorial_text_001">\nIn the <b>\'Sideview menu\'</b> you can see the following menu items: Select Ingredients, Favorites, Tutorial and About.</string>
     <string name="tutorial_text_002">In the <b>\'Select Ingredients\'</b> menu item you can add ingredients should/must be contained in the recipe. Add an ingredient per line. There are three filter types: recipe type, cuisine and diet. You can use them to search for specific recipes.</string>
     <string name="tutorial_text_003">In the <b>\'Select Recipe Type\'</b> item you can select types of the recipes. The type of the recipes. One of the following: main course, side dish, dessert, appetizer, salad, bread, breakfast, soup, beverage, sauce, or drink.</string>
     <string name="tutorial_text_004">In the <b>\'Select Cuisine\'</b> item you can select the cuisine(s) of the recipes. One or more of the following: african, chinese, japanese, korean, vietnamese, thai, indian, british, irish, french, italian, mexican, spanish, middle eastern, jewish, american, cajun, southern, greek, german, nordic, eastern european, caribbean, or latin american.</string>
