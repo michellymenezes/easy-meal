@@ -167,10 +167,6 @@ public class SelectIngredientsFragment extends Fragment {
         mDietBtn = (Button) view.findViewById(R.id.id_diet);
         filterBuilder(mDietBtn, R.string.select_diets, new FilterListAdapter(getActivity(), filterDietList, selectedFilterDietList));
 
-
-        //filterType();
-        //filterCuisine();
-        //filterDiet();
     }
 
     private void initSelectedFilter() {
@@ -256,7 +252,7 @@ public class SelectIngredientsFragment extends Fragment {
             }
         });
     }
-    
+
     private void alertDialogBuilder(View view, final FilterListAdapter adapter, final int filter){
 
         new AlertDialog.Builder(getContext())
@@ -270,10 +266,10 @@ public class SelectIngredientsFragment extends Fragment {
                             ((MainActivity) getActivity()).setSelectedFilters(selectedFilterList);
                         }else if (filter== R.string.select_cuisines){
                             selectedFilterCuisineList = adapter.getSelectedItems();
-                            ((MainActivity) getActivity()).setSelectedCuisines(selectedFilterList);
+                            ((MainActivity) getActivity()).setSelectedCuisines(selectedFilterCuisineList);
                         }else if (filter== R.string.select_diets){
                             selectedFilterDietList = adapter.getSelectedItems();
-                            ((MainActivity) getActivity()).setSelectedDiets(selectedFilterList);
+                            ((MainActivity) getActivity()).setSelectedDiets(selectedFilterDietList);
                         }
 
                     }
@@ -369,8 +365,5 @@ public class SelectIngredientsFragment extends Fragment {
         selectedFilterCuisineList = ((MainActivity) getActivity()).getSelectedCuisines();
         selectedFilterDietList = ((MainActivity) getActivity()).getSelectedDiets();
 
-        //filterType();
-        //filterCuisine();
-        //filterDiet();
     }
 }
