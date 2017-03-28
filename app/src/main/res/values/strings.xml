@@ -35,19 +35,13 @@
     <!-- Select filters Fragment-->
     <string name="filters">Select filters</string>
     <!---->
-
+    <string name="title_activity_splash_screen">SplashScreen</string>
     <!-- List recipe Fragment -->
     <string name="result">Result</string>
     <string name="no_recipe_result">Ops! we don\'t find any recipe with this options :(</string>
     <string name="wait">Wait .....  :)</string>
     <string name="tutorial_000_text">Search through hundreds of thousands of recipes using advanced filtering and ranking.</string>
-    <string name="tutorial_001_text">In the <b>Select Ingredients</b> menu item you can add ingredients should/must be contained in the recipe. Add an ingredient per line.</string>
-    <string name="tutorial_002_text">\n You can also select some filters before you go searching. There are three types of filters as you can see below.\n</string>
-    <string name="tutorial_003_text">When you click in a filter category you can select as many options you want. If you want select all filters you must click on <b>Check All</b> button. To clear the selected filter you can uncheck one by one or click on <b>Uncheck All</b> button. It is possible to combine all three categories.\n</string>
-    <string name="tutorial_004_text">Once you have selected all the filters, click on the <b>Search</b> button to see the result.\n</string>
-    <string name="tutorial_005_text">After that, we will receive some recipes containing the desired ingredients according to the chosen filters.\n</string>
-    <string name="tutorial_006_text">When you select a recipe, there are sections where you can see details about it. There are information about preparation time, ingredients and instructions. See it below.\n</string>
-    <string name="title_activity_splash_screen">SplashScreen</string>
+
 
     <!---->
 
@@ -62,11 +56,29 @@
     <string name="about_005">Caynan Victor Landim Sousa\nJair Guedes Ferreira Neto\nLuiza Carvalho Silveira\n
     Martha Michelly Galvão Menezes\nRafaelle Amorim Monteiro Xavier\nSamir Silva de Medeiros</string>
 
+    <!---->
+
+
+    <string name="tutorial_text_001">\nIn the <b>\'Sideview menu\'</b> you can see the following menu items: Select Ingredients, Favorites, Tutorial and About.</string>
+    <string name="tutorial_text_002">In the <b>\'Select Ingredients\'</b> menu item you can add ingredients should/must be contained in the recipe. Add an ingredient per line. There are three filter types: recipe type, cuisine and diet. You can use them to search for specific recipes.</string>
+    <string name="tutorial_text_003">In the <b>\'Select Recipe Type\'</b> item you can select types of the recipes. The type of the recipes. One of the following: main course, side dish, dessert, appetizer, salad, bread, breakfast, soup, beverage, sauce, or drink.</string>
+    <string name="tutorial_text_004">In the <b>\'Select Cuisine\'</b> item you can select the cuisine(s) of the recipes. One or more of the following: african, chinese, japanese, korean, vietnamese, thai, indian, british, irish, french, italian, mexican, spanish, middle eastern, jewish, american, cajun, southern, greek, german, nordic, eastern european, caribbean, or latin american.</string>
+    <string name="tutorial_text_005">In the <b>\'Select Diet\'</b> item you can choose the diet to which the recipes must be compliant. Possible values are: pescetarian, lacto vegetarian, ovo vegetarian, vegan, paleo, primal, and vegetarian.</string>
+    <string name="tutorial_text_006">Once you have selected all the filters, click on the <b>\'Search\'</b> button to search the recipes.</string>
+    <string name="tutorial_text_007">After that, we will receive some recipes containing the desired ingredients according to the chosen filters.</string>
+    <string name="tutorial_text_008">In the <b>\'Result\'</b> screen click on some recipe to see its details: description, ingredients and preparation.</string>
+    <string name="tutorial_text_009"><b>Description</b></string>
+    <string name="tutorial_text_010"><b>Ingredients</b></string>
+    <string name="tutorial_text_011"><b>Preparation</b></string>
 
 
 
+    <string name="tutorial_text_003x">In the <b>\'Select Ingredients\'</b> menu item you can add ingredients should/must be contained in the recipe. Add an ingredient per line. If you want select all filters you must click on <b>\'Check All\'</b> button. To clear the selected filter you can uncheck one by one or click on <b>\'Uncheck All\'</b> button. Once you have selected all the filters, click on the <b>\'Next\'</b> button to select the ingredients.</string>
+    <string name="tutorial_text_001x"></string>
 
-
+    <string name="tutorial_menu_text002">\nIn the <b>\'Sideview menu\'</b> you can choose which types of recipes you want to consult: main course, side dish, dessert, appetizer, salad, bread, breakfast, soup, beverage, sauce, or drink.
+    </string>
+    <!---->
 
 
 </resources>

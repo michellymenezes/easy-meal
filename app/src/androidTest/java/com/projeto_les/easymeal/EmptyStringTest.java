@@ -27,9 +27,9 @@ public class EmptyStringTest {
 
     @Test
     public void emptyStringTest() {
-        ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.next), withText("Next"), isDisplayed()));
-        appCompatButton.perform(click());
+//        ViewInteraction appCompatButton = onView(
+//                allOf(withId(R.id.next), withText("Next"), isDisplayed()));
+//        appCompatButton.perform(click());
 
         ViewInteraction appCompatButton2 = onView(
                 allOf(withId(R.id.add), withText("add"),

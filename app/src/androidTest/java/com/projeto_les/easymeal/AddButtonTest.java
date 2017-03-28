@@ -29,9 +29,9 @@ public class AddButtonTest {
 
     @Test
     public void addButtonTest() {
-        ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.next), withText("Next"), isDisplayed()));
-        appCompatButton.perform(click());
+//        ViewInteraction appCompatButton = onView(
+//                allOf(withId(R.id.next), withText("Next"), isDisplayed()));
+//        appCompatButton.perform(click());
 
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.auto_complete_ingredient), isDisplayed()));
