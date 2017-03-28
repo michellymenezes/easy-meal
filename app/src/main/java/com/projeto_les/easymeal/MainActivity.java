@@ -13,7 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.projeto_les.easymeal.fragments.AboutFragment;
 import com.projeto_les.easymeal.fragments.RecipeDetailsFragment;
@@ -43,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
     private SelectIngredientsFragment selectIngredientsFragment;
     private RecipeDetailsFragment recipeDetailsFragment;
-    private RecipesListFragment listRecipesFragment;
 
     //Menu
     private DrawerLayout mDrawerLayout;
@@ -63,31 +61,29 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     private List<GeneralRecipe> generalRecipes;
     private GeneralRecipe generalRecipeSelected;
     private Globals g;
-    //private  List<Recipe> recipes;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        selectIngredientsFragment = SelectIngredientsFragment.getInstance();
-        recipeDetailsFragment = RecipeDetailsFragment.getInstance();
-        listRecipesFragment = RecipesListFragment.getInstance();
 
-        g = Globals.getInstance();
-
-        mSelectedFilters = new ArrayList<>();
-        mSelectedDiets = new ArrayList<>();
-        mSelectedCuisines = new ArrayList<>();
-
-        mSelectedIngredients = new ArrayList<>();
-        generalRecipes = new ArrayList<>();
-        generalRecipeSelected = null;
+        initVariables();
 
         changeFragment(selectIngredientsFragment,SelectIngredientsFragment.TAG,true );
 
+        initMenu();
 
-        // Para iniciar o menu
+        //Quando precisar iniciar a conexão a Key deve ser utilizada da seguinte maneira: getString(R.string.SPOONACULATOR_API_KEY)
+
+    }
+
+    private void makingMenuClickable() {
+        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        mNavigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void initMenu() {
         mToolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(mToolbar);
 
@@ -99,25 +95,25 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //Para tornar o menu clicável
-        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
-        mNavigationView.setNavigationItemSelectedListener(this);
+        makingMenuClickable();
+    }
 
+    private void initVariables() {
+        selectIngredientsFragment = SelectIngredientsFragment.getInstance();
+        recipeDetailsFragment = RecipeDetailsFragment.getInstance();
 
-        // end menu
+        g = Globals.getInstance();
 
-        //Quando precisar iniciar a conexão a Key deve ser utilizada da seguinte maneira: getString(R.string.SPOONACULATOR_API_KEY)
+        mSelectedFilters = new ArrayList<>();
+        mSelectedDiets = new ArrayList<>();
+        mSelectedCuisines = new ArrayList<>();
 
-
-        // Example of how to get information from the API
-        // Here we have an example of a request to the get recipes endpoint
-        // Initialize an instance of the service with our API Key, which is setted inside the file
-        // gradle.properties .
+        mSelectedIngredients = new ArrayList<>();
+        generalRecipes = new ArrayList<>();
+        generalRecipeSelected = null;
 
         spoonacularService = new SpoonacularService(getString(R.string.SPOONACULATOR_API_KEY));
 
-
-        // Parameters of the request, we're using an object to encapsulate them.
     }
 
     /**
@@ -155,12 +151,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     public void inicializeSpoonacularService(){
 
         IngredientsMapper ingredientsMapper = new IngredientsMapper();
-        ingredientsMapper.setFillIngredients(false);
-        ingredientsMapper.setLimitLicense(false);
-        ingredientsMapper.setNumber(5);
-        ingredientsMapper.setRanking(1);
-        List<String> ingredients = getSelectedIngredients();
-        ingredientsMapper.setIngredients(ingredients);
+        settingIngredientsMapperAttributes(ingredientsMapper);
 
       //######################################################################################
 
@@ -178,27 +169,20 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
       //                          minimize missing ingredients (2) first (obrigatório)
       //          String type: String para filtro de tipo de refeição separado por virgula
 
-
-
-        //ComplexSearchMapper complexSearchMapper1 = new ComplexSearchMapper(null, "vegan", "beans,bacon", null, 5, "beans", 1, null);
-
-        String query = "";
-        if (mSelectedFilters != null && mSelectedFilters.size()>0){
-            query = mSelectedFilters.get(0);
-        } else if (mSelectedIngredients != null && mSelectedIngredients.size() >0){
-            query = mSelectedIngredients.get(0);
-        }
-
         generalRecipes.clear();
 
         ComplexSearchMapper complexSearchMapper = new ComplexSearchMapper(getStringSelectedCuisines(),getStringSelectedDiets(),getStringSelectedIngredients(), null, 5,null,1, getStringSelectedFilters());
+        complexSearch(complexSearchMapper);
+
+    }
+
+    private void complexSearch(ComplexSearchMapper complexSearchMapper) {
         spoonacularService.searchComplex(complexSearchMapper, new Callback<ComplexSearchResult>() {
             @Override
             public void onResponse(Call<ComplexSearchResult> call, Response<ComplexSearchResult> response) {
 
                 ComplexSearchResult result = response.body();
                 //Aqui é retornada uma lista com os objetos de receitas
-                //recipes = result.getResults();
 
                 int i = 1;
                 for(Recipe recipe : result.getResults()){
@@ -215,7 +199,15 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
             }
         });
+    }
 
+    private void settingIngredientsMapperAttributes(IngredientsMapper ingredientsMapper) {
+        ingredientsMapper.setFillIngredients(false);
+        ingredientsMapper.setLimitLicense(false);
+        ingredientsMapper.setNumber(5);
+        ingredientsMapper.setRanking(1);
+        List<String> ingredients = getSelectedIngredients();
+        ingredientsMapper.setIngredients(ingredients);
     }
 
     private void clearSearch() {
@@ -224,11 +216,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         mSelectedCuisines.clear();
         mSelectedDiets.clear();
     }
-
-    //public List<Recipe> getRecipes(){
-
-    //return recipes;
-    //}
 
     @Override
     public void onBackPressed() {
@@ -273,9 +260,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 break;
 
             case R.id.nav_favorites:
-                // Toast.makeText(this, getString(R.string.not_ready), Toast.LENGTH_LONG).show();
                 changeFragment(RecipeDetailsFragment.getInstance(), RecipeDetailsFragment.TAG, true );//apenas para testar a tela de visualizacao da receita
-                //((MainActivity)getActivity()).changeFragment();
                 break;
 
             case R.id.nav_tutorial:
@@ -322,13 +307,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
     public void setSelectedIngredients(List<String> selectedIngredients) {
         this.mSelectedIngredients = selectedIngredients;
-    }
-
-    public SpoonacularService getSpoonacularService() {
-        if (spoonacularService==null){
-            spoonacularService = new SpoonacularService(getString(R.string.SPOONACULATOR_API_KEY));
-        }
-        return spoonacularService;
     }
 
     private String getStringSelectedIngredients(){
@@ -398,6 +376,10 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     public void getRecipeInformation(final int id, Boolean includeNutrition){
         // Now it's getting the main recipe information
         RecipeInformationMapper recipeInformationMapper = new RecipeInformationMapper(id, includeNutrition);
+        getRecipeInformationAux(id, recipeInformationMapper);
+    }
+
+    private void getRecipeInformationAux(final int id, RecipeInformationMapper recipeInformationMapper) {
         spoonacularService.getRecipeInformation(recipeInformationMapper, new Callback<RecipeInformation>() {
             @Override
             public void onResponse(Call<RecipeInformation> call, Response<RecipeInformation> response) {
@@ -424,6 +406,10 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
         // Now you can get instructions by steps
         AnalyzedRecipeInstructionsMapper analyzedRecipeInstructionsMapper = new AnalyzedRecipeInstructionsMapper(id, stepBreakdown);
+        getAnalyzedInstructions(analyzedRecipeInstructionsMapper);
+    }
+
+    private void getAnalyzedInstructions(AnalyzedRecipeInstructionsMapper analyzedRecipeInstructionsMapper) {
         spoonacularService.getAnalyzedRecipeInstructions(analyzedRecipeInstructionsMapper, new Callback<List<AnalyzedRecipeInstructions>>() {
             @Override
             public void onResponse(Call<List<AnalyzedRecipeInstructions>> call, Response<List<AnalyzedRecipeInstructions>> response) {
