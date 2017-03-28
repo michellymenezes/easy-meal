@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.projeto_les.easymeal.fragments.AboutFragment;
 import com.projeto_les.easymeal.fragments.RecipeDetailsFragment;
 import com.projeto_les.easymeal.fragments.RecipesListFragment;
 import com.projeto_les.easymeal.fragments.SelectIngredientsFragment;
@@ -266,8 +267,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 break;
 
             case R.id.nav_about:
-                Toast.makeText(this, getString(R.string.not_ready), Toast.LENGTH_LONG).show();
-                //((MainActivity)getActivity()).changeFragment();
+                changeFragment(AboutFragment.getInstance(), AboutFragment.TAG, true );
                 break;
 
         }

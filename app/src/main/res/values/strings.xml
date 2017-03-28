@@ -51,6 +51,17 @@
 
     <!---->
 
+    <!-- About Fragment -->
+
+    <string name="about_001">\nThis app was developed for the unit Software Engineering Laboratory (2016.2) which is part of
+    the course Computer Science at Universidade Federal de Campina Grande (UFCG).\n</string>
+    <string name="about_002">There are below some information about the people involved:\n</string>
+    <string name="about_003">Professor:\n</string>
+    <string name="about_003.1">Gustavo Soares\n</string>
+    <string name="about_004">Students:\n</string>
+    <string name="about_005">Caynan Victor Landim Sousa\nJair Guedes Ferreira Neto\nLuiza Carvalho Silveira\n
+    Martha Michelly Galvão Menezes\nRafaelle Amorim Monteiro Xavier\nSamir Silva de Medeiros</string>
+
 
 
 
