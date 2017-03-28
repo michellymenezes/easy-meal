@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
     private List<String> mSelectedDiets;
 
     private List<String> mSelectedIngredients;
-    private int mSelectedRecipeID;
 
     private List<GeneralRecipe> generalRecipes;
     private GeneralRecipe generalRecipeSelected;
@@ -208,7 +207,6 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 }
 
                 changeFragment(RecipesListFragment.getInstance(), RecipesListFragment.TAG,true );
-                clearSearch();
             }
 
             @Override
@@ -239,9 +237,18 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
             return;
         }
 
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        String fragmentTag = fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1).getName();
+
+        if (fragmentTag.equals(SelectIngredientsFragment.TAG)) {
+            selectIngredientsFragment.updateView();
+        }
+
+
         super.onBackPressed();
     }
 
+   
     //Menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -261,6 +268,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
             case R.id.nav_ingredient:
                 changeFragment(SelectIngredientsFragment.getInstance(), SelectIngredientsFragment.TAG, true );
+                clearSearch();
                 break;
 
             case R.id.nav_favorites:
@@ -288,37 +296,32 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         return mSelectedFilters;
     }
 
+    public List<String> getSelectedCuisines() {
+        return mSelectedCuisines;
+    }
+
+    public List<String> getSelectedDiets() {
+        return mSelectedDiets;
+    }
+
     public List<String> getSelectedIngredients() {
         return mSelectedIngredients;
     }
 
-    public int getmSelectedRecipeID() {
-        return mSelectedRecipeID;
-    }
-
-    //TODO limpar lista quando "pesquisar " ou "reiniciar" pesquisa
     public void setSelectedFilters(List<String> selectedFilters) {
         this.mSelectedFilters = selectedFilters;
     }
 
-    //TODO limpar lista quando "pesquisar " ou "reiniciar" pesquisa
     public void setSelectedCuisines(List<String> selectedCuisines) {
         this.mSelectedCuisines = selectedCuisines;
     }
 
-    //TODO limpar lista quando "pesquisar " ou "reiniciar" pesquisa
     public void setSelectedDiets(List<String> selectedDiets) {
         this.mSelectedDiets = selectedDiets;
     }
 
-    //TODO limpar lista quando "pesquisar " ou "reiniciar" pesquisa
     public void setSelectedIngredients(List<String> selectedIngredients) {
         this.mSelectedIngredients = selectedIngredients;
-    }
-
-    //TODO limpar lista quando "pesquisar " ou "reiniciar" pesquisa
-    public void setmSelectedRecipeID(int mSelectedRecipeID) {
-        this.mSelectedRecipeID = mSelectedRecipeID;
     }
 
     public SpoonacularService getSpoonacularService() {
