@@ -54,7 +54,6 @@ public class RecipesListFragment extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_recipes_list, container, false);
 
-
         //TODO pegar receitas compatíveis com a pesquisa
         final ArrayList<GeneralRecipe> recipeList = (ArrayList<GeneralRecipe>) ((MainActivity) getActivity()).getGeneralRecipes();
 
@@ -63,16 +62,22 @@ public class RecipesListFragment extends Fragment {
         RecyclerView recipesListView = (RecyclerView) view.findViewById(R.id.recipes_result);
         recipesListView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
+        initHandler(view);
+        setRecipeListViewVisibility(view, recipeList, recipesListView);
 
+        return view;
+    }
 
+    private void initHandler(final View view) {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
                 view.findViewById(R.id.loadingPanel).setVisibility(View.GONE);
             }
         }, 4000);
+    }
 
-
+    private void setRecipeListViewVisibility(View view, ArrayList<GeneralRecipe> recipeList, RecyclerView recipesListView) {
         if(recipeList==null || recipeList.isEmpty()){
             view.findViewById(R.id.no_result).setVisibility(View.VISIBLE);
             view.findViewById(R.id.recipes_list).setVisibility(View.GONE);
@@ -82,11 +87,7 @@ public class RecipesListFragment extends Fragment {
             view.findViewById(R.id.recipes_list).setVisibility(View.VISIBLE);
 
             recipesListView.setAdapter(new RecipeListViewAdapter(getActivity(), recipeList));
-
         }
-
-
-        return view;
     }
 
 
