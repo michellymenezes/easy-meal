@@ -18,13 +18,6 @@ import com.projeto_les.easymeal.services.retrofit_models.Recipe;
 
 import java.util.List;
 
-
-
-
-
-
-
-
 public class RecipeListViewAdapter extends RecyclerView.Adapter {
     public static final String TAG = "RECIPE_LIST_VIEW_ADAPTER";
 
@@ -49,9 +42,12 @@ public class RecipeListViewAdapter extends RecyclerView.Adapter {
         mView.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
 
         ((RecipeItem)holder.itemView).displayItem(items.get(position).getRecipe().getTitle());
-        ((RecipeItem)holder.itemView).displayHowManyIngredientsTheUserHas(items.get(position).getRecipe().getUsedIngredientCount(), items.get(position).getRecipe().getMissedIngredientCount());
-        ((RecipeItem)holder.itemView).displayImage(items.get(position).getRecipe());
 
+        //Mostrar a quantidade de ingredientes da pesquisa que existe na receita e a quantidade total de ingredietnes da receita
+        /*((RecipeItem)holder.itemView).displayHowManyIngredientsTheUserHas(items.get(position).getRecipe().getUsedIngredientCount(),
+                items.get(position).getRecipe().getMissedIngredientCount());*/
+
+        ((RecipeItem)holder.itemView).displayImage(items.get(position).getRecipe());
 
         LinearLayout ll = ((RecipeItem)holder.itemView).getLinearLayoutItem();
 

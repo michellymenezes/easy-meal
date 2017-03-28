@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -63,7 +64,7 @@ public class SelectIngredientsFragment extends Fragment {
     private int[] filterCuisineListIcon;
     private int[] filterDietListIcon;
 
-    private List<String> selectedFilterTypeList;
+    private List<String> selectedFilterList;
     private List<String> selectedFilterCuisineList;
     private List<String> selectedFilterDietList;
     private Button mClearBtn;
@@ -157,7 +158,7 @@ public class SelectIngredientsFragment extends Fragment {
         filterCuisineList = addItens(filterCuisineListName, filterCuisineListIcon);
         filterDietList = addItens(filterDietListName, filterDietListIcon);
 
-        selectedFilterTypeList = new ArrayList<>();
+        selectedFilterList = new ArrayList<>();
         selectedFilterCuisineList = new ArrayList<>();
         selectedFilterDietList = new ArrayList<>();
 
@@ -193,9 +194,7 @@ public class SelectIngredientsFragment extends Fragment {
         filterCuisine();
         filterDiet();
 
-
         addIngredient();
-
 
         return view;
 
@@ -226,24 +225,8 @@ public class SelectIngredientsFragment extends Fragment {
                         }
                     }
                 });
-                new AlertDialog.Builder(getContext())
-                        .setTitle("Select diets")
-                        .setView(mView)
-                        .setPositiveButton("Done", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                selectedFilterDietList = mAdapter.getSelectedItems();
-                                ((MainActivity) getActivity()).setSelectedDiets(selectedFilterDietList);
 
-
-                            }
-                        })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        })
-                        .setIcon(R.drawable.ic_diet_grey)
-                        .show();
+                alertDialogBuilder(mView, mAdapter, R.string.select_diets);
             }
         });
     }
@@ -274,24 +257,9 @@ public class SelectIngredientsFragment extends Fragment {
                         }
                     }
                 });
-                new AlertDialog.Builder(getContext())
-                        .setTitle("Select cuisines")
-                        .setView(mView)
-                        .setPositiveButton("Done", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                selectedFilterCuisineList = mAdapter.getSelectedItems();
-                                ((MainActivity) getActivity()).setSelectedCuisines(selectedFilterCuisineList);
 
+                alertDialogBuilder(mView, mAdapter, R.string.select_cuisines);
 
-                            }
-                        })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        })
-                        .setIcon(R.drawable.ic_cuisine_grey)
-                        .show();
             }
         });
     }
@@ -302,7 +270,7 @@ public class SelectIngredientsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 View mView = View.inflate(getActivity(), R.layout.fragment_select_filters, null);
-                final FilterListAdapter mAdapter= new FilterListAdapter(getActivity(), filterTypeList, selectedFilterTypeList);
+                final FilterListAdapter mAdapter= new FilterListAdapter(getActivity(), filterTypeList, selectedFilterList);
                 final GridView checkboxListView = (GridView) mView.findViewById(R.id.filter_list);
                 final Button checkall = (Button) mView.findViewById(R.id.select_all_filters);
                 mAdapter.setBtnCheckall(checkall);
@@ -321,26 +289,42 @@ public class SelectIngredientsFragment extends Fragment {
                         }
                     }
                 });
-                new AlertDialog.Builder(getContext())
-                        .setTitle("Select recipe types")
-                        .setView(mView)
-                        .setPositiveButton("Done", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                selectedFilterTypeList = mAdapter.getSelectedItems();
-                                ((MainActivity) getActivity()).setSelectedFilters(selectedFilterTypeList);
 
+                alertDialogBuilder(mView, mAdapter, R.string.select_recipe_type);
 
-                            }
-                        })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        })
-                        .setIcon(R.drawable.ic_cook)
-                        .show();
             }
         });
+    }
+
+    private void alertDialogBuilder(View view, final ArrayAdapter adapter, final int filter){
+
+
+        new AlertDialog.Builder(getContext())
+                .setTitle(filter)
+                .setView(view)
+                .setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        if (filter== R.string.select_recipe_type){
+                            selectedFilterList = ((FilterListAdapter)adapter).getSelectedItems();
+                            ((MainActivity) getActivity()).setSelectedFilters(selectedFilterList);
+                        }else if (filter== R.string.select_cuisines){
+                            selectedFilterList = ((FilterListAdapter)adapter).getSelectedItems();
+                            ((MainActivity) getActivity()).setSelectedCuisines(selectedFilterList);
+                        }else if (filter== R.string.select_diets){
+                            selectedFilterList = ((FilterListAdapter)adapter).getSelectedItems();
+                            ((MainActivity) getActivity()).setSelectedDiets(selectedFilterList);
+                        }
+
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setIcon(R.drawable.ic_cook)
+                .show();
     }
 
 
@@ -413,5 +397,20 @@ public class SelectIngredientsFragment extends Fragment {
             filters.add(new FilterItem(filterListName.get(i),filterListIcon[i]));
         }
         return filters;
+    }
+
+    //TODO ajustar o update da view
+    public void updateView() {
+
+        mListAdapter = new IngredientListAdapter(((MainActivity) getActivity()).getSelectedIngredients(), mClearBtn);
+        mSelectIngListView.setAdapter(mListAdapter);
+
+        selectedFilterList = ((MainActivity) getActivity()).getSelectedFilters();
+        selectedFilterCuisineList = ((MainActivity) getActivity()).getSelectedCuisines();
+        selectedFilterDietList = ((MainActivity) getActivity()).getSelectedDiets();
+
+        filterType();
+        filterCuisine();
+        filterDiet();
     }
 }

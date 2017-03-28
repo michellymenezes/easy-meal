@@ -31,10 +31,11 @@ public class RecipeItem extends FrameLayout {
         ((TextView)findViewById(R.id.recipe_item_name)).setText(text);
     }
 
+    //Mostrar a quantidade de ingredientes da pesquisa que existe na receita e a quantidade total de ingredietnes da receita
     public void displayHowManyIngredientsTheUserHas(Integer usedIngredientCount, Integer missingIngredients) {
         String text = usedIngredientCount +
                 "/ " + (usedIngredientCount + missingIngredients);
-        ((TextView)findViewById(R.id.have_ingredients)).setText(text);
+        //((TextView)findViewById(R.id.have_ingredients)).setText(text);
     }
 
     public void displayImage(Recipe recipe) {

@@ -78,6 +78,9 @@
 
     <string name="tutorial_menu_text002">\nIn the <b>\'Sideview menu\'</b> you can choose which types of recipes you want to consult: main course, side dish, dessert, appetizer, salad, bread, breakfast, soup, beverage, sauce, or drink.
     </string>
+    <string name="select_diets">Select diets</string>
+    <string name="select_cuisines">Select cuisines</string>
+    <string name="select_recipe_type">Select recipe types</string>
     <!---->
 
 
