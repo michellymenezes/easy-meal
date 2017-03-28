@@ -39,14 +39,11 @@ public class SelectIngredientsFragment extends Fragment {
 
     private static SelectIngredientsFragment fragment;
     public static final String TAG = "SELECT_INGREDIENTS_FRAGMENT";
-    // private Button mClearBtn;
     private EditText mIngredientEditText;
     private Button mAddBtn;
     private Button mTypeBtn;
     private Button mCuisineBtn;
     private Button mDietBtn;
-
-
 
     private List<String> mIngredients;
     private IngredientListAdapter mListAdapter;
@@ -68,7 +65,6 @@ public class SelectIngredientsFragment extends Fragment {
     private List<String> selectedFilterCuisineList;
     private List<String> selectedFilterDietList;
     private Button mClearBtn;
-
 
     public SelectIngredientsFragment() {
         // Required empty public constructor
@@ -101,31 +97,85 @@ public class SelectIngredientsFragment extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_select_ingredient, container, false);
 
-        mIngredients = new ArrayList<String>();
-
-        mClearBtn = (Button) view.findViewById(R.id.clear_all_ings_btn);
-        mClearBtn.setVisibility(View.GONE);
-
-
-        mListAdapter = new IngredientListAdapter(mIngredients, mClearBtn);
-
         final FloatingActionButton searchBtn = (FloatingActionButton) view.findViewById(R.id.search_recipes);
         searchBtn.setClickable(true);
+
+        initVariables(view);
+        setClickListenerToSearchBtn(searchBtn);
+        setClickListenerToClearBtn();
+        filterType();
+        filterCuisine();
+        filterDiet();
+        addIngredient();
+
+        return view;
+
+    }
+
+    private void setClickListenerToClearBtn() {
+        mClearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mIngredients.clear();
+                mSelectIngListView.setAdapter(mListAdapter);
+            }
+        });
+    }
+
+    private void setClickListenerToSearchBtn(final FloatingActionButton searchBtn) {
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchBtn.setClickable(false);
+                if (mIngredients.size() > 0){
+                    ((MainActivity) getActivity()).setSelectedIngredients(mIngredients);
+                    ((MainActivity) getActivity()).inicializeSpoonacularService();
+
+                } else {
+                    Toast.makeText(getContext(), R.string.add_one, Toast.LENGTH_SHORT).show();
+                    searchBtn.setClickable(true);
+                }
+            }
+        });
+    }
+
+    private void initVariables(View view) {
+        mIngredients = new ArrayList<>();
+
+        initClearBtn(view);
+
+        mListAdapter = new IngredientListAdapter(mIngredients, mClearBtn);
 
         mSelectIngListView = (RecyclerView) view.findViewById(R.id.selected_ingredients_list);
         mSelectIngListView.setLayoutManager(new FlowLayoutManager());
         mIngredientEditText = (EditText) view.findViewById(R.id.auto_complete_ingredient);
 
-        //actv.setTextLocale(Locale.ENGLISH);
-        // mClearBtn = (Button)view.findViewById(R.id.clear_btn);
+        initAddBtn(view);
+        initFiltersBtn(view);
+        initFilters();
+        addItensToFilters();
+        initSelectedFilter();
+    }
 
-        mAddBtn = (Button) view.findViewById(R.id.add);
-        mAddBtn.setEnabled(true);
-
+    private void initFiltersBtn(View view) {
         mTypeBtn = (Button) view.findViewById(R.id.id_type);
         mCuisineBtn = (Button) view.findViewById(R.id.id_cuisine);
         mDietBtn = (Button) view.findViewById(R.id.id_diet);
+    }
 
+    private void initSelectedFilter() {
+        selectedFilterList = new ArrayList<>();
+        selectedFilterCuisineList = new ArrayList<>();
+        selectedFilterDietList = new ArrayList<>();
+    }
+
+    private void addItensToFilters() {
+        filterTypeList = addItens(filterTypeListName, filterTypeListIcon);
+        filterCuisineList = addItens(filterCuisineListName, filterCuisineListIcon);
+        filterDietList = addItens(filterDietListName, filterDietListIcon);
+    }
+
+    private void initFilters() {
         filterCuisineListName = new ArrayList<>(Arrays.asList( "African", "Chinese", "Japanese",
                 "Korean", "Vietnamese", "Thai", "Indian", "British", "French", "Italian", "Mexican"
                 , "American", "Greek", "Latin American"));
@@ -153,51 +203,16 @@ public class SelectIngredientsFragment extends Fragment {
                 R.drawable.ic_diet, R.drawable.ic_diet, R.drawable.ic_diet,
                 R.drawable.ic_diet, R.drawable.ic_diet,
         };
+    }
 
-        filterTypeList = addItens(filterTypeListName, filterTypeListIcon);
-        filterCuisineList = addItens(filterCuisineListName, filterCuisineListIcon);
-        filterDietList = addItens(filterDietListName, filterDietListIcon);
+    private void initAddBtn(View view) {
+        mAddBtn = (Button) view.findViewById(R.id.add);
+        mAddBtn.setEnabled(true);
+    }
 
-        selectedFilterList = new ArrayList<>();
-        selectedFilterCuisineList = new ArrayList<>();
-        selectedFilterDietList = new ArrayList<>();
-
-
-        //clear();
-
-        searchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchBtn.setClickable(false);
-                if (mIngredients.size() > 0){
-                    ((MainActivity) getActivity()).setSelectedIngredients(mIngredients);
-                    ((MainActivity) getActivity()).inicializeSpoonacularService();
-                   // Toast.makeText(getContext(), R.string.wait, Toast.LENGTH_LONG).show();
-
-                } else {
-                    Toast.makeText(getContext(), R.string.add_one, Toast.LENGTH_SHORT).show();
-                    searchBtn.setClickable(true);
-                }
-            }
-        });
-
-        mClearBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mIngredients.clear();
-                mSelectIngListView.setAdapter(mListAdapter);
-            }
-        });
-
-
-        filterType();
-        filterCuisine();
-        filterDiet();
-
-        addIngredient();
-
-        return view;
-
+    private void initClearBtn(View view) {
+        mClearBtn = (Button) view.findViewById(R.id.clear_all_ings_btn);
+        mClearBtn.setVisibility(View.GONE);
     }
 
     private void filterDiet() {
