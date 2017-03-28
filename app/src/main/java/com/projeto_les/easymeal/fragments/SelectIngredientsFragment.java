@@ -193,9 +193,7 @@ public class SelectIngredientsFragment extends Fragment {
         filterCuisine();
         filterDiet();
 
-
         addIngredient();
-
 
         return view;
 

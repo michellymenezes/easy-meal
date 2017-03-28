@@ -208,6 +208,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 }
 
                 changeFragment(RecipesListFragment.getInstance(), RecipesListFragment.TAG,true );
+                clearSearch();
             }
 
             @Override
@@ -216,6 +217,13 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
             }
         });
 
+    }
+
+    private void clearSearch() {
+        mSelectedIngredients.clear();
+        mSelectedFilters.clear();
+        mSelectedCuisines.clear();
+        mSelectedDiets.clear();
     }
 
     //public List<Recipe> getRecipes(){
