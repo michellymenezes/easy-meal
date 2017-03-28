@@ -103,9 +103,7 @@ public class SelectIngredientsFragment extends Fragment {
         initVariables(view);
         setClickListenerToSearchBtn(searchBtn);
         setClickListenerToClearBtn();
-        filterType();
-        filterCuisine();
-        filterDiet();
+
         addIngredient();
 
         return view;
@@ -150,17 +148,29 @@ public class SelectIngredientsFragment extends Fragment {
         mSelectIngListView.setLayoutManager(new FlowLayoutManager());
         mIngredientEditText = (EditText) view.findViewById(R.id.auto_complete_ingredient);
 
+        initSelectedFilter();
+
         initAddBtn(view);
-        initFiltersBtn(view);
         initFilters();
         addItensToFilters();
-        initSelectedFilter();
+        initFiltersBtn(view);
     }
 
     private void initFiltersBtn(View view) {
+
         mTypeBtn = (Button) view.findViewById(R.id.id_type);
+        filterBuilder(mTypeBtn, R.string.select_recipe_type, new FilterListAdapter(getActivity(), filterTypeList, selectedFilterList));
+
         mCuisineBtn = (Button) view.findViewById(R.id.id_cuisine);
+        filterBuilder(mCuisineBtn, R.string.select_cuisines, new FilterListAdapter(getActivity(), filterCuisineList, selectedFilterCuisineList));
+
         mDietBtn = (Button) view.findViewById(R.id.id_diet);
+        filterBuilder(mDietBtn, R.string.select_diets, new FilterListAdapter(getActivity(), filterDietList, selectedFilterDietList));
+
+
+        //filterType();
+        //filterCuisine();
+        //filterDiet();
     }
 
     private void initSelectedFilter() {
@@ -215,104 +225,39 @@ public class SelectIngredientsFragment extends Fragment {
         mClearBtn.setVisibility(View.GONE);
     }
 
-    private void filterDiet() {
-        mDietBtn.setOnClickListener(new View.OnClickListener() {
+
+
+    private void filterBuilder(Button btn, final int filter, final FilterListAdapter adapter) {
+        btn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 View mView = View.inflate(getActivity(), R.layout.fragment_select_filters, null);
-                final FilterListAdapter mAdapter= new FilterListAdapter(getActivity(), filterDietList, selectedFilterDietList);
                 final GridView checkboxListView = (GridView) mView.findViewById(R.id.filter_list);
                 final Button checkall = (Button) mView.findViewById(R.id.select_all_filters);
-                if(mAdapter.allIschecked()) checkall.setText("uncheck all");
-                mAdapter.setBtnCheckall(checkall);
-                checkboxListView.setAdapter(mAdapter);
+                if(adapter.allIschecked()) checkall.setText("uncheck all");
+                adapter.setBtnCheckall(checkall);
+                checkboxListView.setAdapter(adapter);
                 checkall.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (mAdapter.allIschecked()){
-                            mAdapter.uncheckAll();
+                        if (adapter.allIschecked()){
+                            adapter.uncheckAll();
                             checkall.setText("check all");
                         }else {
-                            mAdapter.checkAll();
+                            adapter.checkAll();
                             checkall.setText("uncheck all");
 
                         }
                     }
                 });
 
-                alertDialogBuilder(mView, mAdapter, R.string.select_diets);
+                alertDialogBuilder(mView, adapter, filter);
             }
         });
     }
-
-
-    private void filterCuisine() {
-        mCuisineBtn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                View mView = View.inflate(getActivity(), R.layout.fragment_select_filters, null);
-                final FilterListAdapter mAdapter= new FilterListAdapter(getActivity(), filterCuisineList, selectedFilterCuisineList);
-                final GridView checkboxListView = (GridView) mView.findViewById(R.id.filter_list);
-                final Button checkall = (Button) mView.findViewById(R.id.select_all_filters);
-                mAdapter.setBtnCheckall(checkall);
-                if(mAdapter.allIschecked()) checkall.setText("uncheck all");
-                checkboxListView.setAdapter(mAdapter);
-                checkall.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (mAdapter.allIschecked()){
-                            mAdapter.uncheckAll();
-                            checkall.setText("check all");
-                        }else {
-                            mAdapter.checkAll();
-                            checkall.setText("uncheck all");
-
-                        }
-                    }
-                });
-
-                alertDialogBuilder(mView, mAdapter, R.string.select_cuisines);
-
-            }
-        });
-    }
-
-    private void filterType() {
-        mTypeBtn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                View mView = View.inflate(getActivity(), R.layout.fragment_select_filters, null);
-                final FilterListAdapter mAdapter= new FilterListAdapter(getActivity(), filterTypeList, selectedFilterList);
-                final GridView checkboxListView = (GridView) mView.findViewById(R.id.filter_list);
-                final Button checkall = (Button) mView.findViewById(R.id.select_all_filters);
-                mAdapter.setBtnCheckall(checkall);
-                if(mAdapter.allIschecked()) checkall.setText("uncheck all");
-                checkboxListView.setAdapter(mAdapter);
-                checkall.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (mAdapter.allIschecked()){
-                            mAdapter.uncheckAll();
-                            checkall.setText("check all");
-                        }else {
-                            mAdapter.checkAll();
-                            checkall.setText("uncheck all");
-
-                        }
-                    }
-                });
-
-                alertDialogBuilder(mView, mAdapter, R.string.select_recipe_type);
-
-            }
-        });
-    }
-
-    private void alertDialogBuilder(View view, final ArrayAdapter adapter, final int filter){
-
+    
+    private void alertDialogBuilder(View view, final FilterListAdapter adapter, final int filter){
 
         new AlertDialog.Builder(getContext())
                 .setTitle(filter)
@@ -321,13 +266,13 @@ public class SelectIngredientsFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
 
                         if (filter== R.string.select_recipe_type){
-                            selectedFilterList = ((FilterListAdapter)adapter).getSelectedItems();
+                            selectedFilterList = adapter.getSelectedItems();
                             ((MainActivity) getActivity()).setSelectedFilters(selectedFilterList);
                         }else if (filter== R.string.select_cuisines){
-                            selectedFilterList = ((FilterListAdapter)adapter).getSelectedItems();
+                            selectedFilterCuisineList = adapter.getSelectedItems();
                             ((MainActivity) getActivity()).setSelectedCuisines(selectedFilterList);
                         }else if (filter== R.string.select_diets){
-                            selectedFilterList = ((FilterListAdapter)adapter).getSelectedItems();
+                            selectedFilterDietList = adapter.getSelectedItems();
                             ((MainActivity) getActivity()).setSelectedDiets(selectedFilterList);
                         }
 
@@ -424,8 +369,8 @@ public class SelectIngredientsFragment extends Fragment {
         selectedFilterCuisineList = ((MainActivity) getActivity()).getSelectedCuisines();
         selectedFilterDietList = ((MainActivity) getActivity()).getSelectedDiets();
 
-        filterType();
-        filterCuisine();
-        filterDiet();
+        //filterType();
+        //filterCuisine();
+        //filterDiet();
     }
 }
