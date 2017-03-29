@@ -151,9 +151,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="5dp">
+        android:layout_margin="5dp"
+        android:layout_weight="1">
 
         <ScrollView
             android:id="@+id/scrollView_id"
@@ -200,8 +201,7 @@
         android:clickable="true"
         android:elevation="4dp"
         android:src="@drawable/ic_search_"
-        android:layout_gravity="right"
-        />
+        android:layout_gravity="right" />
 
 
 </LinearLayout>
