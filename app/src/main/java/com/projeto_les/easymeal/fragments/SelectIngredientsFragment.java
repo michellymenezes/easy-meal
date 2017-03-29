@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -127,7 +126,7 @@ public class SelectIngredientsFragment extends Fragment {
                 searchBtn.setClickable(false);
                 if (mIngredients.size() > 0){
                     ((MainActivity) getActivity()).setSelectedIngredients(mIngredients);
-                    ((MainActivity) getActivity()).inicializeSpoonacularService();
+                    ((MainActivity) getActivity()).complexSearch();
 
                 } else {
                     Toast.makeText(getContext(), R.string.add_one, Toast.LENGTH_SHORT).show();
@@ -274,11 +273,7 @@ public class SelectIngredientsFragment extends Fragment {
 
                     }
                 })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
 
-                    }
-                })
                 .setIcon(R.drawable.ic_cook)
                 .show();
     }

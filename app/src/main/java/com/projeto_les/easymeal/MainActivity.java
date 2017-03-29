@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         }
     }
 
-    public void inicializeSpoonacularService(){
+    public void complexSearch(){
 
         IngredientsMapper ingredientsMapper = new IngredientsMapper();
         settingIngredientsMapperAttributes(ingredientsMapper);
@@ -171,12 +171,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
         generalRecipes.clear();
 
-        ComplexSearchMapper complexSearchMapper = new ComplexSearchMapper(getStringSelectedCuisines(),getStringSelectedDiets(),getStringSelectedIngredients(), null, 5,null,1, getStringSelectedFilters());
-        complexSearch(complexSearchMapper);
-
-    }
-
-    private void complexSearch(ComplexSearchMapper complexSearchMapper) {
+        ComplexSearchMapper complexSearchMapper = new ComplexSearchMapper(getStringSelectedCuisines(),getStringSelectedDiets(),getStringSelectedIngredients(), null, 7,null,1, getStringSelectedFilters());
         spoonacularService.searchComplex(complexSearchMapper, new Callback<ComplexSearchResult>() {
             @Override
             public void onResponse(Call<ComplexSearchResult> call, Response<ComplexSearchResult> response) {
@@ -192,6 +187,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 }
 
                 changeFragment(RecipesListFragment.getInstance(), RecipesListFragment.TAG,true );
+                clearSearch(false);
             }
 
             @Override
@@ -199,6 +195,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
             }
         });
+
     }
 
     private void settingIngredientsMapperAttributes(IngredientsMapper ingredientsMapper) {
@@ -210,8 +207,10 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         ingredientsMapper.setIngredients(ingredients);
     }
 
-    private void clearSearch() {
-        mSelectedIngredients.clear();
+    private void clearSearch(Boolean backPressed) {
+        if (backPressed){
+            mSelectedIngredients.clear();
+        }
         mSelectedFilters.clear();
         mSelectedCuisines.clear();
         mSelectedDiets.clear();
@@ -229,7 +228,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
         String fragmentTag = fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1).getName();
 
         if (fragmentTag.equals(SelectIngredientsFragment.TAG)) {
-            selectIngredientsFragment.updateView();
+            //selectIngredientsFragment.updateView();
+            clearSearch(true);
         }
 
 
@@ -256,7 +256,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
             case R.id.nav_ingredient:
                 changeFragment(SelectIngredientsFragment.getInstance(), SelectIngredientsFragment.TAG, true );
-                clearSearch();
+                clearSearch(false);
                 break;
 
             case R.id.nav_favorites:
