@@ -22,13 +22,13 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class AboutScreenTest {
+public class LastViewedScreenTest {
 
     @Rule
-    public ActivityTestRule<SplashScreen> mActivityTestRule = new ActivityTestRule<>(SplashScreen.class);
+    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void aboutScreenTest() {
+    public void lastViewedScreenTest1() {
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
@@ -46,7 +46,7 @@ public class AboutScreenTest {
         appCompatImageButton.perform(click());
 
         ViewInteraction appCompatCheckedTextView = onView(
-                allOf(withId(R.id.design_menu_item_text), withText("About"), isDisplayed()));
+                allOf(withId(R.id.design_menu_item_text), withText("Last Viewed"), isDisplayed()));
         appCompatCheckedTextView.perform(click());
 
     }
@@ -55,7 +55,7 @@ public class AboutScreenTest {
      * Test change orientation
      */
     @Test
-    public void aboutScreenTest2() {
+    public void lastViewedScreenTest2() {
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
@@ -73,14 +73,14 @@ public class AboutScreenTest {
         appCompatImageButton.perform(click());
 
         ViewInteraction appCompatCheckedTextView = onView(
-                allOf(withId(R.id.design_menu_item_text), withText("About"), isDisplayed()));
+                allOf(withId(R.id.design_menu_item_text), withText("Last Viewed"), isDisplayed()));
         appCompatCheckedTextView.perform(click());
 
         // Change orientation to landscape
         onView(isRoot()).perform(OrientationChangeAction.orientationLandscape());
 
         ViewInteraction aboutTextView = onView(
-                allOf(withId(R.id.title_about), withText("About"), isDisplayed()));
+                allOf(withId(R.id.readyInMinutes), withText("readyInMinutes"), isDisplayed()));
         aboutTextView.perform(click());
 
     }
