@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
 
         generalRecipes.clear();
 
-        ComplexSearchMapper complexSearchMapper = new ComplexSearchMapper(getStringSelectedCuisines(),getStringSelectedDiets(),getStringSelectedIngredients(), null, 7,null,1, getStringSelectedFilters());
+        ComplexSearchMapper complexSearchMapper = new ComplexSearchMapper(getStringSelectedCuisines(),getStringSelectedDiets(),getStringSelectedIngredients(), null, 7,getStringSelectedIngredients(),1, getStringSelectedFilters());
         spoonacularService.searchComplex(complexSearchMapper, new Callback<ComplexSearchResult>() {
             @Override
             public void onResponse(Call<ComplexSearchResult> call, Response<ComplexSearchResult> response) {
@@ -321,6 +321,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
                 ingredients =ingredients.substring(0, ingredients.length()-1);
             }
         }
+
+        Log.d(TAG, ingredients);
         return ingredients;
     }
 
@@ -335,6 +337,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
             if (filters.endsWith(",")){
                 filters =filters.substring(0, filters.length()-1);
             }
+        } else {
+            return null;
         }
 
         return filters;
@@ -351,6 +355,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
             if (cuisines.endsWith(",")){
                 cuisines =cuisines.substring(0, cuisines.length()-1);
             }
+        } else {
+            return null;
         }
 
         return cuisines;
@@ -367,6 +373,8 @@ public class MainActivity extends AppCompatActivity implements  NavigationView.O
             if (diets.endsWith(",")){
                 diets =diets.substring(0, diets.length()-1);
             }
+        } else {
+            return null;
         }
 
         return diets;

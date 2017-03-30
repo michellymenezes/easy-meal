@@ -39,7 +39,7 @@
     <string name="title_activity_splash_screen">SplashScreen</string>
     <!-- List recipe Fragment -->
     <string name="result">Result</string>
-    <string name="no_recipe_result">Ops! we don\'t find any recipe with this options :(</string>
+    <string name="no_recipe_result">Ops! we couldn\'t find any recipe with these options, please verify if all your ingredients exist :(</string>
     <string name="wait">Wait .....  :)</string>
     <string name="tutorial_000_text">Search through hundreds of thousands of recipes using advanced filtering and ranking.</string>
 

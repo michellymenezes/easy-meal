@@ -57,8 +57,6 @@ public class RecipesListFragment extends Fragment {
         //TODO pegar receitas compatíveis com a pesquisa
         final ArrayList<GeneralRecipe> recipeList = (ArrayList<GeneralRecipe>) ((MainActivity) getActivity()).getGeneralRecipes();
 
-        Collections.sort(recipeList);
-
         RecyclerView recipesListView = (RecyclerView) view.findViewById(R.id.recipes_result);
         recipesListView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
