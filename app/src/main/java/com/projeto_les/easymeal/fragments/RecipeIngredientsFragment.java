@@ -7,6 +7,7 @@ package com.projeto_les.easymeal.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +36,9 @@ public class RecipeIngredientsFragment extends Fragment {
     private RecyclerView mRecycleView;
     private View mview;
     private List<String> mIngredients;
-    private RecipeInformation mRecipe;
+    private List<String> mIngredientsImgs;
+
+    private RecipeInformation mRecipeInformation;
 
 
     /**
@@ -67,18 +70,19 @@ public class RecipeIngredientsFragment extends Fragment {
 
         startAdapter();
 
-        mRecipe = ((MainActivity) getActivity()).getGlobals().getRecipeInformation();
-        if (mRecipe != null) {
+        mRecipeInformation = ((MainActivity) getActivity()).getGlobals().getRecipeInformation();
+        if (mRecipeInformation != null) {
             mRecycleView = (RecyclerView) mview.findViewById(R.id.recipe_ingredient_list);
 
             mIngredients = new ArrayList<String>();
-            for (ExtendedIngredient x: mRecipe.getExtendedIngredients()) {
+            mIngredientsImgs = new ArrayList<String>();
+            for (ExtendedIngredient x: mRecipeInformation.getExtendedIngredients()) {
                 mIngredients.add(x.getOriginalString());
-
+                mIngredientsImgs.add(x.getImage());
 
             }
-            RecipeIngredientsAdapter adapter = new RecipeIngredientsAdapter(mIngredients);
-            mRecycleView.setLayoutManager(new FlowLayoutManager().setAlignment(Alignment.LEFT));
+            RecipeIngredientsAdapter adapter = new RecipeIngredientsAdapter(mIngredients, mIngredientsImgs);
+            mRecycleView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
             mRecycleView.setAdapter(adapter);
         }
