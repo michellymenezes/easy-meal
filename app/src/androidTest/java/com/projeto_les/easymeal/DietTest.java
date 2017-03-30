@@ -20,6 +20,7 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -33,7 +34,7 @@ public class DietTest {
     public ActivityTestRule<SplashScreen> mActivityTestRule = new ActivityTestRule<>(SplashScreen.class);
 
     @Test
-    public void dietTest() {
+    public void dietTest1() {
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -103,4 +104,37 @@ public class DietTest {
             }
         };
     }
+
+    @Test
+    public void dietTest2() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        ViewInteraction appCompatButton = onView(
+                allOf(withId(R.id.id_diet), withText("diet"), isDisplayed()));
+        appCompatButton.perform(click());
+
+        ViewInteraction dietItemDialogFragment = onView(
+                allOf(withId(R.id.checkbox), withText("Pescetarian"),
+                        withParent(childAtPosition(
+                                withId(R.id.filter_list),
+                                0)),
+                        isDisplayed()));
+        dietItemDialogFragment.perform(click());
+
+        // Change orientation to landscape
+        onView(isRoot()).perform(OrientationChangeAction.orientationLandscape());
+
+        dietItemDialogFragment = onView(
+                allOf(withId(R.id.checkbox), withText("Pescetarian"),
+                        withParent(childAtPosition(
+                                withId(R.id.filter_list),
+                                0)),
+                        isDisplayed()));
+        dietItemDialogFragment.perform(click());
+    }
+
+
 }

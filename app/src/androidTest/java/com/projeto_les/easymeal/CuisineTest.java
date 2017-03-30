@@ -1,6 +1,7 @@
 package com.projeto_les.easymeal;
 
 
+import android.content.pm.ActivityInfo;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -20,6 +21,7 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -30,10 +32,10 @@ import static org.hamcrest.Matchers.allOf;
 public class CuisineTest {
 
     @Rule
-    public ActivityTestRule<SplashScreen> mActivityTestRule = new ActivityTestRule<>(SplashScreen.class);
+    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void cuisineTest() {
+    public void cuisineTest1() {
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
@@ -103,4 +105,39 @@ public class CuisineTest {
             }
         };
     }
+
+
+    @Test
+    public void cuisineTest2() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        ViewInteraction appCompatButton = onView(
+                allOf(withId(R.id.id_cuisine), withText("cuisine"), isDisplayed()));
+        appCompatButton.perform(click());
+
+        ViewInteraction cuisineItemDialogFragment = onView(
+                allOf(withId(R.id.checkbox), withText("African"),
+                        withParent(childAtPosition(
+                                withId(R.id.filter_list),
+                                0)),
+                        isDisplayed()));
+        cuisineItemDialogFragment.perform(click());
+
+        // Change orientation to landscape
+        onView(isRoot()).perform(OrientationChangeAction.orientationLandscape());
+
+
+        cuisineItemDialogFragment = onView(
+                allOf(withId(R.id.checkbox), withText("African"),
+                        withParent(childAtPosition(
+                                withId(R.id.filter_list),
+                                0)),
+                        isDisplayed()));
+        cuisineItemDialogFragment.perform(click());
+
+    }
+
 }
