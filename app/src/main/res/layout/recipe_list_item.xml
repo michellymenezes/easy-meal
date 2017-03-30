@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clipToPadding="false"
-    android:padding="5dp"
+    android:paddingBottom="10dp"
     >
 
     <LinearLayout
@@ -20,11 +20,11 @@
 
         <ImageView
             android:layout_width="100dp"
-            android:layout_marginLeft="3dp"
+            android:layout_margin="4dp"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:id="@+id/recipe_image"
-            android:src="@drawable/ic_cook"
+            android:src="@drawable/ic_preparing"
             android:padding="5dp"/>
 
         <LinearLayout
