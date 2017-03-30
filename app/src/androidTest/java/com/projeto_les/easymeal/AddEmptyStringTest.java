@@ -12,6 +12,8 @@ import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
@@ -20,22 +22,31 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class EmptyStringTest {
+public class AddEmptyStringTest {
 
     @Rule
-    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule<SplashScreen> mActivityTestRule = new ActivityTestRule<>(SplashScreen.class);
 
     @Test
-    public void emptyStringTest() {
-//        ViewInteraction appCompatButton = onView(
-//                allOf(withId(R.id.next), withText("Next"), isDisplayed()));
-//        appCompatButton.perform(click());
+    public void AddEmptyStringTest() {
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-        ViewInteraction appCompatButton2 = onView(
+        ViewInteraction appCompatEditText = onView(
+                allOf(withId(R.id.auto_complete_ingredient), isDisplayed()));
+        appCompatEditText.perform(replaceText(""), closeSoftKeyboard());
+
+        ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.add), withText("add"),
                         withParent(withId(R.id.ingredient_layout)),
                         isDisplayed()));
-        appCompatButton2.perform(click());
+        appCompatButton.perform(click());
 
     }
 

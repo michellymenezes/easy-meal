@@ -18,8 +18,7 @@ import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.replaceText;
+import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
@@ -28,34 +27,61 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class NumberTest {
+public class CuisineTest {
 
     @Rule
-    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule<SplashScreen> mActivityTestRule = new ActivityTestRule<>(SplashScreen.class);
 
     @Test
-    public void numberTest() {
+    public void cuisineTest() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        ViewInteraction appCompatButton = onView(
+                allOf(withId(R.id.id_cuisine), withText("cuisine"), isDisplayed()));
+        appCompatButton.perform(click());
+
         ViewInteraction appCompatCheckBox = onView(
-                allOf(withId(R.id.checkbox), withText("Drink"),
+                allOf(withId(R.id.checkbox), withText("African"),
                         withParent(childAtPosition(
                                 withId(R.id.filter_list),
-                                10)),
+                                0)),
                         isDisplayed()));
         appCompatCheckBox.perform(click());
 
-//        ViewInteraction appCompatButton = onView(
-//                allOf(withId(R.id.next), withText("Next"), isDisplayed()));
-//        appCompatButton.perform(click());
-
-        ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.auto_complete_ingredient), isDisplayed()));
-        appCompatEditText.perform(replaceText("35"), closeSoftKeyboard());
-
         ViewInteraction appCompatButton2 = onView(
-                allOf(withId(R.id.add), withText("add"),
-                        withParent(withId(R.id.ingredient_layout)),
+                allOf(withId(R.id.select_all_filters), withText("CHECK ALL"),
+                        withParent(withId(R.id.filter_layout)),
                         isDisplayed()));
         appCompatButton2.perform(click());
+
+        ViewInteraction appCompatButton3 = onView(
+                allOf(withId(R.id.select_all_filters), withText("uncheck all"),
+                        withParent(withId(R.id.filter_layout)),
+                        isDisplayed()));
+        appCompatButton3.perform(click());
+
+        ViewInteraction appCompatCheckBox2 = onView(
+                allOf(withId(R.id.checkbox), withText("Chinese"),
+                        withParent(childAtPosition(
+                                withId(R.id.filter_list),
+                                1)),
+                        isDisplayed()));
+        appCompatCheckBox2.perform(click());
+
+        ViewInteraction appCompatButton4 = onView(
+                allOf(withId(android.R.id.button1), withText("Done")));
+        appCompatButton4.perform(scrollTo(), click());
+
+        ViewInteraction appCompatButton5 = onView(
+                allOf(withId(R.id.id_cuisine), withText("cuisine"), isDisplayed()));
+        appCompatButton5.perform(click());
+
+        ViewInteraction appCompatButton6 = onView(
+                allOf(withId(android.R.id.button1), withText("Done")));
+        appCompatButton6.perform(scrollTo(), click());
 
     }
 

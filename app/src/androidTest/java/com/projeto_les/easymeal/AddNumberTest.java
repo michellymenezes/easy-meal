@@ -22,30 +22,31 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class AddButtonTest {
+public class AddNumberTest {
 
     @Rule
-    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule<SplashScreen> mActivityTestRule = new ActivityTestRule<>(SplashScreen.class);
 
     @Test
-    public void addButtonTest() {
-//        ViewInteraction appCompatButton = onView(
-//                allOf(withId(R.id.next), withText("Next"), isDisplayed()));
-//        appCompatButton.perform(click());
+    public void addNumberTest() {
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.auto_complete_ingredient), isDisplayed()));
-        appCompatEditText.perform(replaceText("flour"), closeSoftKeyboard());
+        appCompatEditText.perform(replaceText("35"), closeSoftKeyboard());
 
-        ViewInteraction appCompatButton2 = onView(
+        ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.add), withText("add"),
                         withParent(withId(R.id.ingredient_layout)),
                         isDisplayed()));
-        appCompatButton2.perform(click());
-
-        ViewInteraction appCompatButton3 = onView(
-                allOf(withId(R.id.search_recipes), withText("Search"), isDisplayed()));
-        appCompatButton3.perform(click());
+        appCompatButton.perform(click());
 
     }
 
